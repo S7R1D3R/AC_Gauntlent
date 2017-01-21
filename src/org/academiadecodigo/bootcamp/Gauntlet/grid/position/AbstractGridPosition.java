@@ -18,7 +18,7 @@ public abstract class AbstractGridPosition implements GridPosition{
         private int row;
         private GridImages color;
         private Grid grid;
-
+        private GridPosition[] wallPositions;
 
         /**
          * Construct a new grid position at a specific column and row
