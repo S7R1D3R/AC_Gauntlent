@@ -7,7 +7,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public interface Movable extends GridPosition{
     // TODO => VERONICA (GLORIA)
-    public void move();
 
 
     /**
