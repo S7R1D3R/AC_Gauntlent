@@ -1,7 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridColor;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImages;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
@@ -9,15 +10,12 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public class Player extends Character {
     private int points;
-    private static GridPosition INIT_POS;
 
-    public Player(GridPosition INIT_POS) {
-
-        this.INIT_POS = INIT_POS;
-        INIT_POS.setColor(GridColor.GREEN);
-
-
-}
+    public Player() {
+        super();
+        this.setGrid(Gri);
+        this.setPos(grid.makeGridPosition(0, 15));
+    }
 
 
     public void collect(Item item) {
@@ -29,7 +27,52 @@ public class Player extends Character {
 
     }
 
-    public static GridPosition getInitPos() {
-        return INIT_POS;
+    @Override
+    public void moveInDirection(GridDirection direction, int distance) {
+
+    }
+
+    public GridPosition getPos() {
+        return super.getPos();
+    }
+
+    @Override
+    public int getCol() {
+        return super.getPos().getCol();
+    }
+
+    @Override
+    public int getRow() {
+        return super.getPos().getRow();
+    }
+
+    @Override
+    public void setPos(int col, int row) {
+        super.getPos().setPos(col, row);
+    }
+
+    @Override
+    public GridImages getColor() {
+        return this.;
+    }
+
+    @Override
+    public void setColor(GridImages color) {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public boolean equals(GridPosition position) {
+        return false;
     }
 }

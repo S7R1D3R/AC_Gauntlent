@@ -1,5 +1,5 @@
 package org.academiadecodigo.bootcamp.Gauntlet.grid.position;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridColor;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImages;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 
@@ -16,7 +16,7 @@ public abstract class AbstractGridPosition implements GridPosition{
 
         private int col;
         private int row;
-        private GridColor color;
+        private GridImages color;
         private Grid grid;
 
 
@@ -31,7 +31,7 @@ public abstract class AbstractGridPosition implements GridPosition{
             this.col = col;
             this.row = row;
             this.grid = grid;
-            this.color = GridColor.NOCOLOR;
+            this.color = GridImages.NOCOLOR;
         }
 
         public Grid getGrid() {
@@ -68,15 +68,15 @@ public abstract class AbstractGridPosition implements GridPosition{
          * @see GridPosition#getColor()
          */
         @Override
-        public GridColor getColor() {
+        public GridImages getColor() {
             return color;
         }
 
         /**
-         * @see GridPosition#setColor(GridColor)
+         * @see GridPosition#setColor(GridImages)
          */
         @Override
-        public void setColor(GridColor color) {
+        public void setColor(GridImages color) {
             this.color = color;
             show();
         }

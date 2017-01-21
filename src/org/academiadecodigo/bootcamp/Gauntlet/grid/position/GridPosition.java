@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.grid.position;
 
 
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridColor;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImages;
 
 /**
  * A position on the grid
@@ -35,14 +35,14 @@ public interface GridPosition {
      *
      * @return the position getColor
      */
-    public GridColor getColor();
+    public GridImages getColor();
 
     /**
      * Changes the getColor of this grid position
      *
      * @param color the new position getColor
      */
-    public void setColor(GridColor color);
+    public void setColor(GridImages color);
 
     /**
      * Displays the position in the grid
