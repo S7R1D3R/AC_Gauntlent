@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Gauntlet;
+package org.academiadecodigo.bootcamp.Gauntlet.test;
 
 /**
  * Created by s7r1d3r on 20-01-2017.

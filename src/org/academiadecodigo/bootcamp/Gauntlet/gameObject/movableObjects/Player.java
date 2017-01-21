@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImages;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
@@ -52,12 +52,12 @@ public class Player extends Character {
     }
 
     @Override
-    public GridImages getColor() {
+    public GridImage getColor() {
         return this.;
     }
 
     @Override
-    public void setColor(GridImages color) {
+    public void setColor(GridImage color) {
 
     }
 

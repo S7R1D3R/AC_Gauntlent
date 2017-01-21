@@ -11,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public abstract class GameObject{
 
     private GameObjType gameObjType;
-    private Picture gameObjImg;
+    private Picture gameObjImg; // TODO_From Vero to Joaquim: This property is not necessary here because it must be called by simpleGfxGridPosition
     private Grid grid;
     private GridPosition pos;
 
