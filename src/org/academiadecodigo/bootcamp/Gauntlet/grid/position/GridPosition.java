@@ -1,5 +1,7 @@
-package org.academiadecodigo.bootcamp.Gauntlet.grid;
+package org.academiadecodigo.bootcamp.Gauntlet.grid.position;
 
+
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridColor;
 
 /**
  * A position on the grid

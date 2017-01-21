@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.grid;
+package org.academiadecodigo.bootcamp.Gauntlet.grid;
 
 /**
  * The available grid colors
@@ -9,6 +9,6 @@ public enum GridColor {
     GREEN,
     BLUE,
     MAGENTA,
-    NOCOLOR
+    NOCOLOR;
 
 }
