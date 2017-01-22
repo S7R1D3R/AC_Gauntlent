@@ -6,4 +6,18 @@ package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
 public enum ItemType {
     // TODO => GIULIANO
     // Health, Poison, End
+
+    HEALTH(10),
+    POISON(-10),
+    END(0);
+
+    private int value;
+
+    ItemType(int value){
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }
