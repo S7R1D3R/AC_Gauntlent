@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.AbstractGridPosition;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
  * Created by codecadet on 1/21/17.
@@ -13,13 +14,36 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     /**
      * Simple graphics position constructor
+     * @param grid Simple graphics grid
+     */
+    //TODO: If we decide to remove this constructor, we'll have to remove it also in the interface Grid and in SimplGFXGrid as well. So let's leave it for now.
+    // In order to create any position, we need to know the wallsPositions
+    public SimpleGfxGridPosition(SimpleGfxGrid grid, GridPosition[] wallPositions){
+
+        //TODO:
+        super((int) (Math.random() * grid.getCols()),
+                (int) (Math.random() * grid.getRows()),
+                grid, wallPositions);
+
+        this.simpleGfxGrid = grid;
+
+        rectangle = new Rectangle(super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX(),
+                super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY(),
+                simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
+
+        rectangle.setColor(SimpleGfxColorMapper.getColor(super.getColor()));
+
+        show();
+    }
+
+    /**
+     * Simple graphics position constructor
      * @param col position column
      * @param row position row
      * @param grid Simple graphics grid
      */
-    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid){
-        //TODO: For now, only one constructor with defined positions
-        super(col, row, grid);
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid, GridPosition[] wallPositions){
+        super(col, row, grid, wallPositions);
 
         this.simpleGfxGrid = grid;
 

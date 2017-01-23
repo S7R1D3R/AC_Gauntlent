@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 /**

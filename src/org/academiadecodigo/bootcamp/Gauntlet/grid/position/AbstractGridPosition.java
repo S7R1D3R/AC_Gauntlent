@@ -16,7 +16,7 @@ public abstract class AbstractGridPosition implements GridPosition{
 
         private int col;
         private int row;
-        private GridImage gridImage;
+        private GridImage gridImage; // TODO: This is the only property constraining our code to simpleGFX, go back to color?
         private Grid grid;
         private GridPosition[] wallPositions;
 
@@ -27,11 +27,12 @@ public abstract class AbstractGridPosition implements GridPosition{
          * @param row   the row of the grid position
          * @param grid  the grid in which the position will be displayed
          */
-        public AbstractGridPosition(int col, int row, Grid grid) {
+        public AbstractGridPosition(int col, int row, Grid grid, GridPosition[] wallPositions) {
             this.col = col;
             this.row = row;
             this.grid = grid;
             this.gridImage = GridImage.GRIDBACKGROUND;
+            this.wallPositions = wallPositions;
         }
 
         public Grid getGrid() {
@@ -76,8 +77,8 @@ public abstract class AbstractGridPosition implements GridPosition{
          * @see GridPosition#setImage(GridImage)
          */
         @Override
-        public void setImage(GridImage gridImages) {
-            this.color = gridImages;
+        public void setImage(GridImage gridImage) {
+            this.gridImage = gridImage;
             show();
         }
 
@@ -98,29 +99,16 @@ public abstract class AbstractGridPosition implements GridPosition{
             case UP:
                 moveUp(distance);
                 break;
-            case RIGHTUP:
-                moveRightUp(distance);
-                break;
+
             case RIGHT:
                 moveRight(distance);
-                break;
-            case RIGHTDOWN:
-                moveRightDown(distance);
                 break;
             case DOWN:
                 moveDown(distance);
                 break;
-            case LEFTDOWN:
-                moveLeftDown(distance);
-                break;
             case LEFT:
                 moveLeft(distance);
                 break;
-            case LEFTUP:
-                moveLeftUp(distance);
-                break;
-
-
 
         }
 

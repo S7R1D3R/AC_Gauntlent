@@ -5,12 +5,11 @@ package org.academiadecodigo.bootcamp.Gauntlet.grid;
  */
 public enum GridDirection {
     UP,
-    RIGHTUP,
     RIGHT,
-    RIGHTDOWN,
     DOWN,
+    LEFT;
+    /*LEFTUP,
     LEFTDOWN,
-    LEFT,
-    LEFTUP
-
+    RIGHTDOWN,
+    RIGHTUP,*/
 }

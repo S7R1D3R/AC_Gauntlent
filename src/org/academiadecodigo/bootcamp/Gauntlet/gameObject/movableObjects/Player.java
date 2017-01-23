@@ -13,7 +13,7 @@ public class Player extends Character {
 
     public Player() {
         super();
-        this.setGrid(Gri);
+        //Veronica's comment: See GameObjFactory: the grid should be included in the constructor of the object.
         this.setPos(grid.makeGridPosition(0, 15));
     }
 

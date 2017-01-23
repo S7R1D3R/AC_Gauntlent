@@ -42,6 +42,7 @@ public interface GridPosition {
      *
      * @param gridImages the new position getGridImage
      */
+     //TODO: This is the only method that is constraining us to simpleGFX. Move back to color? Think on solution.
     public void setImage(GridImage gridImages);
 
     /**
