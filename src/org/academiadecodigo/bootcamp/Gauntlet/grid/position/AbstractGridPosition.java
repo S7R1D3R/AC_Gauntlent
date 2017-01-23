@@ -12,7 +12,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
      * @see GridPosition
      */
 public abstract class AbstractGridPosition implements GridPosition{
-
+// TODO: Veronica
 
         private int col;
         private int row;
@@ -119,6 +119,9 @@ public abstract class AbstractGridPosition implements GridPosition{
             case LEFTUP:
                 moveLeftUp(distance);
                 break;
+
+
+
         }
 
     }

@@ -23,7 +23,7 @@ public class Item extends GameObject {
             case POISON:
                 return value = POISON.getValue();
             case END:
-                Game.endGame();
+                Game.endGame(); // TODO: Create this method
                 return 0;
         }
 

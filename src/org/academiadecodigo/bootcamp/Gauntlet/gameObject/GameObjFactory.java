@@ -6,11 +6,13 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Projectile;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.SimpleGfxGrid;
 
 /**
  * Created by codecadet on 21/01/17.
  */
 public class GameObjFactory {
+    // TODO: Should we try to implement the factory of factories as in the Pong skeleton?
 
     public static GameObject getNewGameObj(Grid grid, GameObjType gameObjType) {
 
@@ -38,5 +40,10 @@ public class GameObjFactory {
         }
 
         return newGameObj;
+    }
+
+    // TODO: Should we leave the creation of the grid in here or create a dedicated factory?
+    public static Grid makeGrid(int cols, int rows) {
+        return new SimpleGfxGrid(cols, rows);
     }
 }
