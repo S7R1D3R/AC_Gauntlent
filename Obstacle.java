@@ -1,12 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
-<<<<<<< HEAD
-import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridColor;
-=======
->>>>>>> 1fe6add3b6398b84492962ec1fbaa801cea32783
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
@@ -16,15 +10,17 @@ public class Obstacle extends GameObject {
 
 
 
-    private int[][] wallPosIndex; //TODO -- LISTA DE PAREDES
+    private int[][] wallPosIndex = {{0, 1, 2, 3, 4, 9, 10, 11, 12, 13, 14, 23, 24, 25, 26, 27},
+                                    {13, 14, 24},
+                                    {3, 4, 10, 11, 13, 14, 16, 17, 18, 19, 20, 21, 24}}; //TODO -- LISTA DE PAREDES
 
 
 
     private GridPosition[] wallsPositions;
 
 
-    public Obstacle(GridPosition pos) {
-        super(pos);
+    public Obstacle() {
+        super();
         createWallsArray(wallPosIndex);
 
     }
@@ -37,7 +33,7 @@ public class Obstacle extends GameObject {
      * @param wallPosIndex list of indexes where walls are going to be
      * @return array with all positions where walls are
      */
-    private GridPosition[] createWallsArray(int[][] wallPosIndex) {
+    public GridPosition[] createWallsArray(int[][] wallPosIndex) {
 
         for (int i = 0; i < getGrid().getRows(); i++) {
             for (int j = 0; j < wallPosIndex.length; j++) {
@@ -79,6 +75,8 @@ public class Obstacle extends GameObject {
 
     }
 
-
+    public GridPosition[] getWallsPositions(){
+        return wallsPositions;
+    }
 }
 
