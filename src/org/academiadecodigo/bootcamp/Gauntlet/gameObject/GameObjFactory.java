@@ -14,27 +14,25 @@ import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.SimpleGfxGrid;
  * Created by codecadet on 21/01/17.
  */
 public class GameObjFactory {
-    // TODO: Should we try to implement the factory of factories as in the Pong skeleton?
 
-    public static GameObject getNewGameObj(Grid grid, GameObjType gameObjType, GridPosition[] wallPositions) {
-        //TODO: Giuliano. Include grid and wallPositions in the constructor of all game objects.
+    public static GameObject getNewGameObj(Grid grid, GameObjType gameObjType) {
         GameObject newGameObj;
 
         switch (gameObjType) {
             case ITEM:
-                newGameObj = new Item();
+                newGameObj = new Item(grid.makeGridPosition());
                 break;
             case ENEMY:
-                newGameObj = new Enemy();
+                newGameObj = new Enemy(grid.makeGridPosition());
                 break;
             case PLAYER:
-                newGameObj = new Player();
+                newGameObj = new Player(grid.makeGridPosition());
                 break;
-            case OBSTACLE: // Since everything needs obstacles in the constructor, this object should be created first using a dedicated method
-                System.out.println("Call the method makeObstacles to create new obstacles");
+            case OBSTACLE:
+                newGameObj = new Obstacle(grid.makeGridPosition());
                 return null;
             case PROJECTILE:
-                newGameObj = new Projectile();
+                newGameObj = new Projectile(grid.makeGridPosition());
                 break;
             default:
                 newGameObj = null;
@@ -42,13 +40,6 @@ public class GameObjFactory {
         }
 
         return newGameObj;
-    }
-
-    /**
-     * Make new Obstacles
-     */
-    public static Obstacle makeObstacles(Grid grid) {
-        return new Obstacle();
     }
 
     /**

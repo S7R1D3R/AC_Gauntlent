@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
@@ -11,10 +12,10 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 public class Player extends Character {
     private int points;
 
-    public Player() {
-        super();
+    public Player(Grid grid) {
+        super(grid);
         //Veronica's comment: See GameObjFactory: the grid should be included in the constructor of the object.
-        this.setPos(grid.makeGridPosition(0, 15));
+        this.setPos(super.getGrid().makeGridPosition(0,0));
     }
 
 
