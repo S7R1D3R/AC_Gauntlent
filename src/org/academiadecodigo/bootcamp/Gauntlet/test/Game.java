@@ -3,9 +3,7 @@ package org.academiadecodigo.bootcamp.Gauntlet.test;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Obstacle;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 
