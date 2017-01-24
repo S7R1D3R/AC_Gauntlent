@@ -20,12 +20,12 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     /*
     //TODO: If we decide to remove this constructor, we'll have to remove it also in the interface Grid and in SimplGFXGrid as well. So let's leave it for now.
     // In order to create any position, we need to know the wallsPositions
-    public SimpleGfxGridPosition(SimpleGfxGrid grid, GridPosition[] wallPositions){
+    public SimpleGfxGridPosition(SimpleGfxGrid grid, GridPosition[] objectInitPositions){
 
         //TODO:
         super((int) (Math.random() * grid.getCols()),
                 (int) (Math.random() * grid.getRows()),
-                grid, wallPositions);
+                grid, objectInitPositions);
 
         this.simpleGfxGrid = grid;
 
@@ -42,7 +42,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     // TODO (by Joaquim) I commented out the whole constructor because the levels wont
     // TODO need to know anything about it's positions, because it will be created
     // TODO from a TXT file or we will pass it an Array of Positions. This is getting
-    // TODO complicated with no reason. As I also think we don't need wallPositions
+    // TODO complicated with no reason. As I also think we don't need objectInitPositions
     // TODO as the collision detector will know where are all the game objects, and
     // TODO it can also distinguish from enemies, to player, to projectile... With
     // TODO a switch(GameObjType) knowing what to do depending on who calls the method

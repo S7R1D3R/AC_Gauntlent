@@ -1,5 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
+import org.academiadecodigo.bootcamp.Gauntlet.grid.CollisionDectector;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
@@ -9,9 +12,22 @@ public class Enemy extends Character {
 // smooth movement as enemies will have to move slower than
 // player, but we don't want the player to move two cells at
 // a time, as it would look like teletransportation
-private void moveToCloserDrunk() {
 
-    for (Car drunkCar : drunkCars) {
+    private CollisionDectector collisionDectector;
+
+    public Enemy(Grid grid) {
+        super(grid);
+    }
+
+    private void moveTowardsPlayer() {
+
+
+
+
+
+
+
+    /*for (Car drunkCar : drunkCars) {
 
         if (getPos().equals(drunkCar.getPos())) {
             drunkCar.crash();
@@ -19,8 +35,12 @@ private void moveToCloserDrunk() {
         } else {
             setChaseDirection(drunkCar);
         }
-    }
+    }*/
 }
+
+    public void setCollisionDectector(CollisionDectector collisionDectector) {
+        this.collisionDectector = collisionDectector;
+    }
 
     private void setChaseDirection(Car drunkCar) {
         if (getPos().getRow() < drunkCar.getPos().getRow()) {

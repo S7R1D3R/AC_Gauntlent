@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
@@ -8,7 +9,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public class LevelMaker {
 
-    public static GridPosition[] wallPositions;
+    public static GridPosition[] objectInitPositions;
+    public static GameObjType[] objectTypes;
     private Grid grid;
     private int roomWidth = 32;
     private int roomHeight = 18;
@@ -34,7 +36,7 @@ public class LevelMaker {
                     "#__#_##########__#____#__##__#_#" +
                     "#__#_____________####_#__##__###" +
                     "#__#_______#__#__#____#_###___##" +
-                    "#__#__####_#__#__#______###___##" +
+                    "#P_#__####_#__#__#______###___##" +
                     "################################";
 
 
@@ -59,16 +61,23 @@ public class LevelMaker {
 
             for (int j = 0; j < roomWidth; j++) {
 
-                switch (level1.charAt(i)) {
-                    case '#':
-                        wallPositions[index] = grid.makeGridPosition(j, i);
-                        index++;
-                        break;
-                    //case '_':
+                if (level.charAt(i) != '_') {
+                    objectInitPositions[index] = grid.makeGridPosition(j, i);
 
-                    //default:
+                    switch (level.charAt(i)) {
+                        case '#':
+                            objectTypes[index] = GameObjType.WALL;
+                            break;
+                        case 'P':
+                            objectTypes[index] = GameObjType.PLAYER;
+                            break;
+                        case 'I':
+                            objectTypes[index] = GameObjType.ITEM;
+                            break;
 
+                    }
                 }
+                index++;
             }
 
         }
