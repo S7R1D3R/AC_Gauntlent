@@ -5,6 +5,10 @@ package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
  */
 public class Enemy extends Character {
 // TODO: Vero will look into  Peter's code and see if can implement the "police/Ambulance" chase code
+// Remember to do for loop for speed and think on how to
+// smooth movement as enemies will have to move slower than
+// player, but we don't want the player to move two cells at
+// a time, as it would look like teletransportation
 private void moveToCloserDrunk() {
 
     for (Car drunkCar : drunkCars) {

@@ -83,31 +83,22 @@ public abstract class AbstractGridPosition implements GridPosition{
         }
 
 
-
-        /**
-         * @see GridPosition#equals(GridPosition)
-         */
-        @Override
-        public boolean equals(GridPosition pos) {
-            return this.col == pos.getCol() && this.row == pos.getRow() ? true : false;
-        }
-
-        public void moveinDirection(GridDirection direction, int distance) {
+        public void moveinDirection(GridDirection direction) {
+        // TODO: For now we move always one cell at a time. Later: Think on how to smooth the movement, so objects move in pixels not in columns
 
         switch (direction) {
 
             case UP:
-                moveUp(distance);
+                moveUp();
                 break;
-
             case RIGHT:
-                moveRight(distance);
+                moveRight();
                 break;
             case DOWN:
-                moveDown(distance);
+                moveDown();
                 break;
             case LEFT:
-                moveLeft(distance);
+                moveLeft();
                 break;
 
         }
@@ -119,53 +110,83 @@ public abstract class AbstractGridPosition implements GridPosition{
          */
         @Override
         public boolean equals(GridPosition pos) {
-            return this.col == pos.getCol() && this.row == pos.getRow() ? true : false;
+            return this.col == pos.getCol() && this.row == pos.getRow();
         }
 
+        //TODO: For now edge of the grid is edge of the room. Later: include roomWalls in wallsPositions
         /**
-         * Moves the position up
-         *
-         * @param dist the number of positions to move
+         * Moves the position up one cell
          */
-        public void moveUp(int dist) {
+        public void moveUp() {
 
-            int maxRowsUp = dist < getRow() ? dist : getRow();
-            setPos(getCol(), getRow() - maxRowsUp);
+            if (getRow() == 0) {
+                return;
+            }
+
+            for (int i = 0; i < wallPositions.length; i++) {
+                if (this.equals(wallPositions[i])) {
+                    return;
+                }
+            }
+
+            setPos(getCol(), getRow() - 1);
 
         }
 
         /**
          * Moves the position down
-         *
-         * @param dist the number of positions to move
          */
-        public void moveDown(int dist) {
+        public void moveDown() {
 
-            int maxRowsDown = dist > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : dist;
-            setPos(getCol(), getRow() + maxRowsDown);
+            if (getRow() == getGrid().getRows() - 1) {
+                return;
+            }
 
+            for (int i = 0; i < wallPositions.length; i++) {
+                if (this.equals(wallPositions[i])) {
+                    return;
+                }
+            }
+
+            setPos(getCol(), getRow() + 1);
         }
 
         /**
          * Moves the position left
-         *
-         * @param dist the number of positions to move
          */
-        public void moveLeft(int dist) {
+        public void moveLeft() {
 
-            int maxRowsLeft = dist < getCol() ? dist : getCol();
-            setPos(getCol() - maxRowsLeft, getRow());
+            if (getCol() == 0) {
+                return;
+            }
+
+            for (int i = 0; i < wallPositions.length; i++) {
+                if (this.equals(wallPositions[i])) {
+                    return;
+                }
+            }
+
+            setPos(getCol() - 1, getRow());
 
         }
 
         /**
          * Moves the position right
-         *
-         * @param dist the number of positions to move
          */
-        public void moveRight(int dist) {
-            int maxRowsRight = dist > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : dist;
-            setPos(getCol() + maxRowsRight, getRow());
+        public void moveRight() {
+
+            if (getCol() == getGrid().getCols() - 1) {
+                return;
+            }
+
+            for (int i = 0; i < wallPositions.length; i++) {
+                if (this.equals(wallPositions[i])) {
+                    return;
+                }
+            }
+
+            setPos(getCol() + 1, getRow());
+
         }
 
         @Override
