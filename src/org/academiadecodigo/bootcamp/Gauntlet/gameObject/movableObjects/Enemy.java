@@ -13,6 +13,8 @@ public class Enemy extends Character {
 // player, but we don't want the player to move two cells at
 // a time, as it would look like teletransportation
 
+    //TODO ENEMY TEM DE CONFIRMAR AS PAREDES
+
     private CollisionDectector collisionDectector;
 
     public Enemy(Grid grid) {

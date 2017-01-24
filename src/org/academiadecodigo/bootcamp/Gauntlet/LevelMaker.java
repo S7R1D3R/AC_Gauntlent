@@ -17,10 +17,14 @@ public class LevelMaker {
 
     public LevelMaker(Grid grid) {
         this.grid = grid;
+        //TODO INICIALIZAR OBJECTINIPOS E OBJECTYPE
     }
 
+    /**
+     * LEVEL 1 STRING
+     */
     private String level1 =
-            "################################" +
+                    "################################" +
                     "######____######________#####__#" +
                     "#_____________##_________#_____#" +
                     "#___##_____##_##_######__#___#E#" +
@@ -40,9 +44,10 @@ public class LevelMaker {
                     "################################";
 
 
-    public String getLevel1() {
-        return level1;
-    }
+    /**
+     * CHOOSE LEVEL NUMBER TO GENERATE CORRESPONDING LEVEL
+     * @param level number
+     */
 
 
     public void chooseLevel(int level) {
@@ -52,6 +57,10 @@ public class LevelMaker {
         }
     }
 
+    /**
+     * READS THE LEVEL STRING AND GENERATES LEVEL
+     * @param level string representing gameobjects' positions
+     */
 
     private void generateLevel(String level) {
 
