@@ -55,15 +55,15 @@ public class Game {
         grid.init();
 
         // First object to be created are the walls, then create all other characters using that info in the constructor
-        this.gameObjects[0] = GameObjFactory.makeObstacles(grid);
+        this.gameObjects[0] = GameObjFactory.getNewGameObj(grid, GameObjType.OBSTACLE);
 
         // Second object is the player
-        this.gameObjects[1] = GameObjFactory.getNewGameObj(grid, GameObjType.PLAYER, gameObjects[0].getWallsPositions); //TODO: Merge Peter's branch and see if getWallsPositions is working
+        this.gameObjects[1] = GameObjFactory.getNewGameObj(grid, GameObjType.PLAYER); //TODO: Merge Peter's branch and see if getWallsPositions is working
 
         // Next elements are the enemies
         int NUM_ENEMIES = 7; // TODO: Property?, argument to the game?
         for (int i = 2; i < NUM_ENEMIES+2; i++) {
-            this.gameObjects[i] = GameObjFactory.getNewGameObj(grid, GameObjType.ENEMY, gameObjects[0].getWallsPositions);
+            this.gameObjects[i] = GameObjFactory.getNewGameObj(grid, GameObjType.ENEMY, gameObjects[0].getWallsPositions());
         }
 
         //TODO: Add potions and poisons and princess and end game here. How many?

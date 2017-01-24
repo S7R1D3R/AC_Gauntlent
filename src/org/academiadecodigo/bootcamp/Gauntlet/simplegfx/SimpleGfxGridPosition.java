@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.AbstractGridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 /**
  * Created by codecadet on 1/21/17.
@@ -16,6 +17,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      * Simple graphics position constructor
      * @param grid Simple graphics grid
      */
+    /*
     //TODO: If we decide to remove this constructor, we'll have to remove it also in the interface Grid and in SimplGFXGrid as well. So let's leave it for now.
     // In order to create any position, we need to know the wallsPositions
     public SimpleGfxGridPosition(SimpleGfxGrid grid, GridPosition[] wallPositions){
@@ -35,6 +37,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         show();
     }
+    */
+
+    // TODO (by Joaquim) I commented out the whole constructor because the levels wont
+    // TODO need to know anything about it's positions, because it will be created
+    // TODO from a TXT file or we will pass it an Array of Positions. This is getting
+    // TODO complicated with no reason. As I also think we don't need wallPositions
+    // TODO as the collision detector will know where are all the game objects, and
+    // TODO it can also distinguish from enemies, to player, to projectile... With
+    // TODO a switch(GameObjType) knowing what to do depending on who calls the method
+    // TODO and with who it's having a collision.
 
     /**
      * Simple graphics position constructor

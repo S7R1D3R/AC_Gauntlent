@@ -15,8 +15,8 @@ public abstract class Character extends GameObject implements Movable {
     private Direction direction;            // Direction that character is facing
     private Projectile projectile;          // Projectile that character will fire
 
-    public Character() {
-        super();
+    public Character(Grid grid) {
+        super(grid);
     }
 
 
