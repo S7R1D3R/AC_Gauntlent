@@ -11,13 +11,12 @@ import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
  */
 public class ActionDetector {
 
-    Game game;
     GameObject[] gameObjects;
     Movable[] movableObjects;
 
-    public ActionDetector(Game game) {
-        this.game = game;
-        this.gameObjects = game.getGameObjects();
+    public ActionDetector(GameObject[] gameObjects) {
+        
+        this.gameObjects = gameObjects;
 
         for (int i = 0; i < gameObjects.length; i++) {
             if(gameObjects[i] instanceof Movable) {
