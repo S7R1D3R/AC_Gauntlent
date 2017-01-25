@@ -7,6 +7,6 @@ public enum GameObjType {
     ITEM,
     ENEMY,
     PLAYER,
-    OBSTACLE,
+    WALL,
     PROJECTILE
 }

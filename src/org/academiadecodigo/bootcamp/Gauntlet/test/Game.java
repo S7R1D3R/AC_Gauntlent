@@ -65,7 +65,7 @@ public class Game {
         grid.init();
 
         // First object to be created are the walls, then create all other characters using that info in the constructor
-        this.gameObjects[0] = GameObjFactory.getNewGameObj(grid, GameObjType.OBSTACLE);
+        this.gameObjects[0] = GameObjFactory.getNewGameObj(grid, GameObjType.WALL);
 
         // Second object is the player
         this.gameObjects[1] = GameObjFactory.getNewGameObj(grid, GameObjType.PLAYER); //TODO: Merge Peter's branch and see if getWallsPositions is working

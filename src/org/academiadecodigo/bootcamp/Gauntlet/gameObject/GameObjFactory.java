@@ -7,7 +7,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Projectile;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.SimpleGfxGrid;
 
 /**
@@ -28,7 +27,7 @@ public class GameObjFactory {
             case PLAYER:
                 newGameObj = new Player(grid.makeGridPosition());
                 break;
-            case OBSTACLE:
+            case WALL:
                 newGameObj = new Obstacle(grid.makeGridPosition());
                 return null;
             case PROJECTILE:
