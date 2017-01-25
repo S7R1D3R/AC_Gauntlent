@@ -1,6 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.grid;
 
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
@@ -8,17 +10,17 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public class CollisionDectector {
 
-    private GameObject[] gameObjects;
+    private Movable[] movables;
 
-    public CollisionDectector(GameObject[] gameObjects) {
-        this.gameObjects = gameObjects;
+    public CollisionDectector(Movable[] movables) {
+        this.movables = movables;
     }
 
     public boolean isUnSafe(GridPosition pos) {
 
-        for(GameObject gameObject: gameObjects) {
+        for(Movable movable: movables) {
 
-            if(gameObject.getPos() != pos && gameObject.getPos().equals(pos)) {
+            if(movable.getPos() != pos && movable.getPos().equals(pos)) {
                 return true;
             }
 
@@ -27,17 +29,32 @@ public class CollisionDectector {
         return false;
     }
 
-    public void check(GameObject gameObject) {
 
-        for(GameObject iGameObject: gameObjects) {
+    public static GameObjType getGameObjType(GameObject gameObject) {
 
-            if(iGameObject == gameObject) {
-                continue;
-            }
+        GameObjType gameObjType;
 
-
+        switch (gameObject.getGameObjType()) {
+            case ITEM:
+                gameObjType = GameObjType.ITEM;
+                break;
+            case ENEMY:
+                gameObjType = GameObjType.ENEMY;
+                break;
+            case PLAYER:
+                gameObjType = GameObjType.PLAYER;
+                break;
+            case OBSTACLE:
+                gameObjType = GameObjType.OBSTACLE;
+                break;
+            case PROJECTILE:
+                gameObjType = GameObjType.PROJECTILE;
+                break;
+            default:
+                System.out.println("Something went terribly wrong... FILE => Game.java ");
+                return null;
         }
-    }
 
-    public
+        return gameObjType;
+    }
 }

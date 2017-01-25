@@ -14,11 +14,9 @@ public abstract class GameObject{
     private Picture gameObjImg; // TODO_From Vero to Joaquim: This property is not necessary here because it must be called by simpleGfxGridPosition
     private Grid grid;
     private GridPosition pos;
-    private int speed;
 
-    public GameObject(/*Grid grid*/){
-        speed = 0;
-        //this.grid = grid;
+    public GameObject(Grid grid){
+        this.grid = grid;
     }
 
     public Grid getGrid(){
@@ -29,5 +27,7 @@ public abstract class GameObject{
         return pos;
     }
 
-
+    public GameObjType getGameObjType() {
+        return gameObjType;
+    }
 }

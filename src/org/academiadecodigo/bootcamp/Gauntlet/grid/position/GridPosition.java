@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.grid.position;
 
 
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
 
 /**
@@ -64,4 +65,8 @@ public interface GridPosition {
      */
     public boolean equals(GridPosition position);
 
+    /**
+     *
+     */
+    void moveinDirection(GridDirection direction);
 }

@@ -47,6 +47,18 @@ public class Game {
     /**
      * Create game objects and add a grid
      */
+
+    public void init() {
+
+        // Initializes the grid.
+        grid.init();
+
+        // Draws all objects.
+        for (int i = 0; i < gameObjects.length; i++) {
+              // MAKE THIS METHOD TO LOAD ALL THE IMAGES.
+        }
+    }
+    /*
     //TODO: Incomplete
     public void init() {
 
@@ -80,6 +92,8 @@ public class Game {
 
 
     }
+    */
+
 
     public static void endGame() {
         // TODO: (GIULIANO): We are using a boolean isGameFinished so this function should some how modify it. What should we put inside this function? Princess? Life? Should we return the boolean or should this method change a boolean property?

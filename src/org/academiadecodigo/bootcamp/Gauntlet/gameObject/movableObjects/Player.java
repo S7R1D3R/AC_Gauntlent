@@ -14,8 +14,7 @@ public class Player extends Character {
 
     public Player(Grid grid) {
         super(grid);
-        //Veronica's comment: See GameObjFactory: the grid should be included in the constructor of the object.
-        this.setPos(super.getGrid().makeGridPosition(0,0));
+        this.speed
     }
 
 
