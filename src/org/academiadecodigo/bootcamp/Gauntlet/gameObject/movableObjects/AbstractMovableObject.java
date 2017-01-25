@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
@@ -16,12 +17,19 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     private GridDirection direction;            // GridDirection that character is facing
     private ActionDetector actionDetector;
 
-    public AbstractMovableObject(Grid grid) {
-        super(grid);
+    public AbstractMovableObject(Grid grid, GridPosition position, GameObjType gameObjType, int speed) {
+        super(grid, position, gameObjType);
+        this.speed = speed;
     }
 
+    @Override
     public void setActionDetector(ActionDetector actionDetector) {
         this.actionDetector = actionDetector;
+    }
+
+    @Override
+    public ActionDetector getActionDetector() {
+        return actionDetector;
     }
 
     /**
@@ -59,10 +67,4 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-    @Override
-    public void move() {
-
-        for(Game.gameObjects)
-        super.getPos().moveinDirection(getDirection());
-    }
 }

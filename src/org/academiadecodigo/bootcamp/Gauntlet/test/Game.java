@@ -52,7 +52,15 @@ public class Game {
         initializeGameObjects();
 
         // Creates ActionDetector
-        this.actionDetector = new ActionDetector(this.gameObjects);
+        actionDetector = new ActionDetector(gameObjects);
+
+        // Set action detector on Movable objects
+        for (Movable movableObject : actionDetector.getMovableObjects()) {
+
+            movableObject.setActionDetector(actionDetector);
+
+        }
+
 
 
     }
@@ -95,16 +103,17 @@ public class Game {
 
         GridPosition[] objectInitPositions = levelMaker.getObjectInitPositions();
         GameObjType[] objectTypes = levelMaker.getObjectTypes();
-        this.gameObjects = new GameObject[objectTypes.length];
+        gameObjects = new GameObject[objectTypes.length];
 
 
         for (int i = 0; i < objectInitPositions.length; i++) {
 
             GameObjType objType = objectTypes[i];
 
-            this.gameObjects[i] =
-                    GameObjFactory.getNewGameObj(grid,
+            gameObjects[i] = GameObjFactory.getNewGameObj(grid,
                             objType, objectInitPositions[i]);
+
+
 
 
         }

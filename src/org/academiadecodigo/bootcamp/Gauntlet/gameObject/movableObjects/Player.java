@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
@@ -12,9 +13,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 public class Player extends Character {
     private int points;
 
-    public Player(Grid grid) {
-        super(grid);
-        this.speed
+    public Player(Grid grid, GridPosition position) {
+        super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
     }
 
 

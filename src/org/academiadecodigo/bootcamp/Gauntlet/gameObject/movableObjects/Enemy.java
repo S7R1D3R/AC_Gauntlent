@@ -1,13 +1,15 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
+import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.CollisionDectector;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
 public class Enemy extends Character {
-// TODO: Vero will look into  Peter's code and see if can implement the "police/Ambulance" chase code
 // Remember to do for loop for speed and think on how to
 // smooth movement as enemies will have to move slower than
 // player, but we don't want the player to move two cells at
@@ -15,10 +17,15 @@ public class Enemy extends Character {
 
     //TODO ENEMY TEM DE CONFIRMAR AS PAREDES
 
-    private CollisionDectector collisionDectector;
+    public Enemy(Grid grid, GridPosition position) {
 
-    public Enemy(Grid grid) {
-        super(grid);
+        super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
+    }
+
+    @Override
+    public void move() {
+
+
     }
 
     private void moveTowardsPlayer() {
@@ -40,9 +47,6 @@ public class Enemy extends Character {
     }*/
 }
 
-    public void setCollisionDectector(CollisionDectector collisionDectector) {
-        this.collisionDectector = collisionDectector;
-    }
 
     private void setChaseDirection(Car drunkCar) {
         if (getPos().getRow() < drunkCar.getPos().getRow()) {
@@ -66,5 +70,7 @@ public class Enemy extends Character {
             }
         }
     }
+
+
 
 }

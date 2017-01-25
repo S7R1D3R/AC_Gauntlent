@@ -1,5 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
 import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POTION;
@@ -13,6 +16,9 @@ public class Item extends GameObject {
     ItemType itemType;                  // Defines what behaviour the item will have
     int value;                          // Value
 
+    public Item(Grid grid, GridPosition position, GameObjType gameObjType) {
+        super(grid, position, GameObjType.EXIT); //TODO: We'll have to create subclasses here. Update constructor to fix type.
+    }
 
     public int getValue(ItemType itemType) {
 

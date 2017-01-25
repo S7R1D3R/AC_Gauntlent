@@ -15,8 +15,10 @@ public abstract class GameObject{
     private Grid grid;
     private GridPosition pos;
 
-    public GameObject(Grid grid){
+    public GameObject(Grid grid, GridPosition pos, GameObjType gameObjType){
         this.grid = grid;
+        this.pos = pos;
+        this.gameObjType = gameObjType;
     }
 
     public Grid getGrid(){
