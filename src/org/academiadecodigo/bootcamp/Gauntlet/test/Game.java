@@ -29,7 +29,7 @@ public class Game {
      */
     public Game(GridType gridType, int cols, int rows, int delay) {
 
-        grid = GameObjFactory.makeGrid(gridType, cols, rows);
+        this.grid = GameObjFactory.makeGrid(gridType, cols, rows);
         this.delay = delay;
         this.gridType = gridType;
     }
@@ -45,6 +45,7 @@ public class Game {
         grid.init();
 
         // Creates the level
+        levelMaker = new LevelMaker(grid, level);
         levelMaker.chooseLevel(level);
 
         // Initializes (and draws) all objects.
@@ -94,13 +95,17 @@ public class Game {
 
         GridPosition[] objectInitPositions = levelMaker.getObjectInitPositions();
         GameObjType[] objectTypes = levelMaker.getObjectTypes();
+        this.gameObjects = new GameObject[objectTypes.length];
 
 
         for (int i = 0; i < objectInitPositions.length; i++) {
 
             GameObjType objType = objectTypes[i];
 
-            GameObjFactory.getNewGameObj(grid, objType, objectInitPositions[i]);
+            this.gameObjects[i] =
+                    GameObjFactory.getNewGameObj(grid,
+                            objType, objectInitPositions[i]);
+
 
         }
     }

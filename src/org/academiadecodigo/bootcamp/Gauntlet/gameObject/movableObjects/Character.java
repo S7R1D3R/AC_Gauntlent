@@ -1,13 +1,11 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
-public abstract class Character extends AbstractMovable {
+public abstract class Character extends AbstractMovableObject {
 
     private int health;                     // Health Points
     private int damage;                     // Damage that this character's projectiles will do

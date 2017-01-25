@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
@@ -14,11 +15,11 @@ public class LevelMaker {
     private Grid grid;
     private int roomWidth = 32;
     private int roomHeight = 18;
+    private int numGameObjects;
 
     public LevelMaker(Grid grid, int level) {
         this.grid = grid;
         chooseLevel(level);
-        //TODO INICIALIZAR OBJECTINIPOS E OBJECTYPE
     }
 
     /**
@@ -67,15 +68,18 @@ public class LevelMaker {
 
     private void generateLevel(String level) {
 
+        getNumGameObjects(level);
+
+        this.objectInitPositions = new GridPosition[this.numGameObjects];
+        this.objectTypes = new GameObjType[this.numGameObjects];
         int index = 0;
 
         for (int i = 0; i < roomHeight; i++) {
-
             for (int j = 0; j < roomWidth; j++) {
 
                 if (level.charAt(i) != '_') {
-                    objectInitPositions[index] = grid.makeGridPosition(j, i);
 
+                    objectInitPositions[index] = grid.makeGridPosition(j, i);
                     switch (level.charAt(i)) {
                         case '#':
                             objectTypes[index] = GameObjType.WALL;
@@ -114,5 +118,15 @@ public class LevelMaker {
 
     public GameObjType[] getObjectTypes() {
         return objectTypes;
+    }
+
+    private void getNumGameObjects(String level) {
+
+        for (int i = 0; i < level.length() ; i++) {
+
+            if(level.charAt(i) != '_') {
+                this.numGameObjects++;
+            }
+        }
     }
 }

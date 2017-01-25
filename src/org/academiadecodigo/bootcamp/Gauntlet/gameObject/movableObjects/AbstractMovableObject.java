@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
+import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
@@ -9,13 +10,18 @@ import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 /**
  * Created by codecadet on 25/01/17.
  */
-public abstract class AbstractMovable extends GameObject implements Movable {
+public abstract class AbstractMovableObject extends GameObject implements Movable {
 
     private int speed;                      // Speed => Number of times he moves per game loop
     private GridDirection direction;            // GridDirection that character is facing
+    private ActionDetector actionDetector;
 
-    public AbstractMovable(Grid grid) {
+    public AbstractMovableObject(Grid grid) {
         super(grid);
+    }
+
+    public void setActionDetector(ActionDetector actionDetector) {
+        this.actionDetector = actionDetector;
     }
 
     /**

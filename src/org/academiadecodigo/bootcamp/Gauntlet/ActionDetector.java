@@ -2,9 +2,7 @@ package org.academiadecodigo.bootcamp.Gauntlet;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovable;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
 /**
  * Created by codecadet on 25/01/17.
