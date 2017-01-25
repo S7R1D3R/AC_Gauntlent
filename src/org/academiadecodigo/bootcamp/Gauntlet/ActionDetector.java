@@ -37,4 +37,7 @@ public class ActionDetector {
     public Movable[] getMovableObjects() {
         return movableObjects;
     }
+
+    //TODO: Peter and Vero think that this action detector should choose the action of the respective movable object
+    //TODO: And method checkAction should be named chooseAction and be called by each movable object
 }

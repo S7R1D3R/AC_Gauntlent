@@ -21,12 +21,13 @@ public abstract class Character extends AbstractMovableObject {
     public abstract void move();            // SETTER : Sets a new GridPosition for the character
 
 
-    public void shoot() {                   // Shoots a projectile
-
-    }
+    //public void shoot() { };                 // Shoots a projectile. For now only the player shoots
 
 
-    public boolean isDead() {               // Checks if character is dead
+
+
+    @Override
+    public boolean isDestroyed() {               // Checks if character is dead
         return health <= 0;                // is dead!
 
     }

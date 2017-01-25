@@ -14,6 +14,7 @@ public abstract class GameObject{
     private Picture gameObjImg; // TODO_From Vero to Joaquim: This property is not necessary here because it must be called by simpleGfxGridPosition
     private Grid grid;
     private GridPosition pos;
+    private boolean destroyed;
 
     public GameObject(Grid grid, GridPosition pos, GameObjType gameObjType){
         this.grid = grid;
@@ -31,5 +32,13 @@ public abstract class GameObject{
 
     public GameObjType getGameObjType() {
         return gameObjType;
+    }
+
+    public void destroy(){
+        destroyed = true;
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
     }
 }
