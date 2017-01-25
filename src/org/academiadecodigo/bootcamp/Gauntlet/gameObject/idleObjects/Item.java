@@ -2,8 +2,7 @@ package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
-import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.END;
-import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.HEALTH;
+import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POTION;
 import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POISON;
 
 /**
@@ -18,11 +17,11 @@ public class Item extends GameObject {
     public int getValue(ItemType itemType) {
 
         switch (itemType){
-            case HEALTH:
-                return value = HEALTH.getValue();
+            case POTION:
+                return value = POTION.getValue();
             case POISON:
                 return value = POISON.getValue();
-            case END:
+            case EXIT:
                 Game.endGame(); // TODO: Create this method
                 return 0;
         }

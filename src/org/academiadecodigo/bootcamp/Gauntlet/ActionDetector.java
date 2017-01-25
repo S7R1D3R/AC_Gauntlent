@@ -35,4 +35,8 @@ public class ActionDetector {
     public GameObjType getObjType(GameObject gameObject) {
         return gameObject.getGameObjType();
     }
+
+    public Movable[] getMovableObjects() {
+        return movableObjects;
+    }
 }

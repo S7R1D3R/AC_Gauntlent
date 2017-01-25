@@ -9,14 +9,15 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public class LevelMaker {
 
-    public static GridPosition[] objectInitPositions;
-    public static GameObjType[] objectTypes;
+    private GridPosition[] objectInitPositions;
+    private GameObjType[] objectTypes;
     private Grid grid;
     private int roomWidth = 32;
     private int roomHeight = 18;
 
-    public LevelMaker(Grid grid) {
+    public LevelMaker(Grid grid, int level) {
         this.grid = grid;
+        chooseLevel(level);
         //TODO INICIALIZAR OBJECTINIPOS E OBJECTYPE
     }
 
@@ -24,7 +25,7 @@ public class LevelMaker {
      * LEVEL 1 STRING
      */
     private String level1 =
-                    "################################" +
+            "################################" +
                     "######____######________#####__#" +
                     "#_____________##_________#_____#" +
                     "#___##_____##_##_######__#___#E#" +
@@ -37,7 +38,7 @@ public class LevelMaker {
                     "#__#####___#_____####_#__#####_#" +
                     "#__#_______#_____#____#______#_#" +
                     "#__#_______####__#____#__##__#_#" +
-                    "#__#_##########__#____#__##__#I#" +
+                    "#__#_##########__#____#__##__#X#" +
                     "#__#_____________####_#__##__###" +
                     "#__#_______#__#__#____#_###___##" +
                     "#P_#__####_#__#__#______###___##" +
@@ -46,6 +47,7 @@ public class LevelMaker {
 
     /**
      * CHOOSE LEVEL NUMBER TO GENERATE CORRESPONDING LEVEL
+     *
      * @param level number
      */
 
@@ -59,6 +61,7 @@ public class LevelMaker {
 
     /**
      * READS THE LEVEL STRING AND GENERATES LEVEL
+     *
      * @param level string representing gameobjects' positions
      */
 
@@ -80,20 +83,36 @@ public class LevelMaker {
                         case 'P':
                             objectTypes[index] = GameObjType.PLAYER;
                             break;
-                        case 'I':
-                            objectTypes[index] = GameObjType.ITEM;
-                            break;
                         case 'E':
                             objectTypes[index] = GameObjType.ENEMY;
                             break;
+                        case 'X':
+                            objectTypes[index] = GameObjType.EXIT;
+                            break;
+                        case '+':
+                            objectTypes[index] = GameObjType.POTION;
+                            break;
+                        case '-':
+                            objectTypes[index] = GameObjType.POISON;
+                            break;
+                        case '*':
+                            objectTypes[index] = GameObjType.PRINCESS;
+                            break;
 
                     }
-                index++;
+                    index++;
                 }
             }
 
         }
+
     }
 
+    public GridPosition[] getObjectInitPositions() {
+        return objectInitPositions;
+    }
 
+    public GameObjType[] getObjectTypes() {
+        return objectTypes;
+    }
 }

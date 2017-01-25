@@ -7,9 +7,10 @@ public enum ItemType {
     // TODO => GIULIANO
     // Health, Poison, End
 
-    HEALTH(10),
+    POTION(10),
     POISON(-10),
-    END(0);
+    PRINCESS(0),
+    EXIT(0);
 
     private int value;
 
