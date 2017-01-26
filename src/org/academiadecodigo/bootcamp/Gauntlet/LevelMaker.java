@@ -1,31 +1,28 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by codecadet on 24/01/17.
  */
 public class LevelMaker {
 
-    private GridPosition[] objectInitPositions;
-    private GameObjType[] objectTypes;
     private Grid grid;
-    private int roomWidth = 32;
-    private int roomHeight = 18;
-    private int numGameObjects;
 
-    public LevelMaker(Grid grid, int level) {
+    public LevelMaker(Grid grid) {
         this.grid = grid;
-        chooseLevel(level);
     }
 
     /**
      * LEVEL 1 STRING
      */
-    private String level1 =
+    private final String level1 =
             "################################" +
                     "######____######________#####__#" +
                     "#_____________##_________#_____#" +
@@ -53,80 +50,66 @@ public class LevelMaker {
      */
 
 
-    public void chooseLevel(int level) {
-        switch (level) {
-            case 1:
-                generateLevel(level1);
+    public ArrayList<GameObject> getLevel(int level) {
+
+        if (level == 1) {
+            return generateLevel(level1);
         }
+        return null;
     }
 
     /**
      * READS THE LEVEL STRING AND GENERATES LEVEL
      *
-     * @param level string representing gameobjects' positions
+     * @param level in  predefined for of string
+     * @return ArrayList an array list with all the gameobjects(each one with grid, pos, and gameobjtype
      */
+    public ArrayList<GameObject> generateLevel(String level) {
 
-    private void generateLevel(String level) {
+        int roomWidth = 32;            //Room Width
+        int roomHeight = 18;           //Room Height
 
-        getNumGameObjects(level);
-
-        this.objectInitPositions = new GridPosition[this.numGameObjects];
-        this.objectTypes = new GameObjType[this.numGameObjects];
-        int index = 0;
+        List<GameObject> gameObjects = new ArrayList<>();       //Level maker does not need to know how many gameobjects exist
 
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
 
-                if (level.charAt(i) != '_') {
+                GameObjType type;       //game type to be used in gameobj factory below
 
-                    objectInitPositions[index] = grid.makeGridPosition(j, i);
-                    switch (level.charAt(i)) {
+                if (level.charAt(i) != '_') {           //if symbol read doesn't correspond to free space
+
+                    switch (level.charAt(i)) {          //changes type corresponding to symbol read
                         case '#':
-                            objectTypes[index] = GameObjType.WALL;
+                            type = GameObjType.WALL;
                             break;
                         case 'P':
-                            objectTypes[index] = GameObjType.PLAYER;
+                            type = GameObjType.PLAYER;
                             break;
                         case 'E':
-                            objectTypes[index] = GameObjType.ENEMY;
+                            type = GameObjType.ENEMY;
                             break;
                         case 'X':
-                            objectTypes[index] = GameObjType.EXIT;
+                            type = GameObjType.EXIT;
                             break;
                         case '+':
-                            objectTypes[index] = GameObjType.POTION;
+                            type = GameObjType.POTION;
                             break;
                         case '-':
-                            objectTypes[index] = GameObjType.POISON;
+                            type = GameObjType.POISON;
                             break;
                         case '*':
-                            objectTypes[index] = GameObjType.PRINCESS;
+                            type = GameObjType.PRINCESS;
                             break;
-
+                        default:
+                            type = GameObjType.WALL;
                     }
-                    index++;
+                    //Adds all new gameobjects to object list
+                    gameObjects.add(GameObjFactory.getNewGameObj(grid, type, grid.makeGridPosition(i, j)));
                 }
             }
-
         }
-
+        return (ArrayList<GameObject>) gameObjects;     //returns gameObjects list
     }
 
-    public GridPosition[] getObjectInitPositions() {
-        return objectInitPositions;
-    }
-
-    public GameObjType[] getObjectTypes() {
-        return objectTypes;
-    }
-
-    private void getNumGameObjects(String level) {
-
-        for (int i = 0; i < level.length() ; i++) {
-
-            if(level.charAt(i) != '_') {
-                this.numGameObjects++;
-            }
-        }
-    }
 }
+

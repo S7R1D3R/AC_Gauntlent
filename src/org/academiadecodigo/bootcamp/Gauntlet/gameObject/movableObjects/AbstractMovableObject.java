@@ -22,13 +22,17 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         this.speed = speed;
     }
 
-    @Override
-    public void setActionDetector(ActionDetector actionDetector) {
+    /**
+     * Sets action detector
+     */
+    public void setActionDetector(ActionDetector actionDetector){
         this.actionDetector = actionDetector;
     }
 
-    @Override
-    public ActionDetector getActionDetector() {
+    /**
+     * Gets action detector
+     */
+    public ActionDetector getActionDetector(){
         return actionDetector;
     }
 
@@ -66,5 +70,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     public GridDirection getDirection() {
         return direction;
     }
+
+
 
 }

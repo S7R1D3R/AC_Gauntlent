@@ -16,29 +16,54 @@ public abstract class GameObject{
     private GridPosition pos;
     private boolean destroyed;
 
+    /**
+     * SuperClass constructor
+     *
+     * @param grid on which game object will be placed
+     * @param pos position on the gird
+     * @param gameObjType type of object
+     */
     public GameObject(Grid grid, GridPosition pos, GameObjType gameObjType){
         this.grid = grid;
         this.pos = pos;
         this.gameObjType = gameObjType;
     }
 
+    /**
+     * Gets the game object's grid;
+     * @return grid
+     */
     public Grid getGrid(){
         return grid;
     }
 
+    /**
+     * Gets the game object's position in the grid
+     * @return position
+     */
     public GridPosition getPos(){
         return pos;
     }
 
+    /**
+     * Gets the game object's type
+     * @return game object type
+     */
     public GameObjType getGameObjType() {
         return gameObjType;
     }
 
-    public void destroy(){
-        destroyed = true;
-    }
-
+    /**
+     * @returns true if object is destroyed
+     */
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    /**
+     * Destroys the gameObject
+     */
+    public void destroy(){
+        destroyed = true;
     }
 }
