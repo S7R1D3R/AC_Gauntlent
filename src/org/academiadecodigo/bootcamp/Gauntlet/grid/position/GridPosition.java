@@ -36,14 +36,14 @@ public interface GridPosition {
      *
      * @return the position getGridImage
      */
-    public GridImage getGridImage();
+    public GridImage getGridImage(); //TODO: Check if necessary
 
     /**
      * Changes the getGridImage of this grid position
      *
      * @param gridImages the new position getGridImage
      */
-     //TODO: This is the only method that is constraining us to simpleGFX. Move back to color? Think on solution.
+    //TODO: This is the only method that is constraining us to simpleGFX. Move back to color? Think on solution.
     public void setImage(GridImage gridImages);
 
     /**
@@ -56,6 +56,10 @@ public interface GridPosition {
      */
     public void hide();
 
+    /**
+     * Moves this grid position towards a specified direction
+     */
+    void moveinDirection(GridDirection direction);
 
     /**
      * Tests equality with another position
@@ -65,8 +69,5 @@ public interface GridPosition {
      */
     public boolean equals(GridPosition position);
 
-    /**
-     *
-     */
-    void moveinDirection(GridDirection direction);
+
 }

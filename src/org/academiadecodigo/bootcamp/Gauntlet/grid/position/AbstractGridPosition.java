@@ -18,7 +18,6 @@ public abstract class AbstractGridPosition implements GridPosition{
         private int row;
         private GridImage gridImage; // TODO: This is the only property constraining our code to simpleGFX, go back to color?
         private Grid grid;
-        private GridPosition[] wallPositions;
 
         /**
          * Construct a new grid position at a specific column and row
@@ -27,12 +26,11 @@ public abstract class AbstractGridPosition implements GridPosition{
          * @param row   the row of the grid position
          * @param grid  the grid in which the position will be displayed
          */
-        public AbstractGridPosition(int col, int row, Grid grid, GridPosition[] wallPositions) {
+        public AbstractGridPosition(int col, int row, Grid grid) {
             this.col = col;
             this.row = row;
             this.grid = grid;
             this.gridImage = GridImage.GRIDBACKGROUND;
-            this.wallPositions = wallPositions;
         }
 
         public Grid getGrid() {
@@ -123,12 +121,6 @@ public abstract class AbstractGridPosition implements GridPosition{
                 return;
             }
 
-            for (int i = 0; i < wallPositions.length; i++) {
-                if (this.equals(wallPositions[i])) {
-                    return;
-                }
-            }
-
             setPos(getCol(), getRow() - 1);
 
         }
@@ -140,12 +132,6 @@ public abstract class AbstractGridPosition implements GridPosition{
 
             if (getRow() == getGrid().getRows() - 1) {
                 return;
-            }
-
-            for (int i = 0; i < wallPositions.length; i++) {
-                if (this.equals(wallPositions[i])) {
-                    return;
-                }
             }
 
             setPos(getCol(), getRow() + 1);
@@ -160,12 +146,6 @@ public abstract class AbstractGridPosition implements GridPosition{
                 return;
             }
 
-            for (int i = 0; i < wallPositions.length; i++) {
-                if (this.equals(wallPositions[i])) {
-                    return;
-                }
-            }
-
             setPos(getCol() - 1, getRow());
 
         }
@@ -177,12 +157,6 @@ public abstract class AbstractGridPosition implements GridPosition{
 
             if (getCol() == getGrid().getCols() - 1) {
                 return;
-            }
-
-            for (int i = 0; i < wallPositions.length; i++) {
-                if (this.equals(wallPositions[i])) {
-                    return;
-                }
             }
 
             setPos(getCol() + 1, getRow());
