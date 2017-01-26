@@ -30,7 +30,6 @@ public abstract class AbstractGridPosition implements GridPosition{
             this.col = col;
             this.row = row;
             this.grid = grid;
-            this.gridImage = GridImage.GRIDBACKGROUND;
         }
 
         public Grid getGrid() {
@@ -68,7 +67,7 @@ public abstract class AbstractGridPosition implements GridPosition{
          */
         @Override
         public GridImage getGridImage() {
-            return color;
+            return gridImage;
         }
 
         /**
