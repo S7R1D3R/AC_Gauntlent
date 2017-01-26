@@ -45,7 +45,7 @@ public class Enemy extends Character {
             setChaseDirection(drunkCar);
         }
     }*/
-}
+    }
 
 
     private void setChaseDirection(Car drunkCar) {
@@ -70,7 +70,6 @@ public class Enemy extends Character {
             }
         }
     }
-
 
 
 }

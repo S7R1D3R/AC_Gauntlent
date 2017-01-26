@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Obstacle;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Wall;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Projectile;
@@ -16,10 +16,11 @@ import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.SimpleGfxGrid;
 public class GameObjFactory {
 
     public static GameObject getNewGameObj(Grid grid, GameObjType gameObjType, GridPosition position) {
+
         GameObject newGameObj;
 
         switch (gameObjType) {
-            case ITEM:
+            case EXIT:
                 newGameObj = new Item(grid, position);
                 break;
             case ENEMY:
@@ -29,21 +30,19 @@ public class GameObjFactory {
                 newGameObj = new Player(grid, position);
                 break;
             case WALL:
-                newGameObj = new Obstacle(grid, position);
-                return null;
+                newGameObj = new Wall(grid, position);
+                break;
             case PROJECTILE:
                 newGameObj = new Projectile(grid, position);
                 break;
             default:
-                newGameObj = null;
-                System.out.println("GameObjFactory => Something went really bad...");
+                //EM VEZ DE SOUT COM MSG DE ERRO
+                throw new EnumConstantNotPresentException(GameObjType.class, gameObjType.toString());
         }
-
         return newGameObj;
     }
 
     /**
-     *
      * @param gridType
      * @param cols
      * @param rows

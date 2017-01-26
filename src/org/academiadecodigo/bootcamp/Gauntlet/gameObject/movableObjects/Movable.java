@@ -11,7 +11,6 @@ public interface Movable {
      * Sets all movable objects to move
      */
     public void move();
-
     /**
      * Sets action detector
      */

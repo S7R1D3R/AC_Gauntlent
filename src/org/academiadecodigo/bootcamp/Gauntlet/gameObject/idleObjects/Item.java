@@ -16,7 +16,7 @@ public class Item extends GameObject {
     ItemType itemType;                  // Defines what behaviour the item will have
     int value;                          // Value
 
-    public Item(Grid grid, GridPosition position, GameObjType gameObjType) {
+    public Item(Grid grid, GridPosition position) {  //CORRECTED CONSTRUCTOR
         super(grid, position, GameObjType.EXIT); //TODO: We'll have to create subclasses here. Update constructor to fix type.
     }
 
@@ -28,7 +28,8 @@ public class Item extends GameObject {
             case POISON:
                 return value = POISON.getValue();
             case EXIT:
-                Game.endGame(); // TODO: Create this method
+                //ITEM CANT HAVE A PROPERTY Game AND Game.endGame() CANT BE STATIC
+                //SUGGESTION: ACTION DETECTOR CHOOSES ACTION WHEN PLAYER COLLECTS THIS ITEM TODO: Create this method
                 return 0;
         }
 
