@@ -19,9 +19,6 @@ public class Player extends Character {
     public Player(Grid grid, GridPosition position) {
         super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
 
-
-        String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
-        setGameObjImgs(picsFileNames);
     }
 
     @Override   // TODO => JOAQUIM

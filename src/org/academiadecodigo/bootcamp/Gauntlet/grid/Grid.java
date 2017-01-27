@@ -31,7 +31,7 @@ public interface Grid {
      * @param col   the position column
      * @param row   the position row
      * @return the new grid position
-     */
-    public GridPosition makeGridPosition(int col, int row);
+     *///TODO Vero -> Remove 3rd argument when implementing representables
+    public GridPosition makeGridPosition(int col, int row, String[] picFileNames);
 
 }
