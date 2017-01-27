@@ -59,7 +59,7 @@ public interface GridPosition {
     /**
      * Moves this grid position towards a specified direction
      */
-    void moveinDirection(GridDirection direction);
+    void moveInDirection(GridDirection direction);
 
     /**
      * Tests equality with another position

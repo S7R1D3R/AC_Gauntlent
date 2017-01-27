@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.AbstractGridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -8,7 +9,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  * Created by codecadet on 1/21/17.
  */
 public class SimpleGfxGridPosition extends AbstractGridPosition {
-//TODO Veronica
+    //TODO Veronica
     private Picture[] pictures;
     private int picIndex;
     private SimpleGfxGrid simpleGfxGrid;
@@ -16,18 +17,18 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     /**
      * Simple graphics position constructor
-     * @param col position column
-     * @param row position row
+     *
+     * @param col  position column
+     * @param row  position row
      * @param grid Simple graphics grid
      */
-    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid, String[] picsFileNames){
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid, String[] picsFileNames) {
 
         super(col, row, grid);
 
         this.simpleGfxGrid = grid;
 
         createInitialPictures(picsFileNames);
-        show();
     }
 
     /**
@@ -39,8 +40,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         for (int i = 0; i < picsFileNames.length; i++) {
 
-            int xPos = super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
-            int yPos = super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
+            int xPos = super.getCol() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
+            int yPos = super.getRow() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
 
             pictures[i] = new Picture(xPos, yPos, picsFileNames[i]);
         }
@@ -59,36 +60,53 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void hide() {
-        rectangle.delete();
+        pictures[picIndex].delete();
     }
 
     /**
-     * @see GridPosition#moveInDirection(GridDirection, int)
+     * @see GridPosition#moveInDirection(GridDirection)
      */
     @Override
-    public void moveInDirection(GridDirection direction, int distance) {
+    public void moveInDirection(GridDirection direction) {
 
         int prevX = simpleGfxGrid.columnToX(this.getCol()); // pixels
         int prevY = simpleGfxGrid.rowToY(super.getRow()); // pixels
 
-        super.moveInDirection(direction, distance);
+        super.moveInDirection(direction);
 
         int dx = simpleGfxGrid.columnToX(super.getCol()) - prevX;
         int dy = simpleGfxGrid.rowToY(super.getRow()) - prevY;
 
-        rectangle.translate(dx, dy);
+        // Remove current picture from Canvas
+        pictures[picIndex].delete();
+
+        // Update position of all pictures
+        for (int i = 0; i < pictures.length; i++) {
+
+            pictures[picIndex].translate(dx, dy);
+        }
+
+        //Update index to select picture in given direction @see LevelMaker
+        switch (direction) {
+            case UP:
+                picIndex = 0;
+                break;
+            case RIGHT:
+                picIndex = 1;
+                break;
+            case DOWN:
+                picIndex = 2;
+                break;
+            case LEFT:
+                picIndex = 3;
+                break;
+            default:
+                picIndex = 0;
+        }
+
+        //Show picture in given direction
+        pictures[picIndex].draw();
 
     }
 
-    /**
-     * @see AbstractGridPosition#setColor(GridColor)
-     */
-    @Override
-    public void setColor(GridColor color) {
-
-        super.setColor(color);
-        rectangle.setColor(SimpleGfxColorMapper.getColor(color));
-
-    }
-}
 }

@@ -80,7 +80,7 @@ public abstract class AbstractGridPosition implements GridPosition{
         }
 
         @Override
-        public void moveinDirection(GridDirection direction) {
+        public void moveInDirection(GridDirection direction) {
         // TODO: For now we move always one cell at a time. Later: Think on how to smooth the movement, so objects move in pixels not in columns
 
         switch (direction) {
