@@ -20,7 +20,15 @@ public class Player extends Character {
     private boolean hasPrincess;
 
     public Player(Grid grid, GridPosition position) {
+<<<<<<< HEAD
         super(grid, position, GameObjType.PLAYER, 3, picsFileNames); //TODO: change speed? (current is 3)
+=======
+        super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
+
+
+        String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
+        setGameObjImgs(picsFileNames);
+>>>>>>> 437a4d2163bda4c71bfc20047bcd1e1c87bff451
     }
 
     @Override   // TODO => JOAQUIM
