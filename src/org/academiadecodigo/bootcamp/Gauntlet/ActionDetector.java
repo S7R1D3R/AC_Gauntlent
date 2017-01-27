@@ -28,22 +28,24 @@ public class ActionDetector {
     }
 
     private GridPosition getNextPos(AbstractMovableObject movable) {
+        //TODO Vero -> remove when implementing representable
+        String[] names = null;
 
         GridPosition nextPos;
 
         switch(movable.getDirection()) {
 
             case UP:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() - 1);
+                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() - 1, names);
                 break;
             case RIGHT:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() + 1, movable.getPos().getRow());
+                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() + 1, movable.getPos().getRow(), names);
                 break;
             case DOWN:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() + 1);
+                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() + 1, names);
                 break;
             case LEFT:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() - 1, movable.getPos().getRow());
+                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() - 1, movable.getPos().getRow(), names);
                 break;
             default:
                 nextPos = movable.getPos();
@@ -72,6 +74,5 @@ public class ActionDetector {
         return movableObjects;
     }
 
-    //TODO: Peter and Vero think that this action detector should choose the action of the respective movable object
-    //TODO: And method checkAction should be named chooseAction and be called by each movable object
+
 }

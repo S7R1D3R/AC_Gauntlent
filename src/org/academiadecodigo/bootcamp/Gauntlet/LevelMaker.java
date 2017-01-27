@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
@@ -25,23 +26,23 @@ public class LevelMaker {
      * LEVEL 1 STRING
      */
     private final String level1 =
-            "################################" +
-                    "######____######________#####__#" +
+                    "################################" +
+                    "######E_++######EE_____+#####__#" +
                     "#_____________##_________#_____#" +
                     "#___##_____##_##_######__#___#E#" +
-                    "#E#_##__#####_#__#*___#__##_##E#" +
-                    "###_##__#_____#__#____#__##_####" +
-                    "#____#__#_____#__####_#_______##" +
+                    "#E#_##__#####_#-_#*___#__##_##E#" +
+                    "###_##__#E____#__#____#__##_####" +
+                    "#____#__#E___-#_-####_#_______##" +
                     "#____#__#___###_____#_#_______##" +
-                    "#____#_##___#___###_#_#__##____#" +
-                    "#____#I#___#####____#_#__#___#_#" +
+                    "#____#_##+__#_EE###_#_#__##____#" +
+                    "#__EE#+#___#####____#_#__#___#_#" +
                     "#__#####___#_____####_#__#####_#" +
-                    "#__#_______#_____#____#______#_#" +
+                    "#__#EE_____#EE___#____#______#_#" +
                     "#__#_______####__#____#__##__#_#" +
-                    "#__#_##########__#____#__##__#X#" +
-                    "#__#_____________####_#__##__###" +
-                    "#__#_______#__#__#____#_###___##" +
-                    "#P_#__####_#__#__#______###___##" +
+                    "#__#_##########_+#____#__##__#X#" +
+                    "#__#______E______####_#__##__###" +
+                    "#__#-______#EE#EE#____#_###___##" +
+                    "#P_#__####E#EE#EE#______###___##" +
                     "################################";
 
 
@@ -72,6 +73,7 @@ public class LevelMaker {
         int roomHeight = 18;           //Room Height
 
         List<GameObject> gameObjects = new ArrayList<>();       //Level maker does not need to know how many gameobjects exist
+        int charCount  = 0;
 
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
@@ -80,20 +82,20 @@ public class LevelMaker {
                 ItemType itemType = null;  //needs to be initialized, it isn't used in all cases
                 String[] picsFileNames;
 
-                if (level.charAt(i) != '_') {           //if symbol read doesn't correspond to free space
+                if (level.charAt(charCount) != '_') {           //if symbol read doesn't correspond to free space
 
-                    switch (level.charAt(i)) {          //changes type corresponding to symbol read
+                    switch (level.charAt(charCount)) {          //changes type corresponding to symbol read
                         case '#':
                             objType = GameObjType.WALL;
-                            picsFileNames = new String[]{"WallBlock.png"};
+                            picsFileNames = new String[]{"test/WallBlock.png"};
                             break;
                         case 'P':
                             objType = GameObjType.PLAYER;
-                            picsFileNames = new String[]{"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
+                            picsFileNames = new String[]{"test/PlayerDown.png", "test/PlayerLeft.png", "test/PlayerUp.png", "test/PlayerRight.png"};
                             break;
                         case 'E':
                             objType = GameObjType.ENEMY;
-                            picsFileNames = new String[]{"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
+                            picsFileNames = new String[]{"test/EnemyDown.png", "test/EnemyLeft.png", "test/EnemyUp.png", "test/EnemyRight.png"};
                             break;
                         case 'X':
                             objType = GameObjType.ITEM;
@@ -120,8 +122,9 @@ public class LevelMaker {
                     }
 
 
-                    createAllObjects(gameObjects, i, j, objType, itemType, picsFileNames);
+                    createAllObjects(gameObjects, j, i, objType, itemType, picsFileNames);
                 }
+            charCount++;
             }
         }
         return(ArrayList<GameObject>)gameObjects;     //returns gameObjects list

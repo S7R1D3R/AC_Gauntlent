@@ -1,14 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
-
-import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POTION;
-import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POISON;
-import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.TREASURE;
 
 /**
  * Created by s7r1d3r on 20-01-2017.

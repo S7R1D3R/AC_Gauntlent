@@ -11,7 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class SimpleGfxGridPosition extends AbstractGridPosition {
     //TODO Veronica
     private Picture[] pictures;
-    private int picIndex;
+    private int picIndex = 0;
     private SimpleGfxGrid simpleGfxGrid;
 
 
@@ -88,16 +88,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         //Update index to select picture in given direction @see LevelMaker
         switch (direction) {
-            case UP:
+            case DOWN:
                 picIndex = 0;
                 break;
-            case RIGHT:
+            case LEFT:
                 picIndex = 1;
                 break;
-            case DOWN:
+            case UP:
                 picIndex = 2;
                 break;
-            case LEFT:
+            case RIGHT:
                 picIndex = 3;
                 break;
             default:

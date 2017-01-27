@@ -63,7 +63,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
     }
 
     public void movePlayer() {
-        if()
+        //if()
     }
 
     public void keyboardInit() {

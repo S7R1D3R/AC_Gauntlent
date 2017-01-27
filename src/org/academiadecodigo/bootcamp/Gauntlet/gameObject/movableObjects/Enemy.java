@@ -3,7 +3,6 @@ package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.CollisionDectector;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
@@ -78,18 +77,18 @@ public class Enemy extends Character {
             case PROJECTILE:
                 health -= 20;
                 break;
-            case POTION:
-
-                break;
-            case POISON:
-
-                break;
-            case PRINCESS:
-
-                break;
-            case EXIT:
-
-                break;
+//            case POTION:
+//
+//                break;
+//            case POISON:
+//
+//                break;
+//            case PRINCESS:
+//
+//                break;
+//            case EXIT:
+//
+//                break;
         }
     }
 

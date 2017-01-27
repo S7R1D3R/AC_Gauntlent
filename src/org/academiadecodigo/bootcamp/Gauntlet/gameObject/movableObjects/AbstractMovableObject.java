@@ -6,7 +6,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
 /**
  * Created by codecadet on 25/01/17.
@@ -70,8 +69,5 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
     public abstract void doAction(GameObject gameObject);
 }

@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
 /**
  * Created by codecadet on 27/01/17.

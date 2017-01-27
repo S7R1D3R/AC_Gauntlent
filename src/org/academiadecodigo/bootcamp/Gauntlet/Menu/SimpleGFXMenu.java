@@ -1,7 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.Menu;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
+import org.academiadecodigo.bootcamp.Gauntlet.Game;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 

@@ -31,7 +31,7 @@ public class Player extends Character {
     private void initializeProjectiles(int projectilesNumber) {
 
         projectiles = new Projectile[projectilesNumber];
-        String[] projectilesFileNames = {"Projectile.png"};
+        String[] projectilesFileNames = {"test/Projectile.png"};
 
         for (int i = 0; i < projectilesNumber; i++) {
 
@@ -89,7 +89,7 @@ public class Player extends Character {
             case EXIT:
                 //TODO: Create method to end Game GIULIANO
                 if (hasPrincess) {
-                    endGame = true;
+//                    endGame = true;
 
                 }
                 break;

@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Gauntlet.test;
+package org.academiadecodigo.bootcamp.Gauntlet;
 
 import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
 import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
@@ -94,9 +94,9 @@ public class Game {
             GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
             currentMovable.doAction(ObjectInNextPos);
             //TODO Giuliano
-            if (endGame) {
-                endGame();
-            }
+//            if (endGame) {
+//                endGame();
+//            }
         }
     }
 
@@ -111,7 +111,7 @@ public class Game {
      * Instances the Level Maker and the ArrayList with all the GameObjects
      * @param level
      */
-    private void initializeGameObjects(int level) {
+    public void initializeGameObjects(int level) {
 
         levelMaker = new LevelMaker(grid);          //Instances the level maker
         gameObjects = levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker

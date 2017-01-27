@@ -64,4 +64,10 @@ public abstract class GameObject{
     public void destroy(){
         destroyed = true;
     }
+
+    @Override
+    public String toString() {
+
+        return gameObjType.toString();
+    }
 }
