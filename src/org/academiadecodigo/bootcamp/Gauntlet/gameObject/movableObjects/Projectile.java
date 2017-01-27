@@ -9,7 +9,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
-public class Projectile extends AbstractMovableObject implements Movable { //CORRECTED EXTENSION TO ABSMOVOBJ
+public class Projectile extends AbstractMovableObject { //CORRECTED EXTENSION TO ABSMOVOBJ
 
 
     public Projectile(Grid grid, GridPosition pos) {
