@@ -81,15 +81,19 @@ public class LevelMaker {
                     switch (level.charAt(i)) {          //changes type corresponding to symbol read
                         case '#':
                             type = GameObjType.WALL;
+                            String[] picsFileNames = {"WallBlock.png"};
                             break;
                         case 'P':
                             type = GameObjType.PLAYER;
+                            String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
                             break;
                         case 'E':
                             type = GameObjType.ENEMY;
+                            String[] picsFileNames = {"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
                             break;
                         case 'X':
                             type = GameObjType.EXIT;
+                            String[] picsFileNames = {"End.png"};
                             break;
                         case '+':
                             type = GameObjType.POTION;
@@ -104,7 +108,7 @@ public class LevelMaker {
                             type = GameObjType.WALL;
                     }
                     //Adds all new gameobjects to object list
-                    gameObjects.add(GameObjFactory.getNewGameObj(grid, type, grid.makeGridPosition(i, j)));
+                    gameObjects.add(GameObjFactory.getNewGameObj(grid, type, grid.makeGridPosition(i, j, picsFileNames)));
                 }
             }
         }

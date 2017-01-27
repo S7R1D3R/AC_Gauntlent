@@ -102,10 +102,10 @@ public class SimpleGfxGrid implements Grid {
     /**
      * @see Grid#makeGridPosition(int, int)
      */
-    @Override
-    public GridPosition makeGridPosition(int col, int row) {
+    @Override //TODO Vero -> Remove 3rd argument when implementing representables
+    public GridPosition makeGridPosition(int col, int row, String[] picsFileNames) {
 
-        return new SimpleGfxGridPosition(col, row, this);
+        return new SimpleGfxGridPosition(col, row, this, picsFileNames);
 
     }
 

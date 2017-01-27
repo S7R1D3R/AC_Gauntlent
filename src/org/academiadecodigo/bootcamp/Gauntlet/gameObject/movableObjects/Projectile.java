@@ -14,6 +14,7 @@ public class Projectile extends AbstractMovableObject { //CORRECTED EXTENSION TO
 
     public Projectile(Grid grid, GridPosition pos) {
         super(grid, pos, GameObjType.PROJECTILE, 3);        //ADDED CONSTRUCTOR
+
     }
 
     @Override
