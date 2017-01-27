@@ -93,6 +93,10 @@ public class Game {
 
             GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
             currentMovable.doAction(ObjectInNextPos);
+            //TODO Giuliano
+            if (endGame) {
+                endGame();
+            }
         }
     }
 

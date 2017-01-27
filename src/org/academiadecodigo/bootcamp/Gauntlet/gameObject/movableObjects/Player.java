@@ -18,25 +18,12 @@ public class Player extends Character {
 
     private int points;
     private boolean hasPrincess;
+    private boolean gameOver;
 
     public Player(Grid grid, GridPosition position) {
-        super(grid, position, GameObjType.PLAYER, 3, picsFileNames); //TODO: change speed? (current is 3)
-<<<<<<< HEAD
-
-        String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
-        setGameObjImgs(picsFileNames);
-=======
-=======
         super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
-
-<<<<<<< HEAD
-=======
-
-        String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
-        setGameObjImgs(picsFileNames);
->>>>>>> 437a4d2163bda4c71bfc20047bcd1e1c87bff451
->>>>>>> bdbb9d1de1d30dbb2daefcc7c141a2805ea0015d
->>>>>>> 93712793b6c00d284981d67132546afd0e37a3cf
+        health = 50;
+        speed = 2;
     }
 
     @Override   // TODO => JOAQUIM
@@ -57,39 +44,46 @@ public class Player extends Character {
                 break;
             case ENEMY:
                 speed = 0;
-                health -= 10;
+                health -= ((Enemy) gameObject).damage;
                 break;
             case PROJECTILE:
                 break;
             case ITEM:
-                
-                switch (((Item) gameObject).getItemType()) {
-                    case POTION:
-                        health += ItemType.POTION.getValue();
-                        break;
-                    case POISON:
-                        health += ItemType.POISON.getValue();
-                        break;
-                    case PRINCESS:
-                        savePrincess();
-                        break;
-                    case TREASURE:
-                        points += ItemType.TREASURE.getValue();
-                        break;
-                    case EXIT:
-                        //TODO: Create method to end Game
-                        break;
-                    default:
-                        System.out.println("Something went wrong <= Player doAction()");
-                        break;
-            }
-                move();
+                collectItem((Item) gameObject);
+                break;
+        }
+
+        move();
+    }
+
+    private void collectItem(Item gameObject) {
+
+        switch (gameObject.getItemType()) {
+            case POTION:
+                health += ItemType.POTION.getValue();
+                break;
+            case POISON:
+                health += ItemType.POISON.getValue();
+                break;
+            case PRINCESS:
+                hasPrincess = true;
+                break;
+            case TREASURE:
+                points += ItemType.TREASURE.getValue();
+                break;
+            case EXIT:
+                //TODO: Create method to end Game GIULIANO
+                if (hasPrincess) {
+                    endGame = true;
+
+                }
+                break;
+            default:
+                System.out.println("Something went wrong <= Player doAction()");
+                break;
         }
     }
 
-    public void savePrincess() {
-        hasPrincess = true;
-    }
 
     public GameObjType checkWhatAction(GameObject gameObject) {
         return gameObject.getGameObjType();
