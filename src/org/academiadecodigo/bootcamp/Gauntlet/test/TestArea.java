@@ -5,6 +5,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.Game;
 import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -25,6 +26,17 @@ public class TestArea {
         LevelMaker levelMaker = new LevelMaker(grid);          //Instances the level maker
         ArrayList<GameObject> gameObjects = levelMaker.getLevel(1);   //Creates the ArrayList with all the gameobjects using the level maker
         System.out.println(gameObjects.toString());
+
+        Player p1;
+        for (GameObject gameobj :
+                gameObjects) {
+            if (gameobj instanceof Player) {
+            p1 = (PLayer) gameobj;
+            }
+        }
+
+
+
 //        game.init(1);
 
 
