@@ -21,8 +21,15 @@ public class Item extends GameObject {
     public Item(Grid grid, GridPosition position) {  //CORRECTED CONSTRUCTOR
         super(grid, position, GameObjType.ITEM); //TODO: We'll have to create subclasses here. Update constructor to fix type.
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 93712793b6c00d284981d67132546afd0e37a3cf
         String[] picsFileNames = {itemType.getPicFileName()};
         setGameObjImgs(picsFileNames);
+>>>>>>> bdbb9d1de1d30dbb2daefcc7c141a2805ea0015d
     }
 
     public int collectItem(ItemType itemType, Player player) {

@@ -9,8 +9,10 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
  */
 public class SimpleGfxGridPosition extends AbstractGridPosition {
 //TODO Veronica
-    private Picture picture;
+    private Picture[] pictures;
+    private int picIndex;
     private SimpleGfxGrid simpleGfxGrid;
+
 
     /**
      * Simple graphics position constructor
@@ -18,17 +20,30 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      * @param row position row
      * @param grid Simple graphics grid
      */
-    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid){
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid, String[] picsFileNames){
+
         super(col, row, grid);
 
         this.simpleGfxGrid = grid;
 
-        int xPos = super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
-        int yPos = super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
-
-        picture = new Picture(xPos, yPos, picFileName);
-
+        createInitialPictures(picsFileNames);
         show();
+    }
+
+    /**
+     * Create initial images
+     */
+    private void createInitialPictures(String[] picsFileNames) {
+
+        pictures = new Picture[picsFileNames.length];
+
+        for (int i = 0; i < picsFileNames.length; i++) {
+
+            int xPos = super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
+            int yPos = super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
+
+            pictures[i] = new Picture(xPos, yPos, picsFileNames[i]);
+        }
     }
 
     /**
@@ -36,7 +51,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void show() {
-        rectangle.fill();
+        pictures[picIndex].draw();
     }
 
     /**

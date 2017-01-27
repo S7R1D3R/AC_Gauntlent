@@ -21,9 +21,22 @@ public class Player extends Character {
 
     public Player(Grid grid, GridPosition position) {
         super(grid, position, GameObjType.PLAYER, 3, picsFileNames); //TODO: change speed? (current is 3)
+<<<<<<< HEAD
 
         String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
         setGameObjImgs(picsFileNames);
+=======
+=======
+        super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
+
+<<<<<<< HEAD
+=======
+
+        String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
+        setGameObjImgs(picsFileNames);
+>>>>>>> 437a4d2163bda4c71bfc20047bcd1e1c87bff451
+>>>>>>> bdbb9d1de1d30dbb2daefcc7c141a2805ea0015d
+>>>>>>> 93712793b6c00d284981d67132546afd0e37a3cf
     }
 
     @Override   // TODO => JOAQUIM
