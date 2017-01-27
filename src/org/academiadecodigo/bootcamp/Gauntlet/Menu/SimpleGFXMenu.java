@@ -1,4 +1,4 @@
-package Menu;
+package org.academiadecodigo.bootcamp.Gauntlet.Menu;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 import org.academiadecodigo.bootcamp.Gauntlet.test.Game;

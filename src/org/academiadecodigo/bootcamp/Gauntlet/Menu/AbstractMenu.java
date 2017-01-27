@@ -1,7 +1,4 @@
-package Menu;
-
-import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.SimpleGfxGrid;
-import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
+package org.academiadecodigo.bootcamp.Gauntlet.Menu;
 
 /**
  * Created by codecadet on 24/01/17.

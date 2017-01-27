@@ -1,4 +1,4 @@
-package Menu;
+package org.academiadecodigo.bootcamp.Gauntlet.Menu;
 
 /**
  * Created by codecadet on 24/01/17.
