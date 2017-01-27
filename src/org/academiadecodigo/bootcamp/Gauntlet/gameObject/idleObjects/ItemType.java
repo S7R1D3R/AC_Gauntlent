@@ -7,18 +7,26 @@ public enum ItemType {
     // TODO => GIULIANO
     // Health, Poison, End
 
-    POTION(10),
-    POISON(-10),
-    PRINCESS(0),
-    EXIT(0);
+    POTION(10, "Potion.png"),
+    POISON(-10, "Poison.png"),
+    TREASURE(20, "Treasure.png"),
+    PRINCESS(0, "Princess.png" ),
+    EXIT(0, "End.png");
 
     private int value;
+    private String picFileName;
 
-    ItemType(int value){
+    ItemType(int value, String picFileName){
         this.value = value;
+        this.picFileName = picFileName;
     }
 
     public int getValue() {
         return value;
     }
+
+    public String getPicFileName() {
+        return picFileName;
+    }
+
 }
