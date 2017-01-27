@@ -24,6 +24,7 @@ public class SimpleGfxGrid implements Grid {
         this.cellSize = 40;
         this.cols = cols;
         this.rows = rows;
+
     }
 
 
@@ -33,8 +34,8 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public void init() {
 
-        rectangle = new Rectangle(PADDING, PADDING, cellSize * cols, cellSize * rows);
-        rectangle.draw();
+        picture = new Picture(PADDING, PADDING, "GameBackground.png");
+        picture.draw();
     }
 
     /**
@@ -59,7 +60,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the width of the grid
      */
     public int getWidth() {
-        return rectangle.getWidth();
+        return picture.getWidth();
     }
 
     /**
@@ -68,7 +69,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the height of the grid
      */
     public int getHeight() {
-        return rectangle.getHeight();
+        return picture.getHeight();
     }
 
     /**
@@ -77,7 +78,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the x position of the grid
      */
     public int getX() {
-        return rectangle.getX();
+        return picture.getX();
     }
 
     /**
@@ -86,7 +87,7 @@ public class SimpleGfxGrid implements Grid {
      * @return the y position of the grid
      */
     public int getY() {
-        return rectangle.getY();
+        return picture.getY();
     }
 
     /**
@@ -96,16 +97,6 @@ public class SimpleGfxGrid implements Grid {
      */
     public int getCellSize() {
         return cellSize;
-    }
-
-    /**
-     * @see Grid#makeGridPosition()
-     */
-    @Override
-    public GridPosition makeGridPosition() {
-
-        return new SimpleGfxGridPosition(this);
-
     }
 
     /**
@@ -139,5 +130,4 @@ public class SimpleGfxGrid implements Grid {
 
         return column * cellSize + getX();
     }
-}
 }

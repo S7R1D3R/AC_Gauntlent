@@ -19,7 +19,12 @@ public class Enemy extends Character {
 
     public Enemy(Grid grid, GridPosition position) {
 
-        super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
+        super(grid, position, GameObjType.ENEMY, 1, );//TODO: change speed of enemy?
+        // TODO: Change when implementing representable interface
+        // This piece of code will change when implementing interface representable
+        // For now, we want to see things moving without animation and low performance
+
+       super.
     }
 
     @Override

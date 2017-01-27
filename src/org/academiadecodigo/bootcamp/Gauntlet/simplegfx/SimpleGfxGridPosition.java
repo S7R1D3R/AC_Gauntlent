@@ -22,12 +22,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         super(col, row, grid);
 
         this.simpleGfxGrid = grid;
-        //TODO: work in progress
-        picture = new Picture(super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX(),
-                super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY(),
-                simpleGfxGrid.getCellSize(), simpleGfxGrid.getCellSize());
 
-        rectangle.setColor(SimpleGfxColorMapper.getColor(super.getColor()));
+        int xPos = super.getCol()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
+        int yPos = super.getRow()*simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
+
+        picture = new Picture(xPos, yPos, picFileName);
 
         show();
     }

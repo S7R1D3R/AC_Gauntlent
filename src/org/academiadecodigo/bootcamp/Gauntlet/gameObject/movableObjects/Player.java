@@ -16,7 +16,7 @@ public class Player extends Character {
     private boolean hasPrincess;
 
     public Player(Grid grid, GridPosition position) {
-        super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
+        super(grid, position, GameObjType.PLAYER, 3,  picsFileNames); //TODO: change speed? (current is 3)
     }
 
 

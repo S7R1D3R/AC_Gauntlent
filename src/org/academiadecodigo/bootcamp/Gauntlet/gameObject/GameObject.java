@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.position.AbstractGridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -11,7 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public abstract class GameObject{
 
     private GameObjType gameObjType;
-    private Picture gameObjImg; // TODO_From Vero to Joaquim: This property is not necessary here because it must be called by simpleGfxGridPosition
+    private Picture[] gameObjImgs; //TODO: Vero -> Remove when implementing representable
     private Grid grid;
     private GridPosition pos;
     private boolean destroyed;
@@ -27,6 +26,19 @@ public abstract class GameObject{
         this.grid = grid;
         this.pos = pos;
         this.gameObjType = gameObjType;
+    }
+
+    /** //TODO: Vero -> Remove when implementing representable
+     * Set images for game object. Call only at the beginning.
+     */
+    public void setGameObjImgs(String[] picsFileNames) {
+
+        gameObjImgs = new Picture[picsFileNames.length];
+
+        for (int i = 0; i < picsFileNames.length; i++) {
+
+            gameObjImgs[i] = new Picture(pos.getCol(), pos.getRow(), picsFileNames[i]);
+        }
     }
 
     /**
