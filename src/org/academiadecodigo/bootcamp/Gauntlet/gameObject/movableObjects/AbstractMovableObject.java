@@ -13,8 +13,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
  */
 public abstract class AbstractMovableObject extends GameObject implements Movable {
 
-    private int speed;                      // Speed => Number of times he moves per game loop
-    private GridDirection direction;            // GridDirection that character is facing
+    protected int speed;                      // Speed => Number of times he moves per game loop
+    protected GridDirection direction;            // GridDirection that character is facing
     private ActionDetector actionDetector;
     // private GridPosition nextPos;            // Removing after ActionDetector is OKAY.
 
@@ -70,6 +70,8 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
     public abstract void doAction(GameObject gameObject);
 }

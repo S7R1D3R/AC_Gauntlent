@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp.Gauntlet;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class LevelMaker {
                     "######____######________#####__#" +
                     "#_____________##_________#_____#" +
                     "#___##_____##_##_######__#___#E#" +
-                    "#E#_##__#####_#__#I___#__##_##E#" +
+                    "#E#_##__#####_#__#*___#__##_##E#" +
                     "###_##__#_____#__#____#__##_####" +
                     "#____#__#_____#__####_#_______##" +
                     "#____#__#___###_____#_#_______##" +
@@ -74,46 +76,76 @@ public class LevelMaker {
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
 
-                GameObjType type;       //game type to be used in gameobj factory below
+                GameObjType objType;       //game type to be used in gameobj factory below
+                ItemType itemType = null;  //needs to be initialized, it isn't used in all cases
+                String[] picsFileNames;
 
                 if (level.charAt(i) != '_') {           //if symbol read doesn't correspond to free space
 
                     switch (level.charAt(i)) {          //changes type corresponding to symbol read
                         case '#':
-                            type = GameObjType.WALL;
-                            String[] picsFileNames = {"WallBlock.png"};
+                            objType = GameObjType.WALL;
+                            picsFileNames = new String[]{"WallBlock.png"};
                             break;
                         case 'P':
-                            type = GameObjType.PLAYER;
-                            String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
+                            objType = GameObjType.PLAYER;
+                            picsFileNames = new String[]{"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
                             break;
                         case 'E':
-                            type = GameObjType.ENEMY;
-                            String[] picsFileNames = {"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
+                            objType = GameObjType.ENEMY;
+                            picsFileNames = new String[]{"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
                             break;
                         case 'X':
-                            type = GameObjType.EXIT;
-                            String[] picsFileNames = {"End.png"};
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.EXIT;
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '+':
-                            type = GameObjType.POTION;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.POTION;
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '-':
-                            type = GameObjType.POISON;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.POISON;
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '*':
-                            type = GameObjType.PRINCESS;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.PRINCESS;
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         default:
-                            type = GameObjType.WALL;
+                            throw new NullPointerException();
                     }
-                    //Adds all new gameobjects to object list
-                    gameObjects.add(GameObjFactory.getNewGameObj(grid, type, grid.makeGridPosition(i, j, picsFileNames)));
+
+
+                    createAllObjects(gameObjects, i, j, objType, itemType, picsFileNames);
                 }
             }
         }
-        return (ArrayList<GameObject>) gameObjects;     //returns gameObjects list
+        return(ArrayList<GameObject>)gameObjects;     //returns gameObjects list
     }
 
+
+    private void createAllObjects(List<GameObject> gameObjects, int i, int j, GameObjType objType, ItemType itemType, String[] picsFileNames) {
+
+        //Creates new game object
+
+        GameObject newGameObject = GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(i, j, picsFileNames));
+        newGameObject.getPos().show();
+
+
+
+        if (objType == GameObjType.ITEM) {
+            //Adds all itemtypes to all items
+            ((Item) newGameObject).setItemType(itemType);
+        }
+
+        //Adds all new gameobjects to object list
+        gameObjects.add(newGameObject);
+    }
 }
+
+
 
