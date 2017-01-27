@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp.Gauntlet;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 
@@ -76,7 +77,7 @@ public class LevelMaker {
             for (int j = 0; j < roomWidth; j++) {
 
                 GameObjType objType;       //game type to be used in gameobj factory below
-                ItemType itemType;
+                ItemType itemType = null;  //needs to be initialized, it isn't used in all cases
                 String[] picsFileNames;
 
                 if (level.charAt(i) != '_') {           //if symbol read doesn't correspond to free space
@@ -102,32 +103,49 @@ public class LevelMaker {
                         case '+':
                             objType = GameObjType.ITEM;
                             itemType = ItemType.POTION;
-                            picsFileNames = new String[]{"Potion.png"};
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '-':
                             objType = GameObjType.ITEM;
                             itemType = ItemType.POISON;
-                            picsFileNames = new String[]{"Poison.png"};
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '*':
                             objType = GameObjType.ITEM;
                             itemType = ItemType.PRINCESS;
-                            picsFileNames =new String[]{"Princess.png"};
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         default:
-                            objType = GameObjType.WALL;
-                            picsFileNames = new String[]{"WallBlock.png"};
+                            throw new NullPointerException();
                     }
-                    //Adds all new gameobjects to object list
-                    gameObjects.add(GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(i, j, picsFileNames)));
 
-                    //Adds all itemtypes to all items
-                    ((Item) gameObjects).setItemType(itemType);
+
+                    createAllObjects(gameObjects, i, j, objType, itemType, picsFileNames);
                 }
             }
         }
-        return (ArrayList<GameObject>) gameObjects;     //returns gameObjects list
+        return(ArrayList<GameObject>)gameObjects;     //returns gameObjects list
     }
 
+
+    private void createAllObjects(List<GameObject> gameObjects, int i, int j, GameObjType objType, ItemType itemType, String[] picsFileNames) {
+
+        //Creates new game object
+
+        GameObject newGameObject = GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(i, j, picsFileNames));
+        newGameObject.getPos().show();
+
+
+
+        if (objType == GameObjType.ITEM) {
+            //Adds all itemtypes to all items
+            ((Item) newGameObject).setItemType(itemType);
+        }
+
+        //Adds all new gameobjects to object list
+        gameObjects.add(newGameObject);
+    }
 }
+
+
 

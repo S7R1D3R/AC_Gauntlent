@@ -47,4 +47,8 @@ public class Item extends GameObject {
     public ItemType getItemType() {
         return itemType;
     }
+
+    public void setItemType(ItemType itemType){
+        this.itemType = itemType;
+    }
 }

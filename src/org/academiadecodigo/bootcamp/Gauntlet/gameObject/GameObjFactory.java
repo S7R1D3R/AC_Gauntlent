@@ -20,7 +20,7 @@ public class GameObjFactory {
         GameObject newGameObj;
 
         switch (gameObjType) {
-            case EXIT:
+            case ITEM:
                 newGameObj = new Item(grid, position);
                 break;
             case ENEMY:
