@@ -22,10 +22,10 @@ public class Player extends Character {
     private boolean gameOver;
 
     public Player(Grid grid, GridPosition position) {
-        super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
+        super(grid, position, GameObjType.PLAYER, 2); //TODO: change speed? (current is 3)
         initializeProjectiles(10);      //NUMBER OF BULLETS AVAILABLE FOR PLAYER
         health = 50;
-        speed = 2;
+        //speed = 2; //Apagar porque já estamos a passar este valor como 4to argumento do super constructor
     }
 
     private void initializeProjectiles(int projectilesNumber) {

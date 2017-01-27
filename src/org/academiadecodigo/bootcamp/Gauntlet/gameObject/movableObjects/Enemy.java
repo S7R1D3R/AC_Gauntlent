@@ -19,12 +19,11 @@ public class Enemy extends Character {
 
     boolean trueOrFalse;
 
-    //TODO ENEMY TEM DE CONFIRMAR AS PAREDES
     public Enemy(Grid grid, GridPosition position) {
 
         super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
         health = 60;
-        speed = 1;
+        //speed = 1; //Apagar porque já estamos a passar este valor como 4to argumento do super constructor
 
     }
 
