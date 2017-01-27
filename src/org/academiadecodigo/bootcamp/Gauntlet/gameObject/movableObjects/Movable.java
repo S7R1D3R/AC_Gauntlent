@@ -16,6 +16,7 @@ public interface Movable {
      */
     public void setActionDetector(ActionDetector actionDetector);
 
+
     /**
      * Gets action detector
      */

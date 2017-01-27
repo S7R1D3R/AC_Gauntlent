@@ -4,6 +4,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
 import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
@@ -19,6 +20,7 @@ public class Game {
     private GridType gridType;
     private int delay;
     private ArrayList<GameObject> gameObjects; //NOW ARRAYLIST<GAMEOBJECT> INSTEAD OF GAMEOBJECT[]
+    private ArrayList<AbstractMovableObject> movableObjects;
     private ActionDetector actionDetector;
     private LevelMaker levelMaker;
     private boolean gameOver;
@@ -50,11 +52,13 @@ public class Game {
         // Creates ActionDetector
         actionDetector = new ActionDetector(gameObjects);
 
+        // Sets movable objects
+        movableObjects = actionDetector.getMovableObjects();
+
         // Sets action detector on Movable objects
-        for (Movable movableObject : actionDetector.getMovableObjects()) {
+        for (AbstractMovableObject movableObject : movableObjects) {
             movableObject.setActionDetector(actionDetector);
         }
-
 
     }
 
@@ -70,6 +74,10 @@ public class Game {
             // Pause for a while
             Thread.sleep(delay);
 
+            // Check for actions
+            checkForActions();
+
+            // Move all objects
             moveMovableObjects();
         }
     }
@@ -79,11 +87,26 @@ public class Game {
      */
     private void moveMovableObjects() {
 
-        for (Movable movableObject : actionDetector.getMovableObjects()) {
+        for (AbstractMovableObject movableObject : movableObjects) {
             movableObject.move();
         }
     }
 
+    /**
+     * Check for actions in all objects
+     */
+    private void checkForActions() {
+
+        for(int i = 0; i < movableObjects.size(); i++) {
+
+            AbstractMovableObject currentMovable = movableObjects.get(i);
+            GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
+
+            if(ObjectInNextPos == null) continue;
+
+            currentMovable.doAction();
+        }
+    }
 
     /**
      * ENDS GAME BY SETTING EXIT CONDITION USED ON GAME LOOP TO TRUE

@@ -16,6 +16,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     private int speed;                      // Speed => Number of times he moves per game loop
     private GridDirection direction;            // GridDirection that character is facing
     private ActionDetector actionDetector;
+    // private GridPosition nextPos;            // Removing after ActionDetector is OKAY.
 
     public AbstractMovableObject(Grid grid, GridPosition position, GameObjType gameObjType, int speed) {
         super(grid, position, gameObjType);
@@ -39,38 +40,36 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     /**
      *  => Sets next position so we can know if it's going to hit a wall.
      */
+    /*   TODO: JOAQUIM waiting for removal after ActionDetector is playing well
     public GridPosition setNextPos() {
 
         GridPosition nextPos = super.getGrid().makeGridPosition(0, 0);
 
         switch(direction) {
             case UP:
-                nextPos.setPos(getPos().getRow() - 1, getPos().getCol());
+                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
                 break;
             case RIGHT:
-                nextPos.setPos(getPos().getRow(), getPos().getCol() + 1);
+                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol(), super.getPos().getRow() + 1)
                 break;
             case DOWN:
-                nextPos.setPos(getPos().getRow() + 1, getPos().getCol());
+                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() + 1, super.getPos().getRow())
                 break;
             case LEFT:
-                nextPos.setPos(getPos().getRow(), getPos().getCol() - 1);
+                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
                 break;
             default:
-                nextPos = super.getPos();
+                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol(), super.getPos().getRow())
         }
 
+        return nextPos;
     }
-
-    public boolean checkAction() {
-
-        for()
-    }
+    */
 
     public GridDirection getDirection() {
         return direction;
     }
 
 
-
+    public abstract void doAction();
 }
