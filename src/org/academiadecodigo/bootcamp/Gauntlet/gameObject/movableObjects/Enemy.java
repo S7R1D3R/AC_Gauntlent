@@ -23,20 +23,14 @@ public class Enemy extends Character {
     public Enemy(Grid grid, GridPosition position) {
 
         super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
-<<<<<<< HEAD
-        // TODO: Change when implementing representable interface
-        // This piece of code will change when implementing interface representable
-        // For now, we want to see things moving without animation and low performance
         health = 60;
         speed = 1;
-=======
 
->>>>>>> 6e3ddd7044a4ad99584b41156f041d3c2ede4438
     }
 
     @Override
     public void move() {
-        this.getPos().moveinDirection(getDirection());
+        this.getPos().moveInDirection(getDirection());
     }
 
     private void moveTowardsPlayer(Player player) {
