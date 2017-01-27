@@ -24,6 +24,7 @@ public class Player extends Character {
     public void move() {
 
     }
+
     @Override
     public void doAction(GameObject gameObject) {
 

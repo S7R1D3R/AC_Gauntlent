@@ -3,9 +3,12 @@ package org.academiadecodigo.bootcamp.Gauntlet.test;
 import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
 import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 
@@ -109,6 +112,8 @@ public class Game {
         levelMaker = new LevelMaker(grid);          //Instances the level maker
         gameObjects = levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker
     }
+
+
 }
 
 
