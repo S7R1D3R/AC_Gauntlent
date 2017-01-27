@@ -9,7 +9,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
  */
 public abstract class Character extends AbstractMovableObject {
 
-    private int health;                     // Health Points
+    protected int health;                     // Health Points
     private int damage;                     // Damage that this character's projectiles will do
     private Projectile projectile;          // Projectile that character will fire
 

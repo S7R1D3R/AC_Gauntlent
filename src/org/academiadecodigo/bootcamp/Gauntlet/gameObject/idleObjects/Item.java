@@ -8,6 +8,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.test.Game;
 
 import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POTION;
 import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.POISON;
+import static org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType.TREASURE;
 
 /**
  * Created by s7r1d3r on 20-01-2017.
@@ -20,11 +21,7 @@ public class Item extends GameObject {
     public Item(Grid grid, GridPosition position) {  //CORRECTED CONSTRUCTOR
         super(grid, position, GameObjType.ITEM); //TODO: We'll have to create subclasses here. Update constructor to fix type.
 
-<<<<<<< HEAD
         String[] picsFileNames = {itemType.getPicFileName()};
-=======
-        String[] picsFileNames = {"End.png"};
->>>>>>> 437a4d2163bda4c71bfc20047bcd1e1c87bff451
         setGameObjImgs(picsFileNames);
     }
 
@@ -35,15 +32,16 @@ public class Item extends GameObject {
                 return value = POTION.getValue();
             case POISON:
                 return value = POISON.getValue();
+            case TREASURE:
+                return value = TREASURE.getValue();
             case PRINCESS:
-
                 return 0;
             case EXIT:
                 //ITEM CANT HAVE A PROPERTY Game AND Game.endGame() CANT BE STATIC
                 //SUGGESTION: ACTION DETECTOR CHOOSES ACTION WHEN PLAYER COLLECTS THIS ITEM TODO: Create this method
                 return 0;
             default:
-                System.out.println("Something went terribly wrong");
+                System.out.println("Something went terribly wrong <= Item collectItem()");
         }
 
         // What happens when Player collects item
