@@ -19,5 +19,6 @@ public class Wall extends GameObject {
         super(grid, position, GameObjType.WALL);        //ADDED CONSTRUCTOR
 
     }
+
 }
 

@@ -8,8 +8,5 @@ public enum GameObjType {
     PLAYER,
     ENEMY,
     PROJECTILE,
-    POTION,
-    POISON,
-    PRINCESS,
-    EXIT
+    ITEM
 }
