@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp.Gauntlet;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 
 import java.util.ArrayList;
@@ -74,41 +75,54 @@ public class LevelMaker {
         for (int i = 0; i < roomHeight; i++) {
             for (int j = 0; j < roomWidth; j++) {
 
-                GameObjType type;       //game type to be used in gameobj factory below
+                GameObjType objType;       //game type to be used in gameobj factory below
+                ItemType itemType;
+                String[] picsFileNames;
 
                 if (level.charAt(i) != '_') {           //if symbol read doesn't correspond to free space
 
                     switch (level.charAt(i)) {          //changes type corresponding to symbol read
                         case '#':
-                            type = GameObjType.WALL;
-                            String[] picsFileNames = {"WallBlock.png"};
+                            objType = GameObjType.WALL;
+                            picsFileNames = new String[]{"WallBlock.png"};
                             break;
                         case 'P':
-                            type = GameObjType.PLAYER;
-                            String[] picsFileNames = {"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
+                            objType = GameObjType.PLAYER;
+                            picsFileNames = new String[]{"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
                             break;
                         case 'E':
-                            type = GameObjType.ENEMY;
-                            String[] picsFileNames = {"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
+                            objType = GameObjType.ENEMY;
+                            picsFileNames = new String[]{"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
                             break;
                         case 'X':
-                            type = GameObjType.EXIT;
-                            String[] picsFileNames = {"End.png"};
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.EXIT;
+                            picsFileNames = itemType.getPicFileName();
                             break;
                         case '+':
-                            type = GameObjType.POTION;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.POTION;
+                            picsFileNames = new String[]{"Potion.png"};
                             break;
                         case '-':
-                            type = GameObjType.POISON;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.POISON;
+                            picsFileNames = new String[]{"Poison.png"};
                             break;
                         case '*':
-                            type = GameObjType.PRINCESS;
+                            objType = GameObjType.ITEM;
+                            itemType = ItemType.PRINCESS;
+                            picsFileNames =new String[]{"Princess.png"};
                             break;
                         default:
-                            type = GameObjType.WALL;
+                            objType = GameObjType.WALL;
+                            picsFileNames = new String[]{"WallBlock.png"};
                     }
                     //Adds all new gameobjects to object list
-                    gameObjects.add(GameObjFactory.getNewGameObj(grid, type, grid.makeGridPosition(i, j, picsFileNames)));
+                    gameObjects.add(GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(i, j, picsFileNames)));
+
+                    //Adds all itemtypes to all items
+                    ((Item) gameObjects).setItemType(itemType);
                 }
             }
         }
