@@ -18,9 +18,9 @@ public class Item extends GameObject {
     int value;                          // Value
 
     public Item(Grid grid, GridPosition position) {  //CORRECTED CONSTRUCTOR
-        super(grid, position, GameObjType.EXIT); //TODO: We'll have to create subclasses here. Update constructor to fix type.
+        super(grid, position, GameObjType.ITEM); //TODO: We'll have to create subclasses here. Update constructor to fix type.
 
-        String[] picsFileNames = {"Potion.png"};
+        String[] picsFileNames = {itemType.getPicFileName()};
         setGameObjImgs(picsFileNames);
     }
 
@@ -32,7 +32,7 @@ public class Item extends GameObject {
             case POISON:
                 return value = POISON.getValue();
             case PRINCESS:
-                player.savePrincess();
+
                 return 0;
             case EXIT:
                 //ITEM CANT HAVE A PROPERTY Game AND Game.endGame() CANT BE STATIC
@@ -46,5 +46,7 @@ public class Item extends GameObject {
         return value;
     }
 
-
+    public ItemType getItemType() {
+        return itemType;
+    }
 }
