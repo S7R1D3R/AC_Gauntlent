@@ -27,7 +27,7 @@ public class ActionDetector {
         }
     }
 
-    public GridPosition getNextPos(AbstractMovableObject movable) {
+    private GridPosition getNextPos(AbstractMovableObject movable) {
 
         GridPosition nextPos;
 
@@ -55,17 +55,17 @@ public class ActionDetector {
 
     public GameObject checkObjectNextPos(AbstractMovableObject movable) {
 
-        GameObject gameObjectNextPos = null;
+        GameObject gameObjectInNextPos = null;
 
         for(GameObject gameObject: gameObjects) {
 
             if(getNextPos(movable).equals(gameObject.getPos())) {
-                gameObjectNextPos = gameObject;
+                gameObjectInNextPos = gameObject;
             }
 
         }
 
-        return gameObjectNextPos;
+        return gameObjectInNextPos;
     }
 
     public ArrayList<AbstractMovableObject> getMovableObjects() {

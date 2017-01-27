@@ -74,37 +74,22 @@ public class Game {
             // Pause for a while
             Thread.sleep(delay);
 
-            // Check for actions
-            checkForActions();
+            // Commands objects to perform actions
+            playActions();
 
-            // Move all objects
-            moveMovableObjects();
         }
     }
 
-    /**
-     * Move all movable objects
-     */
-    private void moveMovableObjects() {
-
-        for (AbstractMovableObject movableObject : movableObjects) {
-            movableObject.move();
-        }
-    }
 
     /**
      * Check for actions in all objects
      */
-    private void checkForActions() {
+    private void playActions() {
 
-        for(int i = 0; i < movableObjects.size(); i++) {
+        for (AbstractMovableObject currentMovable : movableObjects) {
 
-            AbstractMovableObject currentMovable = movableObjects.get(i);
             GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
-
-            if(ObjectInNextPos == null) continue;
-
-            currentMovable.doAction();
+            currentMovable.doAction(ObjectInNextPos);
         }
     }
 
