@@ -15,6 +15,12 @@ public class SimpleGFXMenu extends AbstractMenu {
     private Rectangle highlight;
 
     public SimpleGFXMenu() {
+        menuCanvas = new Picture();
+        showingWindow = new Picture();
+        highlight = new Rectangle();
+    }
+
+    public void init() {
 
     }
 
@@ -22,7 +28,6 @@ public class SimpleGFXMenu extends AbstractMenu {
     public void start() {
 
         Game game = new Game(GridType.SIMPLE_GFX, 40, 40, 200);
-        game.init();
     }
 
     @Override
