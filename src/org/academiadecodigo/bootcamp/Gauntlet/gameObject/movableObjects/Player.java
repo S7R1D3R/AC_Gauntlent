@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
@@ -19,17 +20,47 @@ public class Player extends Character {
         super(grid, position, GameObjType.PLAYER, 3,  picsFileNames); //TODO: change speed? (current is 3)
     }
 
-
-    public void collect(Item item) {
-
-    }
-
     @Override   // TODO => JOAQUIM
     public void move() {
 
     }
+    @Override
+    public void doAction(GameObject gameObject) {
+
+        switch (gameObject.getGameObjType()) {
+
+            case WALL:
+                speed = 0;
+                break;
+            case PLAYER:
+                speed = 0; // FOR WHEN THERE IS MULTIPLAYER
+                break;
+            case ENEMY:
+                speed = 0;
+                break;
+            case PROJECTILE:
+                break;
+            case POTION:
+
+                break;
+            case POISON:
+
+                break;
+            case PRINCESS:
+                savePrincess();
+                break;
+            case EXIT:
+                break;
+            default:
+                move();
+        }
+    }
 
     public void savePrincess() {
         hasPrincess = true;
+    }
+
+    public GameObjType checkWhatAction(GameObject gameObject) {
+        return gameObject.getGameObjType();
     }
 }

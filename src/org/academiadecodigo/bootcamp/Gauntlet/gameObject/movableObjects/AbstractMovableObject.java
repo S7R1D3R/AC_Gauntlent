@@ -71,5 +71,5 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     }
 
 
-    public abstract void doAction();
+    public abstract void doAction(GameObject gameObject);
 }
