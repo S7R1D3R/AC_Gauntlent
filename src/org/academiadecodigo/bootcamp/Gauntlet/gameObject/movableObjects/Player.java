@@ -22,6 +22,7 @@ public class Player extends Character {
 
     public Player(Grid grid, GridPosition position) {
         super(grid, position, GameObjType.PLAYER, 3); //TODO: change speed? (current is 3)
+
         health = 50;
         speed = 2;
     }
