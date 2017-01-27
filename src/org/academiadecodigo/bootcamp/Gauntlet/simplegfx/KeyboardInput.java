@@ -1,5 +1,6 @@
-package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
+package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -23,14 +24,28 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
     KeyboardEvent eventLeft;
     KeyboardEvent eventUpLeft;
 
+    boolean upIsPressed;
+    boolean RightIsPressed;
+    boolean DownIsPressed;
+    boolean LeftIsPressed;
+
     public KeyboardInput() {
         this.k = new Keyboard(this);
         keyboardInit();
     }
 
     @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
+    public void keyPressed(KeyboardEvent e) {
+        switch (e.getKey()) {
 
+
+
+
+
+
+
+
+        }
     }
 
     @Override
@@ -40,12 +55,15 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
+    }
+
+    public void movePlayer() {
+        if()
     }
 
     public void keyboardInit() {
