@@ -40,8 +40,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         for (int i = 0; i < picsFileNames.length; i++) {
 
-            int xPos = super.getCol() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
-            int yPos = super.getRow() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
+            int xPos = simpleGfxGrid.columnToX(getCol());
+            int yPos = simpleGfxGrid.rowToY(getRow());
 
             pictures[i] = new Picture(xPos, yPos, picsFileNames[i]);
         }

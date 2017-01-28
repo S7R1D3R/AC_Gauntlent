@@ -20,11 +20,18 @@ public class TestArea {
 
         Game game = new Game(GridType.SIMPLE_GFX, 42, 18, 200);
 
+        //Test grid initialization
         Grid grid = GameObjFactory.makeGrid(GridType.SIMPLE_GFX, 42, 18);
         grid.init();
         LevelMaker levelMaker = new LevelMaker(grid);          //Instances the level maker
         ArrayList<GameObject> gameObjects = levelMaker.getLevel(1);   //Creates the ArrayList with all the gameobjects using the level maker
         System.out.println(gameObjects.toString());
+
+
+        //Testing method moveInDirection
+
+
+
 //        game.init(1);
 
 

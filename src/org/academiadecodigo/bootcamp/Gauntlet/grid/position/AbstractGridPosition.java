@@ -73,6 +73,7 @@ public abstract class AbstractGridPosition implements GridPosition{
         /**
          * @see GridPosition#setImage(GridImage)
          */
+
         @Override
         public void setImage(GridImage gridImage) {
             this.gridImage = gridImage;
@@ -102,13 +103,6 @@ public abstract class AbstractGridPosition implements GridPosition{
 
     }
 
-        /**
-         * @see GridPosition#equals(GridPosition)
-         */
-        @Override
-        public boolean equals(GridPosition pos) {
-            return this.col == pos.getCol() && this.row == pos.getRow();
-        }
 
         //TODO: For now edge of the grid is edge of the room. Later: include roomWalls in wallsPositions
         /**
@@ -160,6 +154,14 @@ public abstract class AbstractGridPosition implements GridPosition{
 
             setPos(getCol() + 1, getRow());
 
+        }
+
+        /**
+         * @see GridPosition#equals(GridPosition)
+         */
+        @Override
+        public boolean equals(GridPosition pos) {
+            return this.col == pos.getCol() && this.row == pos.getRow();
         }
 
         @Override
