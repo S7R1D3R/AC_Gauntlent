@@ -50,8 +50,31 @@ public class TestArea {
         move(player, GridDirection.RIGHT, delay);
         move(player, GridDirection.RIGHT, delay);
         move(player, GridDirection.LEFT, delay);
+        for (int i = 0; i < 8; i++) {
+            move(player, GridDirection.UP, delay);
 
+        }
+        move(player, GridDirection.RIGHT, delay);
+        for (int i = 0; i < 4; i++) {
+            move(player, GridDirection.UP, delay);
 
+        }
+        for (int i = 0; i < 10; i++) {
+            move(player, GridDirection.RIGHT, delay);
+
+        }
+        for (int i = 0; i < 3; i++) {
+            move(player, GridDirection.UP, delay);
+
+        }
+        for (int i = 0; i < 7; i++) {
+            move(player, GridDirection.DOWN, delay);
+
+        }
+        for (int i = 0; i < 19; i++) {
+            move(player, GridDirection.RIGHT, delay);
+
+        }
     }
 
     private static void move(Player player, GridDirection direction, int delay) throws InterruptedException {
