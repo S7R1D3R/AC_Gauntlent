@@ -6,11 +6,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridImage;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
-
-import static com.sun.java.accessibility.util.EventID.ITEM;
 
 /**
  * Created by s7r1d3r on 20-01-2017.
@@ -62,6 +58,7 @@ public class Player extends Character {
                 health -= ((Enemy) gameObject).damage;
                 break;
             case PROJECTILE:
+                //TODO => What's happening here!!!
                 break;
             case ITEM:
                 collectItem((Item) gameObject);
@@ -76,21 +73,25 @@ public class Player extends Character {
         switch (gameObject.getItemType()) {
             case POTION:
                 health += ItemType.POTION.getValue();
+                gameObject.getPos().hide();
                 break;
             case POISON:
                 health += ItemType.POISON.getValue();
+                gameObject.getPos().hide();
                 break;
             case PRINCESS:
                 hasPrincess = true;
+                //TODO: Think how to make her follow the player
+                //Suggestion: update princess position to last player position (could be a private property from Player previousPos)
+                gameObject.getPos().hide();
                 break;
             case TREASURE:
                 points += ItemType.TREASURE.getValue();
+                gameObject.getPos().hide();
                 break;
             case EXIT:
-                //TODO: Create method to end Game GIULIANO
                 if (hasPrincess) {
-//                    endGame = true;
-
+                    gameOver = true;
                 }
                 break;
             default:
@@ -99,6 +100,9 @@ public class Player extends Character {
         }
     }
 
+    public boolean hasFinished() {
+        return gameOver;
+    }
 
     public GameObjType checkWhatAction(GameObject gameObject) {
         return gameObject.getGameObjType();

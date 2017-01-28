@@ -1,13 +1,9 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
-import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
-import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
@@ -27,6 +23,7 @@ public class Game {
     private ActionDetector actionDetector;
     private LevelMaker levelMaker;
     private boolean gameOver;
+    private Player player;
 
 
     /**
@@ -61,6 +58,11 @@ public class Game {
         // Sets action detector on Movable objects
         for (AbstractMovableObject movableObject : movableObjects) {
             movableObject.setActionDetector(actionDetector);
+
+            //Save Player as Game property to access gameOver status
+            if (movableObject.getGameObjType() == GameObjType.PLAYER) {
+                player = ((Player) movableObject);
+            }
         }
 
     }
@@ -85,7 +87,7 @@ public class Game {
 
 
     /**
-     * Check for actions in all objects
+     * Commands objects to perform actions
      */
     private void playActions() {
 
@@ -93,24 +95,20 @@ public class Game {
 
             GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
             currentMovable.doAction(ObjectInNextPos);
-            //TODO Giuliano
-//            if (endGame) {
-//                endGame();
-//            }
+
+            //Check if player reached exit point with princess:
+            if (player.hasFinished()) {
+                gameOver = true;
+            }
         }
     }
 
     /**
-     * ENDS GAME BY SETTING EXIT CONDITION USED ON GAME LOOP TO TRUE
-     */
-    public void endGame() {
-        gameOver = true;
-    }
-
-    /**
      * Instances the Level Maker and the ArrayList with all the GameObjects
+     *
      * @param level
      */
+
     public void initializeGameObjects(int level) {
 
         levelMaker = new LevelMaker(grid);          //Instances the level maker
