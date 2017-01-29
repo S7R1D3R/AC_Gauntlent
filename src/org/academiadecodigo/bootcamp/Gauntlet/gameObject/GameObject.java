@@ -63,6 +63,7 @@ public abstract class GameObject{
      */
     public void destroy(){
         destroyed = true;
+        getPos().hide();
     }
 
     @Override

@@ -40,8 +40,8 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         for (int i = 0; i < picsFileNames.length; i++) {
 
-            int xPos = super.getCol() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getX();
-            int yPos = super.getRow() * simpleGfxGrid.getCellSize() + simpleGfxGrid.getY();
+            int xPos = simpleGfxGrid.columnToX(getCol());
+            int yPos = simpleGfxGrid.rowToY(getRow());
 
             pictures[i] = new Picture(xPos, yPos, picsFileNames[i]);
         }
@@ -68,24 +68,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
      */
     @Override
     public void moveInDirection(GridDirection direction) {
-
-        int prevX = simpleGfxGrid.columnToX(this.getCol()); // pixels
-        int prevY = simpleGfxGrid.rowToY(super.getRow()); // pixels
-
-        super.moveInDirection(direction);
-
-        int dx = simpleGfxGrid.columnToX(super.getCol()) - prevX;
-        int dy = simpleGfxGrid.rowToY(super.getRow()) - prevY;
-
-        // Remove current picture from Canvas
-        pictures[picIndex].delete();
-
-        // Update position of all pictures
-        for (int i = 0; i < pictures.length; i++) {
-
-            pictures[picIndex].translate(dx, dy);
-        }
-
+        int prevPicIndex = picIndex;
         //Update index to select picture in given direction @see LevelMaker
         switch (direction) {
             case DOWN:
@@ -104,9 +87,30 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
                 picIndex = 0;
         }
 
-        //Show picture in given direction
-        pictures[picIndex].draw();
+        // Remove current picture from Canvas (if there is a change in direction)
+        if (picIndex != prevPicIndex) {
+            pictures[prevPicIndex].delete();
+        }
 
+        // Save previous position
+        int prevX = simpleGfxGrid.columnToX(getCol()); // pixels
+        int prevY = simpleGfxGrid.rowToY(getRow()); // pixels
+
+        super.moveInDirection(direction);
+
+        int dx = simpleGfxGrid.columnToX(getCol()) - prevX;
+        int dy = simpleGfxGrid.rowToY(getRow()) - prevY;
+
+        // Update position of all pictures
+        for (int i = 0; i < pictures.length; i++) {
+
+            pictures[i].translate(dx, dy);
+        }
+
+        //Show picture in given direction
+        if (picIndex != prevPicIndex) {
+            pictures[picIndex].draw();
+        }
     }
 
 }

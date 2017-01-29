@@ -73,6 +73,7 @@ public abstract class AbstractGridPosition implements GridPosition{
         /**
          * @see GridPosition#setImage(GridImage)
          */
+
         @Override
         public void setImage(GridImage gridImage) {
             this.gridImage = gridImage;
@@ -102,24 +103,15 @@ public abstract class AbstractGridPosition implements GridPosition{
 
     }
 
-        /**
-         * @see GridPosition#equals(GridPosition)
-         */
-        @Override
-        public boolean equals(GridPosition pos) {
-            return this.col == pos.getCol() && this.row == pos.getRow();
-        }
 
-        //TODO: For now edge of the grid is edge of the room. Later: include roomWalls in wallsPositions
         /**
          * Moves the position up one cell
          */
         public void moveUp() {
 
-            if (getRow() == 0) {
+            if (getRow() <= 1) {
                 return;
             }
-
             setPos(getCol(), getRow() - 1);
 
         }
@@ -129,7 +121,7 @@ public abstract class AbstractGridPosition implements GridPosition{
          */
         public void moveDown() {
 
-            if (getRow() == getGrid().getRows() - 1) {
+            if (getRow() >= getGrid().getRows() - 2) {
                 return;
             }
 
@@ -141,7 +133,7 @@ public abstract class AbstractGridPosition implements GridPosition{
          */
         public void moveLeft() {
 
-            if (getCol() == 0) {
+            if (getCol() <= 1) {
                 return;
             }
 
@@ -154,7 +146,7 @@ public abstract class AbstractGridPosition implements GridPosition{
          */
         public void moveRight() {
 
-            if (getCol() == getGrid().getCols() - 1) {
+            if (getCol() >= getGrid().getCols() - 12) {
                 return;
             }
 
@@ -162,12 +154,19 @@ public abstract class AbstractGridPosition implements GridPosition{
 
         }
 
+        /**
+         * @see GridPosition#equals(GridPosition)
+         */
+        @Override
+        public boolean equals(GridPosition pos) {
+            return this.col == pos.getCol() && this.row == pos.getRow();
+        }
+
         @Override
         public String toString() {
-            return "GridPosition{" +
+            return "Position{" +
                     "col=" + col +
                     ", row=" + row +
-                    ", getGridImage=" + gridImage +
                     '}';
         }
 }

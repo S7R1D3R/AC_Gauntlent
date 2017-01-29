@@ -100,7 +100,6 @@ public class SimpleGfxGrid implements Grid {
     }
 
     /**
-     * @see Grid#makeGridPosition(int, int)
      */
     @Override //TODO Vero -> Remove 3rd argument when implementing representables
     public GridPosition makeGridPosition(int col, int row, String[] picsFileNames) {

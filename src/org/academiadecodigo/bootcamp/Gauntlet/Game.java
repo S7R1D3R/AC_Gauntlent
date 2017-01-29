@@ -19,7 +19,7 @@ public class Game {
     private Grid grid;
     private GridType gridType;
     private int delay;
-    private ArrayList<GameObject> gameObjects; //NOW ARRAYLIST<GAMEOBJECT> INSTEAD OF GAMEOBJECT[]
+    private ArrayList<GameObject> gameObjects;
     private ArrayList<AbstractMovableObject> movableObjects;
     private ActionDetector actionDetector;
     private LevelMaker levelMaker;

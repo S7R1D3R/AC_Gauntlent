@@ -16,81 +16,106 @@ public class Enemy extends Character {
 // player, but we don't want the player to move two cells at
 // a time, as it would look like teletransportation
 
-    boolean trueOrFalse;
 
     public Enemy(Grid grid, GridPosition position) {
 
         super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
-        health = 60;
-        //speed = 1; //Apagar porque já estamos a passar este valor como 4to argumento do super constructor
+        health = 1;                             // Enemies die with one hit
 
     }
+
+
+    /**
+     * Will move in direction that he's facing *speed* times.
+     */
 
     @Override
     public void move() {
-        this.getPos().moveInDirection(getDirection());
+
+        for (int i = 0; i < this.speed; i++) {
+            this.getPos().moveInDirection(getDirection());
+        }
     }
+
+
+    /**
+     * Decides direction it will face depending on the position of the player.
+     *
+     * @param player
+     */
 
     private void moveTowardsPlayer(Player player) {
-        int playerX = player.getPos().getCol();
-        int playerY = player.getPos().getRow();
 
-        int enemyX = this.getPos().getCol();
-        int enemyY = this.getPos().getRow();
+        int colDiff = player.getPos().getCol() - this.getPos().getCol();        //cols needed to reach player's col pos
+        int rowDiff = player.getPos().getRow() - this.getPos().getRow();        //rows needed to reach player's row pos
 
-        GridDirection newDirection;
 
-        if(trueOrFalse) {
+        //if col distance between enemy and player is bigger than row distance
+        if (colDiff >= rowDiff) {
 
-            if (playerX > enemyX) {
-                newDirection = GridDirection.RIGHT;         // MOVE RIGHT
-            } else {
-                newDirection = GridDirection.LEFT;          // MOVE LEFT
+            //Enemy will try to catch the player up closing up col distance first
+            if (colDiff > 0) {
+                this.direction = GridDirection.RIGHT;
+                return;
             }
-
-        } else {
-
-            if(playerY > enemyY) {
-                newDirection = GridDirection.UP;            // MOVE UP
-            } else {
-                newDirection = GridDirection.DOWN;          // MOVE DOWN
+            if (colDiff < 0) {
+                this.direction = GridDirection.LEFT;
+                return;
+            }
+            if (rowDiff > 0) {
+                this.direction = GridDirection.DOWN;
+                return;
+            }
+            if (rowDiff > 0) {
+                this.direction = GridDirection.UP;
+                return;
             }
         }
-
-        direction = newDirection;
-        move();
+        //Else will try to catchup closing up rows fis
+        else {
+            if (rowDiff > 0) {
+                this.direction = GridDirection.DOWN;
+                return;
+            }
+            if (rowDiff > 0) {
+                this.direction = GridDirection.UP;
+                return;
+            }
+            if (colDiff > 0) {
+                this.direction = GridDirection.RIGHT;
+                return;
+            }
+            if (colDiff < 0) {
+                this.direction = GridDirection.LEFT;
+                return;
+            }
+        }
     }
+
+
+    /**
+     * Decides what action enemy will take depending on the gameobject received
+     *
+     * @param gameObject
+     */
 
     public void doAction(GameObject gameObject) {
 
         switch (gameObject.getGameObjType()) {
 
-            case WALL:
-                speed = 0;
-                break;
-            case PLAYER:
-                speed = 0;
-                break;
+            case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
             case ENEMY:
+            case ITEM:
                 speed = 0;
                 break;
-            case PROJECTILE:
-                health -= 20;
+            case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
+            case PLAYER:
+                destroy();
                 break;
-//            case POTION:
-//
-//                break;
-//            case POISON:
-//
-//                break;
-//            case PRINCESS:
-//
-//                break;
-//            case EXIT:
-//
-//                break;
+            default:                    //Enemy will move if he has free space ahead
+                move();
+                break;
+
         }
     }
-
-
 }
