@@ -67,7 +67,7 @@ public class Enemy extends Character {
                 this.direction = GridDirection.DOWN;
                 return;
             }
-            if (rowDiff > 0) {
+            if (rowDiff < 0) {
                 this.direction = GridDirection.UP;
                 return;
             }
@@ -78,7 +78,7 @@ public class Enemy extends Character {
                 this.direction = GridDirection.DOWN;
                 return;
             }
-            if (rowDiff > 0) {
+            if (rowDiff < 0) {
                 this.direction = GridDirection.UP;
                 return;
             }
@@ -106,8 +106,6 @@ public class Enemy extends Character {
     //seria bem mais facil pq ja conhece tudo o que está no game.
     public void doAction(GameObject gameObject) {
         if(gameObject == null){                         //Enemy will move if he has free space ahead
-            System.out.println("Gameobject is null");
-            setDirectionTowardsPlayer(getActionDetector().getPlayerPos());
             speed = 1;
             move();
             setNextPos();
@@ -119,11 +117,11 @@ public class Enemy extends Character {
             case ENEMY:
             case ITEM:
                 speed = 0;
-                System.out.println("GAME OBJECT TYPE IS: " + gameObject.getGameObjType().toString());
                 break;
             case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
             case PLAYER:
                 destroy();
+               // actionDetector.removeMovableObject(this);
                 break;
             default:
                 throw new EnumConstantNotPresentException(GameObjType.class, gameObject.toString());

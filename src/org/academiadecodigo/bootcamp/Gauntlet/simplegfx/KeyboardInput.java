@@ -44,19 +44,19 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         switch (e.getKey()) {
             case KeyboardEvent.KEY_UP:
                 upIsPressed = true;
-                System.out.println("UP WAS PRESSED");
+                //System.out.println("UP WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 rightIsPressed = true;
-                System.out.println("RIGHT WAS PRESSED");
+                //System.out.println("RIGHT WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_DOWN:
                 downIsPressed = true;
-                System.out.println("DOWN WAS PRESSED");
+                //System.out.println("DOWN WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_LEFT:
                 leftIsPressed = true;
-                System.out.println("LEFT WAS PRESSED");
+                //System.out.println("LEFT WAS PRESSED");
                 break;
         }
 

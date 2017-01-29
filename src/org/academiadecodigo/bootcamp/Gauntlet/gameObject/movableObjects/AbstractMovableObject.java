@@ -14,7 +14,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
 
     protected int speed;                      // Speed => Number of times he moves per game loop
     protected GridDirection direction;            // GridDirection that character is facing
-    private ActionDetector actionDetector;
+    protected ActionDetector actionDetector;
     private GridPosition nextPos;            // Removing after ActionDetector is OKAY.
 
     public AbstractMovableObject(Grid grid, GridPosition position, GameObjType gameObjType, int speed) {

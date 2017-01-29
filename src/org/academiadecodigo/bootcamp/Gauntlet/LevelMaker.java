@@ -26,22 +26,22 @@ public class LevelMaker {
      */
     private final String level1 =
                     "################################" +
-                    "######E_++######EE_____+#####__#" +
+                    "######__++######_______+#####__#" +
                     "#_____________##_________#_____#" +
-                    "#___##_____##_##_######__#___#E#" +
-                    "#E#_##__#####_#-_#*___#__##_##E#" +
-                    "###_##__#E____#__#____#__##_####" +
-                    "#____#__#E___-#_-####_#_______##" +
+                    "#___##_____##_##_######__#___#_#" +
+                    "#_#_##__#####_#-_#*___#__##_##_#" +
+                    "###_##__#_____#__#____#__##_####" +
+                    "#____#__#____-#_-####_#_______##" +
                     "#____#__#___###_____#_#_______##" +
-                    "#____#_##+__#_EE###_#_#__##____#" +
-                    "#__EE#+#___#####____#_#__#___#_#" +
+                    "#____#_##+__#___###_#_#__##____#" +
+                    "#____#+#___#####____#_#__#___#_#" +
                     "#__#####___#_____####_#__#####_#" +
-                    "#__#EE_____#EE___#____#______#_#" +
+                    "#__#_______#_____#____#______#_#" +
                     "#__#_______####__#____#__##__#_#" +
                     "#__#_##########_+#____#__##__#X#" +
-                    "#__#______E______####_#__##__###" +
-                    "#__#-______#EE#EE#____#_###___##" +
-                    "#P_#__####E#EE#EE#______###___##" +
+                    "#__#E____________####_#__##__###" +
+                    "#__#-______#__#__#____#_###___##" +
+                    "#P_#__####_#__#__#______###___##" +
                     "################################";
 
 
@@ -133,16 +133,15 @@ public class LevelMaker {
     private void createAllObjects(List<GameObject> gameObjects, int row, int col, GameObjType objType, ItemType itemType, String[] picsFileNames) {
 
         //Creates new game object
-
         GameObject newGameObject = GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(row, col, picsFileNames));
-        newGameObject.getPos().show();
 
-
-
+        //Adds all itemtypes to all items
         if (objType == GameObjType.ITEM) {
-            //Adds all itemtypes to all items
             ((Item) newGameObject).setItemType(itemType);
         }
+
+        //Displays new game object on graphic
+        newGameObject.getPos().show();
 
         //Adds all new gameobjects to object list
         gameObjects.add(newGameObject);

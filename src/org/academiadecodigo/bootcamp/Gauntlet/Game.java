@@ -4,7 +4,9 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Projectile;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
@@ -69,7 +71,7 @@ public class Game {
             }
         }
 
-        if(gridType == GridType.SIMPLE_GFX) {
+        if (gridType == GridType.SIMPLE_GFX) {
             this.keyboardInput = new KeyboardInput(player);
             player.setKeyboard(keyboardInput);
         }
@@ -102,8 +104,16 @@ public class Game {
 
         for (AbstractMovableObject currentMovable : movableObjects) {
 
-            GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-            currentMovable.doAction(ObjectInNextPos);
+            if (currentMovable instanceof Enemy) {
+                ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
+                currentMovable.setNextPos();
+                GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
+                currentMovable.doAction(ObjectInNextPos);
+            }
+            if(currentMovable instanceof Player) {
+                GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
+                currentMovable.doAction(objectInSamePos);
+            }
 
             //Check if player reached exit point with princess:
             if (player.hasFinished()) {
@@ -124,7 +134,7 @@ public class Game {
         gameObjects = levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 

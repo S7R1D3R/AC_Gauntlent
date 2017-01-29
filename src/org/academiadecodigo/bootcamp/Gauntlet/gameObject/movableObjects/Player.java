@@ -42,7 +42,9 @@ public class Player extends Character {
     @Override   // TODO => JOAQUIM
     public void move() {
 
+
         this.getPos().moveInDirection(getDirection());
+        getActionDetector().setPlayerPos(getPos());
     }
 
     @Override
