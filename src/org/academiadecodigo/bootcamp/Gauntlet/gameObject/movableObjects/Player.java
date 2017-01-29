@@ -6,7 +6,9 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
+import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
 
 /**
  * Created by s7r1d3r on 20-01-2017.
@@ -17,11 +19,12 @@ public class Player extends Character {
     private boolean hasPrincess;
     private boolean gameOver;
 
+    private KeyboardInput keyboardInput;
+
     public Player(Grid grid, GridPosition position) {
         super(grid, position, GameObjType.PLAYER, 2); //TODO: change speed? (current is 3)
         initializeProjectiles(10);      //NUMBER OF BULLETS AVAILABLE FOR PLAYER
         health = 50;
-        //speed = 2; //Apagar porque já estamos a passar este valor como 4to argumento do super constructor
     }
 
     private void initializeProjectiles(int projectilesNumber) {
@@ -102,6 +105,18 @@ public class Player extends Character {
 
     public boolean hasFinished() {
         return gameOver;
+    }
+
+    public void setDirection(GridDirection newDirection) {
+        direction = newDirection;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setKeyboard(KeyboardInput keyboard) {
+        keyboardInput = keyboard;
     }
 
     public GameObjType checkWhatAction(GameObject gameObject) {

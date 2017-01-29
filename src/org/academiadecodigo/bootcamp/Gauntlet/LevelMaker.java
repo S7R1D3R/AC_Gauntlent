@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.Gauntlet;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
