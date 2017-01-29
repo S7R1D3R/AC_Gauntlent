@@ -41,13 +41,14 @@ public class Enemy extends Character {
     /**
      * Decides direction it will face depending on the position of the player.
      *
-     * @param player
+     * @param playerPosition
      */
 
-    private void moveTowardsPlayer(Player player) {
+    //TODO PUT PRIVATE AGAIN, public for test
+    public void setDirectionTowardsPlayer(GridPosition playerPosition) {
 
-        int colDiff = player.getPos().getCol() - this.getPos().getCol();        //cols needed to reach player's col pos
-        int rowDiff = player.getPos().getRow() - this.getPos().getRow();        //rows needed to reach player's row pos
+        int colDiff = playerPosition.getCol() - this.getPos().getCol();        //cols needed to reach player's col pos
+        int rowDiff = playerPosition.getRow() - this.getPos().getRow();        //rows needed to reach player's row pos
 
 
         //if col distance between enemy and player is bigger than row distance
@@ -99,23 +100,32 @@ public class Enemy extends Character {
      * @param gameObject
      */
 
-    public void doAction(GameObject gameObject) {
 
+    //para mim nao faz mesmo sentido o doAction estar no Enemy e não no action detector. para fazeres isto camos ter de
+    //fazer varias iteracoes nos gameobjects para realizar o doAction, enquanto se fosse no actiondetector acho que
+    //seria bem mais facil pq ja conhece tudo o que está no game.
+    public void doAction(GameObject gameObject) {
+        if(gameObject == null){
+            System.out.println("Gameobject is null");
+            setDirectionTowardsPlayer(getActionDetector().getPlayerPos());
+            move();
+            setNextPos();
+            return;
+        }
         switch (gameObject.getGameObjType()) {
 
             case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
             case ENEMY:
             case ITEM:
                 speed = 0;
+                System.out.println("GAME OBJECT TYPE IS: " + gameObject.getGameObjType().toString());
                 break;
             case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
             case PLAYER:
                 destroy();
                 break;
             default:                    //Enemy will move if he has free space ahead
-                move();
-                break;
-
+                throw new EnumConstantNotPresentException(GameObjType.class, gameObject.toString());
         }
     }
 }

@@ -5,6 +5,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.Game;
 import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
@@ -19,10 +20,10 @@ public class TestArea {
 
     public static void main(String[] args) throws InterruptedException {
 
-        int delay = 200;
+        int delay = 500;
         Game game = new Game(GridType.SIMPLE_GFX, 42, 18, delay);
 
-        //Test grid initialization
+       /* //Test grid initialization
         Grid grid = GameObjFactory.makeGrid(GridType.SIMPLE_GFX, 42, 18);
         grid.init();
         LevelMaker levelMaker = new LevelMaker(grid);          //Instances the level maker
@@ -38,7 +39,30 @@ public class TestArea {
                 player = (Player) gameObject;
                 break;
             }
+        }*/
+
+
+        /**
+         * ENEMIES MOVEMENT TEST A BRUTA :)
+         */
+        /*for (int i = 0; i < 20; i++) {
+
+
+            for (GameObject enemy : gameObjects) {
+
+                if (enemy instanceof Enemy) {
+
+                    System.out.println("Enemy direction is :" + ((Enemy) enemy).getDirection());
+                    ((Enemy) enemy).setDirectionTowardsPlayer(player);
+                    System.out.println("Enemy direction is now: "  + ((Enemy) enemy).getDirection());
+                    System.out.println("enemy pos is: " + enemy.getPos().toString());
+                    ((Enemy) enemy).move();
+                    System.out.println("enemy NEW pos is: " + enemy.getPos().toString());
+                    Thread.sleep(delay);
+                }
+            }
         }
+    }
         //Testing moveInDirection() from simpleGFXGridPosition
         System.out.println("Grid rows (should be 18): " + grid.getRows() + " and cols (should be 32):" + grid.getCols());
         System.out.println("Player initial position (should be C=1,R=16): " + player.getPos());
@@ -94,16 +118,16 @@ public class TestArea {
         }
         System.out.println("Attempting to move " + direction + " . Current pos: " + player.getPos());
         Thread.sleep(delay);
-    }
+    }*/
 
-//        game.init(1);
+       game.init(1);
 
 
-//        try {
-//            game.start();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            game.start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+     }
 
 
     // Test loading image
@@ -112,5 +136,5 @@ public class TestArea {
 //
 //        Picture picture = new Picture(10, 10, "test/End.png");
 //        picture.draw();
-}
+}}
 

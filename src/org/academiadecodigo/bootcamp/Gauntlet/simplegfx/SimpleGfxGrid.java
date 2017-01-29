@@ -108,6 +108,11 @@ public class SimpleGfxGrid implements Grid {
 
     }
 
+    @Override
+    public GridPosition makeGridPosition(int col, int row) {
+        return new SimpleGfxGridPosition(col, row, this);
+    }
+
     /**
      * Auxiliary method to compute the y value that corresponds to a specific row
      *

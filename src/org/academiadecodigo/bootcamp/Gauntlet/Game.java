@@ -93,7 +93,7 @@ public class Game {
 
         for (AbstractMovableObject currentMovable : movableObjects) {
 
-            GameObject ObjectInNextPos = actionDetector.checkObjectNextPos(currentMovable);
+            GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
             currentMovable.doAction(ObjectInNextPos);
 
             //Check if player reached exit point with princess:
@@ -115,6 +115,9 @@ public class Game {
         gameObjects = levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker
     }
 
+    public Player getPlayer(){
+        return player;
+    }
 
 }
 

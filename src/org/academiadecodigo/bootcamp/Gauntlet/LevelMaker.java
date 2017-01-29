@@ -75,8 +75,8 @@ public class LevelMaker {
         List<GameObject> gameObjects = new ArrayList<>();       //Level maker does not need to know how many gameobjects exist
         int charCount  = 0;
 
-        for (int i = 0; i < roomHeight; i++) {
-            for (int j = 0; j < roomWidth; j++) {
+        for (int col = 0; col < roomHeight; col++) {
+            for (int row = 0; row < roomWidth; row++) {
 
                 GameObjType objType;       //game type to be used in gameobj factory below
                 ItemType itemType = null;  //needs to be initialized, it isn't used in all cases
@@ -122,7 +122,7 @@ public class LevelMaker {
                     }
 
 
-                    createAllObjects(gameObjects, j, i, objType, itemType, picsFileNames);
+                    createAllObjects(gameObjects, row, col, objType, itemType, picsFileNames);
                 }
             charCount++;
             }
@@ -131,11 +131,11 @@ public class LevelMaker {
     }
 
 
-    private void createAllObjects(List<GameObject> gameObjects, int i, int j, GameObjType objType, ItemType itemType, String[] picsFileNames) {
+    private void createAllObjects(List<GameObject> gameObjects, int row, int col, GameObjType objType, ItemType itemType, String[] picsFileNames) {
 
         //Creates new game object
 
-        GameObject newGameObject = GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(i, j, picsFileNames));
+        GameObject newGameObject = GameObjFactory.getNewGameObj(grid, objType, grid.makeGridPosition(row, col, picsFileNames));
         newGameObject.getPos().show();
 
 

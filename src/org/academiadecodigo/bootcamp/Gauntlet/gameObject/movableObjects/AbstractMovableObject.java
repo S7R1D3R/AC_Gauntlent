@@ -15,59 +15,62 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     protected int speed;                      // Speed => Number of times he moves per game loop
     protected GridDirection direction;            // GridDirection that character is facing
     private ActionDetector actionDetector;
-    // private GridPosition nextPos;            // Removing after ActionDetector is OKAY.
+    private GridPosition nextPos;            // Removing after ActionDetector is OKAY.
 
     public AbstractMovableObject(Grid grid, GridPosition position, GameObjType gameObjType, int speed) {
         super(grid, position, gameObjType);
         this.speed = speed;
+        direction = GridDirection.DOWN;
+        setNextPos();
     }
 
     /**
      * Sets action detector
      */
-    public void setActionDetector(ActionDetector actionDetector){
+    public void setActionDetector(ActionDetector actionDetector) {
         this.actionDetector = actionDetector;
     }
 
     /**
      * Gets action detector
      */
-    public ActionDetector getActionDetector(){
+    public ActionDetector getActionDetector() {
         return actionDetector;
     }
 
     /**
-     *  => Sets next position so we can know if it's going to hit a wall.
+     * => Sets next position so we can know if it's going to hit a wall.
      */
-    /*   TODO: JOAQUIM waiting for removal after ActionDetector is playing well
-    public GridPosition setNextPos() {
+    //TODO: JOAQUIM waiting for removal after ActionDetector is playing well
+    public void setNextPos() {
 
-        GridPosition nextPos = super.getGrid().makeGridPosition(0, 0);
-
-        switch(direction) {
+        switch (this.direction) {
             case UP:
-                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
+                nextPos = getGrid().makeGridPosition(getPos().getCol() - 1, getPos().getRow());
                 break;
             case RIGHT:
-                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol(), super.getPos().getRow() + 1)
+                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow() );
                 break;
             case DOWN:
-                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() + 1, super.getPos().getRow())
+                nextPos = getGrid().makeGridPosition(getPos().getCol() + 1, getPos().getRow());
                 break;
             case LEFT:
-                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
+                nextPos = getGrid().makeGridPosition(getPos().getCol() - 1, getPos().getRow());
                 break;
             default:
-                nextPos = super.getGrid().makeGridPosition(super.getPos().getCol(), super.getPos().getRow())
+                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow());
         }
 
-        return nextPos;
     }
-    */
+
 
     public GridDirection getDirection() {
         return direction;
     }
 
     public abstract void doAction(GameObject gameObject);
+
+    public GridPosition getNextPos() {
+        return nextPos;
+    }
 }

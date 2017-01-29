@@ -44,7 +44,9 @@ public class Player extends Character {
 
     @Override
     public void doAction(GameObject gameObject) {
-
+        if(gameObject == null){                     //PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
+            return;
+        }
         switch (gameObject.getGameObjType()) {
 
             case WALL:
@@ -65,7 +67,6 @@ public class Player extends Character {
                 break;
         }
 
-        move();
     }
 
     private void collectItem(Item gameObject) {
