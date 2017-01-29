@@ -4,6 +4,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Movable;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 import java.util.ArrayList;
@@ -14,7 +16,8 @@ import java.util.ArrayList;
 public class ActionDetector {
 
     ArrayList<GameObject> gameObjects;
-    ArrayList<AbstractMovableObject> movableObjects;
+    ArrayList<AbstractMovableObject> movableObjects = new ArrayList<>();
+    GridPosition playerPos;  //TODO WOULD BE NICE TO UPDATE EVERY TIME PLAYER MOVES
 
     public ActionDetector(ArrayList<GameObject> gameObjects) {
         
@@ -24,55 +27,37 @@ public class ActionDetector {
             if(gameObjects.get(i) instanceof AbstractMovableObject) {
                 movableObjects.add((AbstractMovableObject)gameObjects.get(i));
             }
-        }
-    }
-
-    private GridPosition getNextPos(AbstractMovableObject movable) {
-        //TODO Vero -> remove when implementing representable
-        String[] names = null;
-
-        GridPosition nextPos;
-
-        switch(movable.getDirection()) {
-
-            case UP:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() - 1, names);
-                break;
-            case RIGHT:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() + 1, movable.getPos().getRow(), names);
-                break;
-            case DOWN:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol(), movable.getPos().getRow() + 1, names);
-                break;
-            case LEFT:
-                nextPos = movable.getGrid().makeGridPosition(movable.getPos().getCol() - 1, movable.getPos().getRow(), names);
-                break;
-            default:
-                nextPos = movable.getPos();
-                System.out.println("Something went terribly wrong... <= ACTION DETECTOR");
-        }
-
-        return nextPos;
-    }
-
-    public GameObject checkObjectNextPos(AbstractMovableObject movable) {
-
-        GameObject gameObjectInNextPos = null;
-
-        for(GameObject gameObject: gameObjects) {
-
-            if(getNextPos(movable).equals(gameObject.getPos())) {
-                gameObjectInNextPos = gameObject;
+            // * NEW * INSTANCES ACTION DETECTOR KNOWLEDGE ABOUT PLAYER POS
+            if(gameObjects.get(i) instanceof Player){
+                playerPos = gameObjects.get(i).getPos();
             }
-
         }
+    }
 
-        return gameObjectInNextPos;
+
+
+    //também acho que o getNextPos se pode pedir directamente ao movable object (criando um movable.getNextPos() em vez
+    //de estar no action detector
+
+
+    public GameObject checkObjectInNextPos(AbstractMovableObject absMovObj) {
+        //** CORRECTED **
+        for(GameObject gameObject: gameObjects) {
+            if(absMovObj.getNextPos().equals(gameObject.getPos())){
+                System.out.println("returning game obj: " + gameObject.toString());
+                return gameObject;
+            }
+        }
+        System.out.println("reached here again");
+        return null;
     }
 
     public ArrayList<AbstractMovableObject> getMovableObjects() {
         return movableObjects;
     }
 
+    public GridPosition getPlayerPos(){
+        return playerPos;
+    }
 
 }

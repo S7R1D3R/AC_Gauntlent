@@ -34,4 +34,7 @@ public interface Grid {
      *///TODO Vero -> Remove 3rd argument when implementing representables
     public GridPosition makeGridPosition(int col, int row, String[] picFileNames);
 
+    public GridPosition makeGridPosition(int col, int row);
+
+
 }

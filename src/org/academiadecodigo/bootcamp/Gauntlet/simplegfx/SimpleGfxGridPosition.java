@@ -31,6 +31,14 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         createInitialPictures(picsFileNames);
     }
 
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid) {
+
+        super(col, row, grid);
+
+        this.simpleGfxGrid = grid;
+
+    }
+
     /**
      * Create initial images
      */
