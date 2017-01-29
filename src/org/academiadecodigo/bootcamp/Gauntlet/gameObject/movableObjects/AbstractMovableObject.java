@@ -46,13 +46,13 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
 
         switch (this.direction) {
             case UP:
-                nextPos = getGrid().makeGridPosition(getPos().getCol() - 1, getPos().getRow());
+                nextPos = getGrid().makeGridPosition(getPos().getCol() , getPos().getRow() -1);
                 break;
             case RIGHT:
-                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow() );
+                nextPos = getGrid().makeGridPosition(getPos().getCol() + 1, getPos().getRow() );
                 break;
             case DOWN:
-                nextPos = getGrid().makeGridPosition(getPos().getCol() + 1, getPos().getRow());
+                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow() + 1);
                 break;
             case LEFT:
                 nextPos = getGrid().makeGridPosition(getPos().getCol() - 1, getPos().getRow());

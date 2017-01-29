@@ -43,10 +43,7 @@ public class ActionDetector {
     public GameObject checkObjectInNextPos(AbstractMovableObject absMovObj) {
         //** CORRECTED **
         for(GameObject gameObject: gameObjects) {
-            if(absMovObj
-                    .getNextPos()
-                    .equals(gameObject
-                            .getPos())){
+            if(absMovObj.getNextPos().equals(gameObject.getPos())){
                 System.out.println("returning game obj: " + gameObject.toString());
                 return gameObject;
             }

@@ -72,7 +72,7 @@ public class Enemy extends Character {
                 return;
             }
         }
-        //Else will try to catchup closing up rows fis
+        //Else will try to catchup closing up rows first
         else {
             if (rowDiff > 0) {
                 this.direction = GridDirection.DOWN;
@@ -105,9 +105,10 @@ public class Enemy extends Character {
     //fazer varias iteracoes nos gameobjects para realizar o doAction, enquanto se fosse no actiondetector acho que
     //seria bem mais facil pq ja conhece tudo o que está no game.
     public void doAction(GameObject gameObject) {
-        if(gameObject == null){
+        if(gameObject == null){                         //Enemy will move if he has free space ahead
             System.out.println("Gameobject is null");
             setDirectionTowardsPlayer(getActionDetector().getPlayerPos());
+            speed = 1;
             move();
             setNextPos();
             return;
@@ -124,7 +125,7 @@ public class Enemy extends Character {
             case PLAYER:
                 destroy();
                 break;
-            default:                    //Enemy will move if he has free space ahead
+            default:
                 throw new EnumConstantNotPresentException(GameObjType.class, gameObject.toString());
         }
     }
