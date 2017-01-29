@@ -61,6 +61,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         }
 
         setPlayerDirection();
+        player.move();
     }
 
     @Override
@@ -82,7 +83,6 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         }
 
         setPlayerDirection();
-        player.getPos().moveInDirection(player.getDirection());
     }
 
     @Override

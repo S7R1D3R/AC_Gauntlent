@@ -46,6 +46,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
 
         switch(direction) {
             case UP:
+<<<<<<< Updated upstream
                 nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
                 break;
             case RIGHT:
@@ -53,6 +54,15 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
                 break;
             case DOWN:
                 nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() + 1, super.getPos().getRow())
+=======
+                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow() - 1);
+                break;
+            case RIGHT:
+                nextPos = getGrid().makeGridPosition(getPos().getCol() + 1, getPos().getRow() );
+                break;
+            case DOWN:
+                nextPos = getGrid().makeGridPosition(getPos().getCol(), getPos().getRow() + 1);
+>>>>>>> Stashed changes
                 break;
             case LEFT:
                 nextPos = super.getGrid().makeGridPosition(super.getPos().getCol() - 1, super.getPos().getRow())
