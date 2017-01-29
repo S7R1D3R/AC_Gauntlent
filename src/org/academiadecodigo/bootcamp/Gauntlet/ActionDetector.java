@@ -53,10 +53,10 @@ public class ActionDetector {
 
     public GameObject checkObjectInSamePos(AbstractMovableObject absMovObj) {
         //** CORRECTED **
-        for (GameObject gameObject : gameObjects) {
+        for (GameObject iGameObject : gameObjects) {
 
-            if (absMovObj != gameObject && absMovObj.getPos().equals(gameObject.getPos())) {
-                return gameObject;
+            if (absMovObj != iGameObject && absMovObj.getPos().equals(iGameObject.getPos())) {
+                return iGameObject;
             }
         }
         return null;

@@ -6,7 +6,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Projectile;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
@@ -21,8 +20,6 @@ public class Game {
     private Grid grid;
     private GridType gridType;
     private int delay;
-    private ArrayList<GameObject> gameObjects;
-    private ArrayList<AbstractMovableObject> movableObjects;
     private ActionDetector actionDetector;
     private LevelMaker levelMaker;
     private boolean gameOver;
@@ -52,17 +49,12 @@ public class Game {
         // Initializes the grid.
         grid.init();
 
-        // Initializes (and draws) all objects.
-        initializeGameObjects(level);
+        // Initializes all objects on action detector and draws them
+        actionDetector = new ActionDetector(initializeGameObjects(level));
 
-        // Creates ActionDetector
-        actionDetector = new ActionDetector(gameObjects);
-
-        // Sets movable objects
-        movableObjects = actionDetector.getMovableObjects();
 
         // Sets action detector on Movable objects
-        for (AbstractMovableObject movableObject : movableObjects) {
+        for (AbstractMovableObject movableObject : actionDetector.getMovableObjects()) {
             movableObject.setActionDetector(actionDetector);
 
             //Save Player as Game property to access gameOver status
@@ -102,15 +94,17 @@ public class Game {
      */
     private void playActions() {
 
-        for (AbstractMovableObject currentMovable : movableObjects) {
+        ArrayList<AbstractMovableObject> destroyedArr = new ArrayList<>();
+
+        for (AbstractMovableObject currentMovable : actionDetector.getMovableObjects()) {
 
             if (currentMovable instanceof Enemy) {
-                ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
-                currentMovable.setNextPos();
-                GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-                currentMovable.doAction(ObjectInNextPos);
+                doEnemyAction(currentMovable);
+                if (currentMovable.isDestroyed()) {
+                    destroyedArr.add(currentMovable);
+                }
             }
-            if(currentMovable instanceof Player) {
+            if (currentMovable instanceof Player) {
                 GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
                 currentMovable.doAction(objectInSamePos);
             }
@@ -120,6 +114,21 @@ public class Game {
                 gameOver = true;
             }
         }
+        removeDestroyeds(destroyedArr);
+    }
+
+    private void removeDestroyeds(ArrayList<AbstractMovableObject> destroyedArr) {
+        actionDetector.getMovableObjects().removeAll(destroyedArr);
+    }
+
+    private void doEnemyAction(AbstractMovableObject currentMovable) {
+
+        ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
+        currentMovable.setNextPos();
+
+        GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
+        currentMovable.doAction(ObjectInNextPos);
+
     }
 
     /**
@@ -128,10 +137,10 @@ public class Game {
      * @param level
      */
 
-    public void initializeGameObjects(int level) {
+    public ArrayList<GameObject> initializeGameObjects(int level) {
 
         levelMaker = new LevelMaker(grid);          //Instances the level maker
-        gameObjects = levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker
+        return levelMaker.getLevel(level);   //Creates the ArrayList with all the gameobjects using the level maker
     }
 
     public Player getPlayer() {

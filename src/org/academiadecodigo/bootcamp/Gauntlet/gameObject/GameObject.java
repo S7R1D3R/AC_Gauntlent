@@ -62,7 +62,7 @@ public abstract class GameObject{
      * Destroys the gameObject
      */
     public void destroy(){
-        destroyed = true;
+        this.destroyed = true;
         getPos().hide();
     }
 
