@@ -7,6 +7,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Abstract
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
+import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,9 @@ public class Game {
     private LevelMaker levelMaker;
     private boolean gameOver;
     private Player player;
+
+    // KEYBOARD EVENT
+    private KeyboardInput keyboardInput;
 
 
     /**
@@ -63,6 +67,11 @@ public class Game {
             if (movableObject.getGameObjType() == GameObjType.PLAYER) {
                 player = ((Player) movableObject);
             }
+        }
+
+        if(gridType == GridType.SIMPLE_GFX) {
+            this.keyboardInput = new KeyboardInput(player);
+            player.setKeyboard(keyboardInput);
         }
 
     }

@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.Gauntlet.simplegfx;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -15,42 +16,73 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
     Player player;
     Keyboard k;
-    KeyboardEvent eventUp;
-    KeyboardEvent eventUpRight;
-    KeyboardEvent eventRight;
-    KeyboardEvent eventDownRight;
-    KeyboardEvent eventDown;
-    KeyboardEvent eventDownLeft;
-    KeyboardEvent eventLeft;
-    KeyboardEvent eventUpLeft;
+
+    KeyboardEvent eventUpPressed;
+    KeyboardEvent eventRightPressed;
+    KeyboardEvent eventDownPressed;
+    KeyboardEvent eventLeftPressed;
+
+    KeyboardEvent eventUpReleased;
+    KeyboardEvent eventRightReleased;
+    KeyboardEvent eventDownReleased;
+    KeyboardEvent eventLeftReleased;
 
     boolean upIsPressed;
-    boolean RightIsPressed;
-    boolean DownIsPressed;
-    boolean LeftIsPressed;
+    boolean rightIsPressed;
+    boolean downIsPressed;
+    boolean leftIsPressed;
 
-    public KeyboardInput() {
+    public KeyboardInput(Player player) {
         this.k = new Keyboard(this);
-        keyboardInit();
+        this.player = player;
+        keyboardInit(this.player);
     }
 
     @Override
     public void keyPressed(KeyboardEvent e) {
+
         switch (e.getKey()) {
-
-
-
-
-
-
-
-
+            case KeyboardEvent.KEY_UP:
+                upIsPressed = true;
+                System.out.println("UP WAS PRESSED");
+                break;
+            case KeyboardEvent.KEY_RIGHT:
+                rightIsPressed = true;
+                System.out.println("RIGHT WAS PRESSED");
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downIsPressed = true;
+                System.out.println("DOWN WAS PRESSED");
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                leftIsPressed = true;
+                System.out.println("LEFT WAS PRESSED");
+                break;
         }
+
+        setPlayerDirection();
     }
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public void keyReleased(KeyboardEvent e) {
 
+        switch (e.getKey()) {
+            case KeyboardEvent.KEY_UP:
+                upIsPressed = false;
+                break;
+            case KeyboardEvent.KEY_RIGHT:
+                rightIsPressed = false;
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                downIsPressed = false;
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                leftIsPressed = false;
+                break;
+        }
+
+        setPlayerDirection();
+        player.getPos().moveInDirection(player.getDirection());
     }
 
     @Override
@@ -62,48 +94,82 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
     }
 
-    public void movePlayer() {
-        //if()
+    public void setPlayerDirection() {
+
+        if(!(upIsPressed && rightIsPressed && downIsPressed && leftIsPressed)) {
+            player.setSpeed(0);
+        }
+
+        if(upIsPressed && rightIsPressed) {
+            player.setDirection(GridDirection.UPRIGHT);
+            return;
+        } else if(downIsPressed && rightIsPressed) {
+            player.setDirection(GridDirection.DOWNRIGHT);
+            return;
+        } else if(downIsPressed && leftIsPressed) {
+            player.setDirection(GridDirection.DOWNLEFT);
+            return;
+        } else if(upIsPressed && leftIsPressed) {
+            player.setDirection(GridDirection.UPLEFT);
+            return;
+        } else if(upIsPressed) {
+            player.setDirection(GridDirection.UP);
+            return;
+        } else if(rightIsPressed) {
+            player.setDirection(GridDirection.RIGHT);
+            return;
+        } else if(downIsPressed) {
+            player.setDirection(GridDirection.DOWN);
+            return;
+        } else if(leftIsPressed) {
+            player.setDirection(GridDirection.LEFT);
+        }
     }
 
-    public void keyboardInit() {
+    public void keyboardInit(Player player) {
+
+        this.player = player;
 
         // Sets all Keyboard Events
-        eventUp = new KeyboardEvent();
-        eventUpRight = new KeyboardEvent();
-        eventRight = new KeyboardEvent();
-        eventDownRight = new KeyboardEvent();
-        eventDown = new KeyboardEvent();
-        eventDownLeft = new KeyboardEvent();
-        eventLeft = new KeyboardEvent();
-        eventUpLeft = new KeyboardEvent();
+        eventUpPressed = new KeyboardEvent();
+        eventRightPressed = new KeyboardEvent();
+        eventDownPressed = new KeyboardEvent();
+        eventLeftPressed = new KeyboardEvent();
 
-        eventUp.setKey(KeyboardEvent.KEY_UP);
-        eventUpRight.setKey(KeyboardEvent.KEY_UP + KeyboardEvent.KEY_RIGHT);
-        eventRight.setKey(KeyboardEvent.KEY_RIGHT);
-        eventDownRight.setKey(KeyboardEvent.KEY_DOWN + KeyboardEvent.KEY_RIGHT);
-        eventDown.setKey(KeyboardEvent.KEY_DOWN);
-        eventDownLeft.setKey(KeyboardEvent.KEY_DOWN + KeyboardEvent.KEY_LEFT);
-        eventLeft.setKey(KeyboardEvent.KEY_LEFT);
-        eventUpLeft.setKey(KeyboardEvent.KEY_UP + KeyboardEvent.KEY_LEFT);
+        eventUpReleased = new KeyboardEvent();
+        eventRightReleased = new KeyboardEvent();
+        eventDownReleased = new KeyboardEvent();
+        eventLeftReleased = new KeyboardEvent();
 
-        eventUp.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventUpRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventDownRight.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventDown.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventDownLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        eventUpLeft.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        eventUpPressed.setKey(KeyboardEvent.KEY_UP);
+        eventRightPressed.setKey(KeyboardEvent.KEY_RIGHT);
+        eventDownPressed.setKey(KeyboardEvent.KEY_DOWN);
+        eventLeftPressed.setKey(KeyboardEvent.KEY_LEFT);
 
-        k.addEventListener(eventUp);
-        k.addEventListener(eventUpRight);
-        k.addEventListener(eventRight);
-        k.addEventListener(eventDownRight);
-        k.addEventListener(eventDown);
-        k.addEventListener(eventDownLeft);
-        k.addEventListener(eventLeft);
-        k.addEventListener(eventUpLeft);
+        eventUpReleased.setKey(KeyboardEvent.KEY_UP);
+        eventRightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+        eventDownReleased.setKey(KeyboardEvent.KEY_DOWN);
+        eventRightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+
+        eventUpPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        eventRightPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        eventDownPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        eventLeftPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        eventUpReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        eventRightReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        eventDownReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        eventLeftReleased.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        k.addEventListener(eventUpPressed);
+        k.addEventListener(eventRightPressed);
+        k.addEventListener(eventDownPressed);
+        k.addEventListener(eventLeftPressed);
+
+        k.addEventListener(eventUpReleased);
+        k.addEventListener(eventRightReleased);
+        k.addEventListener(eventDownReleased);
+        k.addEventListener(eventLeftReleased);
     }
 }
 

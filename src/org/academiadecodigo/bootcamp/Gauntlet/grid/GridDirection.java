@@ -7,9 +7,9 @@ public enum GridDirection {
     UP,
     RIGHT,
     DOWN,
-    LEFT;
-    /*LEFTUP,
-    LEFTDOWN,
-    RIGHTDOWN,
-    RIGHTUP,*/
+    LEFT,
+    UPLEFT,
+    DOWNLEFT,
+    DOWNRIGHT,
+    UPRIGHT
 }
