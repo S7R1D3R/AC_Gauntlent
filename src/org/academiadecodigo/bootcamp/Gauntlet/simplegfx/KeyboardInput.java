@@ -80,8 +80,9 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
                 leftIsPressed = false;
                 break;
         }
-        player.setSpeed(2);
+
         setPlayerDirection();
+        player.getPos().moveInDirection(player.getDirection());
     }
 
     @Override
