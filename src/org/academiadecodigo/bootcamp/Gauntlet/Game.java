@@ -99,18 +99,25 @@ public class Game {
         for (AbstractMovableObject currentMovable : actionDetector.getMovableObjects()) {
 
             if (currentMovable instanceof Enemy) {
-                doEnemyAction(currentMovable);
+
+                ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
+                currentMovable.setNextPos();
+                GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
+                GameObject objectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
+                currentMovable.doAction(objectInSamePos, objectInNextPos);
+
                 if (currentMovable.isDestroyed()) {
                     destroyedArr.add(currentMovable);
                 }
             }
             if (currentMovable instanceof Player) {
                 GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
-                currentMovable.doAction(objectInSamePos);
+                GameObject objectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
+                currentMovable.doAction(objectInSamePos, objectInNextPos);
             }
 
             //Check if player reached exit point with princess:
-            if (player.hasFinished()) {
+            if (player.hasFinished() || player.isDestroyed()) {
                 gameOver = true;
             }
         }
@@ -118,16 +125,13 @@ public class Game {
     }
 
     private void removeDestroyeds(ArrayList<AbstractMovableObject> destroyedArr) {
+        actionDetector.getGameObjects().removeAll(destroyedArr);
         actionDetector.getMovableObjects().removeAll(destroyedArr);
     }
 
     private void doEnemyAction(AbstractMovableObject currentMovable) {
 
-        ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
-        currentMovable.setNextPos();
 
-        GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-        currentMovable.doAction(ObjectInNextPos);
 
     }
 

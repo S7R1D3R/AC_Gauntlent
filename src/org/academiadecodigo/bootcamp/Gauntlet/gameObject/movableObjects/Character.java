@@ -24,4 +24,9 @@ public abstract class Character extends AbstractMovableObject {
 
     //public void shoot() { };                 // Shoots a projectile. For now only the player shoots
 
+
+    @Override
+    public boolean isDestroyed() {
+        return health <= 0;
+    }
 }

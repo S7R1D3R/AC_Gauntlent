@@ -68,7 +68,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-    public abstract void doAction(GameObject gameObject);
+    public abstract void doAction(GameObject gameObjectInSamePos, GameObject gameObjectInNextPos);
 
     public GridPosition getNextPos() {
         return nextPos;

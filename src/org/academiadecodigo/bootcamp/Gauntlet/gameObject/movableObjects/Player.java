@@ -5,6 +5,7 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.ItemType;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Wall;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
@@ -45,33 +46,54 @@ public class Player extends Character {
 
         this.getPos().moveInDirection(getDirection());
         getActionDetector().setPlayerPos(getPos());
+        setNextPos();
     }
 
     @Override
-    public void doAction(GameObject gameObject) {
-        if(gameObject == null){                     //PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
+    public void doAction(GameObject gameObjectInSamePos, GameObject gameObjectInNextPos) {
+//        if(gameObjectInNextPos instanceof Wall) {
+//            speed = 0;
+//            return;
+//        }
+        if(gameObjectInSamePos == null){
+            speed = 1;
+            move();//PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
             return;
         }
-        switch (gameObject.getGameObjType()) {
+        switch (gameObjectInSamePos.getGameObjType()) {
 
-            case WALL:
-                speed = 0;
-                break;
             case PLAYER:
                 speed = 0; // FOR WHEN THERE IS MULTIPLAYER
                 break;
             case ENEMY:
-                speed = 0;
-                health -= ((Enemy) gameObject).damage;
+                System.out.println("HEALTH IS: " + health);
+                health -= ((Enemy) gameObjectInSamePos).damage;
+                System.out.println("HEALTH IS NOW :" + health);
+                speed = 1;
+                gameObjectInSamePos.destroy();
+                move();
+
                 break;
             case PROJECTILE:
                 //TODO => What's happening here!!!
                 break;
             case ITEM:
-                collectItem((Item) gameObject);
+                speed = 1;
+                collectItem((Item) gameObjectInSamePos);
+                move();
+                break;
+            default:
+                move();
                 break;
         }
+        /*if(isNextPosWall()){
 
+        }*/
+
+    }
+
+    private boolean isNextPosWall() {
+        return actionDetector.checkObjectInNextPos(this) instanceof Wall;
     }
 
     private void collectItem(Item gameObject) {

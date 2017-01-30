@@ -24,7 +24,7 @@ public class Projectile extends AbstractMovableObject { //CORRECTED EXTENSION TO
 
 
     @Override
-    public void doAction(GameObject gameObject) {
+    public void doAction(GameObject objectInCurrentPos, GameObject objectInNextPos) {
 
     }
 }

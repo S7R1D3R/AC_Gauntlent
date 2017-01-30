@@ -61,7 +61,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         }
 
         setPlayerDirection();
-        player.move();
+        //player.move();
     }
 
     @Override
@@ -96,10 +96,10 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
     public void setPlayerDirection() {
 
-        if(!(upIsPressed && rightIsPressed && downIsPressed && leftIsPressed)) {
+        if (!(upIsPressed && rightIsPressed && downIsPressed && leftIsPressed)) {
             player.setSpeed(0);
         }
-
+/*
         if(upIsPressed && rightIsPressed) {
             player.setDirection(GridDirection.UPRIGHT);
             return;
@@ -112,17 +112,22 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         } else if(upIsPressed && leftIsPressed) {
             player.setDirection(GridDirection.UPLEFT);
             return;
-        } else if(upIsPressed) {
+        } else*/
+        if (upIsPressed) {
             player.setDirection(GridDirection.UP);
             return;
-        } else if(rightIsPressed) {
+        }
+        if (rightIsPressed) {
             player.setDirection(GridDirection.RIGHT);
             return;
-        } else if(downIsPressed) {
+        }
+        if (downIsPressed) {
             player.setDirection(GridDirection.DOWN);
             return;
-        } else if(leftIsPressed) {
+        }
+        if (leftIsPressed) {
             player.setDirection(GridDirection.LEFT);
+            return;
         }
     }
 

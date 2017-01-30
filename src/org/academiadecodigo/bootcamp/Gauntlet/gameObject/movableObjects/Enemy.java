@@ -20,7 +20,8 @@ public class Enemy extends Character {
     public Enemy(Grid grid, GridPosition position) {
 
         super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
-        health = 1;                             // Enemies die with one hit
+        health = 1;// Enemies die with one hit
+        damage = 10;
 
     }
 
@@ -97,21 +98,21 @@ public class Enemy extends Character {
     /**
      * Decides what action enemy will take depending on the gameobject received
      *
-     * @param gameObject
+     * @param objectInNextPos
      */
 
 
     //para mim nao faz mesmo sentido o doAction estar no Enemy e não no action detector. para fazeres isto camos ter de
     //fazer varias iteracoes nos gameobjects para realizar o doAction, enquanto se fosse no actiondetector acho que
     //seria bem mais facil pq ja conhece tudo o que está no game.
-    public void doAction(GameObject gameObject) {
-        if(gameObject == null){                         //Enemy will move if he has free space ahead
+    public void doAction(GameObject objectInCurrentPos, GameObject objectInNextPos) {
+        if(objectInNextPos == null) {                         //Enemy will move if he has free space ahead
             speed = 1;
             move();
             setNextPos();
             return;
         }
-        switch (gameObject.getGameObjType()) {
+        switch (objectInNextPos.getGameObjType()) {
 
             case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
             case ENEMY:
@@ -120,11 +121,27 @@ public class Enemy extends Character {
                 break;
             case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
             case PLAYER:
-                destroy();
-               // actionDetector.removeMovableObject(this);
+                speed = 1;
+                move();
+                setNextPos();
                 break;
             default:
-                throw new EnumConstantNotPresentException(GameObjType.class, gameObject.toString());
+                throw new EnumConstantNotPresentException(GameObjType.class, objectInNextPos.toString());
         }
+
+        if(objectInCurrentPos == null){                         //Enemy will move if he has free space ahead
+            return;
+        }
+        switch (objectInCurrentPos.getGameObjType()){
+
+            case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
+            case PLAYER:
+                destroy();
+                break;
+            default:
+                break;
+        }
+
+
     }
 }

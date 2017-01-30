@@ -34,7 +34,8 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public void init() {
 
-        picture = new Picture(PADDING, PADDING, "test/GameBackground.jpg");
+        picture = new Picture(PADDING, PADDING, "test/GameBackground.png");
+        String line;
         picture.draw();
     }
 

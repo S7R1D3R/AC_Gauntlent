@@ -16,8 +16,8 @@ import java.util.Iterator;
  */
 public class ActionDetector {
 
-    ArrayList<GameObject> gameObjects;
-    ArrayList<AbstractMovableObject> movableObjects = new ArrayList<>();
+    private ArrayList<GameObject> gameObjects;
+    private ArrayList<AbstractMovableObject> movableObjects = new ArrayList<>();
     GridPosition playerPos;  //TODO WOULD BE NICE TO UPDATE EVERY TIME PLAYER MOVES
 
     public ActionDetector(ArrayList<GameObject> gameObjects) {
@@ -75,15 +75,7 @@ public class ActionDetector {
         playerPos = pos;
     }
 
-
-    public void removeMovableObject(AbstractMovableObject movableObject) {
-        Iterator<AbstractMovableObject> it = movableObjects.iterator();
-       while(it.hasNext()){
-           if(it.next().equals(movableObject)){
-               it.remove();
-           }
-
-        }
-
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
     }
 }
