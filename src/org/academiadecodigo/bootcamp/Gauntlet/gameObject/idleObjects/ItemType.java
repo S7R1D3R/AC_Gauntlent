@@ -6,11 +6,11 @@ package org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects;
 public enum ItemType {
     // Health, Poison, End
 
-    POTION(10, "test/Potion.png"),
-    POISON(-10, "test/Poison.png"),
+    POTION(10, "Potion.png"),
+    POISON(-10, "Poison.png"),
     TREASURE(20, "test/Treasure.png"),
-    PRINCESS(0, "test/Princess.png"),
-    EXIT(0, "test/End.png");
+    PRINCESS(0, "Princess.png"),
+    EXIT(0, "End.png");
 
     private int value;
     private String[] picFileName = new String[1];
