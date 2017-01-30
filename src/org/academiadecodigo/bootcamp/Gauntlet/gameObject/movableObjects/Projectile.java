@@ -6,6 +6,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
+import java.util.ArrayList;
+
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
@@ -22,9 +24,9 @@ public class Projectile extends AbstractMovableObject { //CORRECTED EXTENSION TO
 
     }
 
-
     @Override
-    public void doAction(GameObject gameObject) {
-
+    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
     }
 }
+
+

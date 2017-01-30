@@ -83,7 +83,7 @@ public class Game {
             Thread.sleep(delay);
 
             // Commands objects to perform actions
-            playActions();
+            moveAllMovable();
 
         }
     }
@@ -92,44 +92,24 @@ public class Game {
     /**
      * Commands objects to perform actions
      */
-    private void playActions() {
+    private void moveAllMovable() {
 
-        ArrayList<AbstractMovableObject> destroyedArr = new ArrayList<>();
+        for (AbstractMovableObject iMovableObject : actionDetector.getMovableObjects()) {
 
-        for (AbstractMovableObject currentMovable : actionDetector.getMovableObjects()) {
-
-            if (currentMovable instanceof Enemy) {
-                doEnemyAction(currentMovable);
-                if (currentMovable.isDestroyed()) {
-                    destroyedArr.add(currentMovable);
-                }
-            }
-            if (currentMovable instanceof Player) {
-                GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
-                currentMovable.doAction(objectInSamePos);
-            }
-
-            //Check if player reached exit point with princess:
-            if (player.hasFinished()) {
-                gameOver = true;
-            }
+            actionDetector.setDirectionAndSpeed(iMovableObject);
+            iMovableObject.move();
+            actionDetector.checkCollisions(iMovableObject);
         }
-        removeDestroyeds(destroyedArr);
+
+        //Check if player reached exit point with princess:
+        if (player.hasFinished()) {
+            gameOver = true;
+        }
     }
 
-    private void removeDestroyeds(ArrayList<AbstractMovableObject> destroyedArr) {
-        actionDetector.getMovableObjects().removeAll(destroyedArr);
-    }
 
-    private void doEnemyAction(AbstractMovableObject currentMovable) {
 
-        ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
-        currentMovable.setNextPos();
 
-        GameObject ObjectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-        currentMovable.doAction(ObjectInNextPos);
-
-    }
 
     /**
      * Instances the Level Maker and the ArrayList with all the GameObjects

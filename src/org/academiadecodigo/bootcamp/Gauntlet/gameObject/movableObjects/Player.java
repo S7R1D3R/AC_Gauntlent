@@ -10,6 +10,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
 
+import java.util.ArrayList;
+
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
@@ -39,42 +41,36 @@ public class Player extends Character {
         }
     }
 
+
     @Override   // TODO => JOAQUIM
     public void move() {
-
-
         this.getPos().moveInDirection(getDirection());
-        getActionDetector().setPlayerPos(getPos());
     }
 
-    @Override
-    public void doAction(GameObject gameObject) {
-        if(gameObject == null){                     //PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
-            return;
-        }
-        switch (gameObject.getGameObjType()) {
 
-            case WALL:
-                speed = 0;
-                break;
-            case PLAYER:
-                speed = 0; // FOR WHEN THERE IS MULTIPLAYER
-                break;
-            case ENEMY:
-                speed = 0;
-                health -= ((Enemy) gameObject).damage;
-                break;
-            case PROJECTILE:
-                //TODO => What's happening here!!!
-                break;
-            case ITEM:
-                collectItem((Item) gameObject);
-                break;
-        }
+    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
+        for (GameObject iGameObject : gameObjects) {
 
+            if (iGameObject == null) {
+                speed = 1;                          //PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
+                return;
+            }
+            switch (iGameObject.getGameObjType()) {
+
+                case WALL:
+                case PLAYER:
+                    speed = 0; // FOR WHEN THERE IS MULTIPLAYER
+                    break;
+                case ENEMY:
+                case PROJECTILE:
+                case ITEM:
+                    speed = 1;
+                    break;
+            }
+        }
     }
 
-    private void collectItem(Item gameObject) {
+    public void collectItem(Item gameObject) {
 
         switch (gameObject.getItemType()) {
             case POTION:
@@ -101,7 +97,7 @@ public class Player extends Character {
                 }
                 break;
             default:
-                System.out.println("Something went wrong <= Player doAction()");
+                System.out.println("Something went wrong <= Player checkObjInNextPosAndSetSpeed()");
                 break;
         }
     }
@@ -122,8 +118,7 @@ public class Player extends Character {
         keyboardInput = keyboard;
     }
 
-    public GameObjType checkWhatAction(GameObject gameObject) {
-        return gameObject.getGameObjType();
+    public void decreaseHealth(int damage){
+        health -= damage;
     }
-
 }

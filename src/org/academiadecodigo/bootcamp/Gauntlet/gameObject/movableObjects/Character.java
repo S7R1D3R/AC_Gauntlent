@@ -21,6 +21,10 @@ public abstract class Character extends AbstractMovableObject {
 
     public abstract void move();            // SETTER : Sets a new GridPosition for the character
 
+    public int getDamage() {
+        return damage;
+    }
+
 
     //public void shoot() { };                 // Shoots a projectile. For now only the player shoots
 

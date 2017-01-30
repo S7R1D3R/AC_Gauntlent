@@ -27,10 +27,10 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
     KeyboardEvent eventDownReleased;
     KeyboardEvent eventLeftReleased;
 
-    boolean upIsPressed;
-    boolean rightIsPressed;
-    boolean downIsPressed;
-    boolean leftIsPressed;
+    boolean upPressed;
+    boolean rightPressed;
+    boolean downPressed;
+    boolean leftPressed;
 
     public KeyboardInput(Player player) {
         this.k = new Keyboard(this);
@@ -43,25 +43,24 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
         switch (e.getKey()) {
             case KeyboardEvent.KEY_UP:
-                upIsPressed = true;
+                upPressed = true;
                 //System.out.println("UP WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                rightIsPressed = true;
+                rightPressed = true;
                 //System.out.println("RIGHT WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_DOWN:
-                downIsPressed = true;
+                downPressed = true;
                 //System.out.println("DOWN WAS PRESSED");
                 break;
             case KeyboardEvent.KEY_LEFT:
-                leftIsPressed = true;
+                leftPressed = true;
                 //System.out.println("LEFT WAS PRESSED");
                 break;
         }
 
         setPlayerDirection();
-        player.move();
     }
 
     @Override
@@ -69,20 +68,21 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
         switch (e.getKey()) {
             case KeyboardEvent.KEY_UP:
-                upIsPressed = false;
+                upPressed = false;
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                rightIsPressed = false;
+                rightPressed = false;
                 break;
             case KeyboardEvent.KEY_DOWN:
-                downIsPressed = false;
+                downPressed = false;
                 break;
             case KeyboardEvent.KEY_LEFT:
-                leftIsPressed = false;
+                leftPressed = false;
                 break;
         }
 
         setPlayerDirection();
+        player.setNextPos();
     }
 
     @Override
@@ -96,32 +96,25 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
     public void setPlayerDirection() {
 
-        if(!(upIsPressed && rightIsPressed && downIsPressed && leftIsPressed)) {
+        if (!(upPressed && rightPressed && downPressed && leftPressed)) {
             player.setSpeed(0);
+            return;
         }
 
-        if(upIsPressed && rightIsPressed) {
-            player.setDirection(GridDirection.UPRIGHT);
-            return;
-        } else if(downIsPressed && rightIsPressed) {
-            player.setDirection(GridDirection.DOWNRIGHT);
-            return;
-        } else if(downIsPressed && leftIsPressed) {
-            player.setDirection(GridDirection.DOWNLEFT);
-            return;
-        } else if(upIsPressed && leftIsPressed) {
-            player.setDirection(GridDirection.UPLEFT);
-            return;
-        } else if(upIsPressed) {
+
+        if (upPressed) {
             player.setDirection(GridDirection.UP);
             return;
-        } else if(rightIsPressed) {
+        }
+        if (rightPressed) {
             player.setDirection(GridDirection.RIGHT);
             return;
-        } else if(downIsPressed) {
+        }
+        if (downPressed) {
             player.setDirection(GridDirection.DOWN);
             return;
-        } else if(leftIsPressed) {
+        }
+        if (leftPressed) {
             player.setDirection(GridDirection.LEFT);
         }
     }

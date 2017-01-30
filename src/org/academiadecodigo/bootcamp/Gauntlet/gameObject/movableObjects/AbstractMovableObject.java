@@ -7,6 +7,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
+import java.util.ArrayList;
+
 /**
  * Created by codecadet on 25/01/17.
  */
@@ -68,7 +70,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-    public abstract void doAction(GameObject gameObject);
+    public abstract void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects);
 
     public GridPosition getNextPos() {
         return nextPos;
