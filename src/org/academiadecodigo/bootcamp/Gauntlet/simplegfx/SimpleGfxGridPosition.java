@@ -79,16 +79,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         int prevPicIndex = picIndex;
         //Update index to select picture in given direction @see LevelMaker
         switch (direction) {
-            case DOWN:
+            case UP:
                 picIndex = 0;
                 break;
-            case LEFT:
+            case RIGHT:
                 picIndex = 1;
                 break;
-            case UP:
+            case DOWN:
                 picIndex = 2;
                 break;
-            case RIGHT:
+            case LEFT:
                 picIndex = 3;
                 break;
             default:

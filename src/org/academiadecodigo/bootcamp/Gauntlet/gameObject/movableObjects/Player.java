@@ -30,7 +30,7 @@ public class Player extends Character {
     private void initializeProjectiles(int projectilesNumber) {
 
         projectiles = new Projectile[projectilesNumber];
-        String[] projectilesFileNames = {"test/Projectile.png"};
+        String[] projectilesFileNames = {"ProjectileUp.png", "ProjectileRight.png", "ProjectileDown.png", "ProjectileLeft.png"};
 
         for (int i = 0; i < projectilesNumber; i++) {
 

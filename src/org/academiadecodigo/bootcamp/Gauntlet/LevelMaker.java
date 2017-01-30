@@ -86,15 +86,15 @@ public class LevelMaker {
                     switch (level.charAt(charCount)) {          //changes type corresponding to symbol read
                         case '#':
                             objType = GameObjType.WALL;
-                            picsFileNames = new String[]{"test/WallBlock.png"};
+                            picsFileNames = new String[]{"WallBlock.png"};
                             break;
                         case 'P':
                             objType = GameObjType.PLAYER;
-                            picsFileNames = new String[]{"test/PlayerDown.png", "test/PlayerLeft.png", "test/PlayerUp.png", "test/PlayerRight.png"};
+                            picsFileNames = new String[]{"PlayerUp.png", "PlayerRight.png", "PlayerDown.png", "PlayerLeft.png"};
                             break;
                         case 'E':
                             objType = GameObjType.ENEMY;
-                            picsFileNames = new String[]{"test/EnemyDown.png", "test/EnemyLeft.png", "test/EnemyUp.png", "test/EnemyRight.png"};
+                            picsFileNames = new String[]{"EnemyUp.png", "EnemyRight.png", "EnemyDown.png", "EnemyLeft.png"};
                             break;
                         case 'X':
                             objType = GameObjType.ITEM;
