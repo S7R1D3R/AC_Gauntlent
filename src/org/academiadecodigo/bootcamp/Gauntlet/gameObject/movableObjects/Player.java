@@ -11,6 +11,8 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 import org.academiadecodigo.bootcamp.Gauntlet.simplegfx.KeyboardInput;
 
+import java.util.ArrayList;
+
 /**
  * Created by s7r1d3r on 20-01-2017.
  */
@@ -25,7 +27,7 @@ public class Player extends Character {
     public Player(Grid grid, GridPosition position) {
         super(grid, position, GameObjType.PLAYER, 2); //TODO: change speed? (current is 3)
         initializeProjectiles(10);      //NUMBER OF BULLETS AVAILABLE FOR PLAYER
-        health = 50;
+        health = 500;
     }
 
     private void initializeProjectiles(int projectilesNumber) {
@@ -40,82 +42,60 @@ public class Player extends Character {
         }
     }
 
+
     @Override   // TODO => JOAQUIM
     public void move() {
 
+        for (int i = 0; i < speed; i++) {
+            this.getPos().moveInDirection(getDirection());
+            setNextPos();
 
-        this.getPos().moveInDirection(getDirection());
-        getActionDetector().setPlayerPos(getPos());
-        setNextPos();
-    }
 
-    @Override
-    public void doAction(GameObject gameObjectInSamePos, GameObject gameObjectInNextPos) {
-//        if(gameObjectInNextPos instanceof Wall) {
-//            speed = 0;
-//            return;
-//        }
-        if(gameObjectInSamePos == null){
-            speed = 1;
-            move();//PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
-            return;
         }
-        switch (gameObjectInSamePos.getGameObjType()) {
+    }
 
-            case PLAYER:
-                speed = 0; // FOR WHEN THERE IS MULTIPLAYER
-                break;
-            case ENEMY:
-                System.out.println("HEALTH IS: " + health);
-                health -= ((Enemy) gameObjectInSamePos).damage;
-                System.out.println("HEALTH IS NOW :" + health);
-                speed = 1;
-                gameObjectInSamePos.destroy();
-                move();
+    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
+        for (GameObject iGameObject : gameObjects) {
+            if (!iGameObject.getPos().equals(getNextPos())) {
+                continue;
+            }
+            switch (iGameObject.getGameObjType()) {
 
-                break;
-            case PROJECTILE:
-                //TODO => What's happening here!!!
-                break;
-            case ITEM:
-                speed = 1;
-                collectItem((Item) gameObjectInSamePos);
-                move();
-                break;
-            default:
-                move();
-                break;
+                case WALL:
+                case PLAYER:
+                    speed = 0; // FOR WHEN THERE IS MULTIPLAYER
+                    return;
+                case ENEMY:
+                case PROJECTILE:
+                case ITEM:
+                    speed = 1;
+                    return;
+            }
         }
-        /*if(isNextPosWall()){
-
-        }*/
-
+        speed = 1;
     }
 
-    private boolean isNextPosWall() {
-        return actionDetector.checkObjectInNextPos(this) instanceof Wall;
-    }
 
-    private void collectItem(Item gameObject) {
+    public void collectItem(Item gameObject) {
 
         switch (gameObject.getItemType()) {
             case POTION:
                 health += ItemType.POTION.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case POISON:
                 health += ItemType.POISON.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case PRINCESS:
                 hasPrincess = true;
                 //TODO: Think how to make her follow the player
                 //Suggestion: update princess position to last player position (could be a private property from Player previousPos)
-                gameObject.getPos().hide();
+
                 break;
             case TREASURE:
                 points += ItemType.TREASURE.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case EXIT:
                 if (hasPrincess) {
@@ -123,7 +103,7 @@ public class Player extends Character {
                 }
                 break;
             default:
-                System.out.println("Something went wrong <= Player doAction()");
+                System.out.println("Something went wrong <= Player checkObjInNextPosAndSetSpeed()");
                 break;
         }
     }
@@ -144,8 +124,7 @@ public class Player extends Character {
         keyboardInput = keyboard;
     }
 
-    public GameObjType checkWhatAction(GameObject gameObject) {
-        return gameObject.getGameObjType();
+    public void decreaseHealth(int damage) {
+        health -= damage;
     }
-
 }

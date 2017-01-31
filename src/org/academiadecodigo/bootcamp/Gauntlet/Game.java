@@ -4,7 +4,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
@@ -83,7 +82,7 @@ public class Game {
             Thread.sleep(delay);
 
             // Commands objects to perform actions
-            playActions();
+            moveAllMovable();
 
         }
     }
@@ -92,48 +91,34 @@ public class Game {
     /**
      * Commands objects to perform actions
      */
-    private void playActions() {
+    private void moveAllMovable() {
 
-        ArrayList<AbstractMovableObject> destroyedArr = new ArrayList<>();
+        ArrayList<GameObject> destroyedThisTurn = new ArrayList<>();
 
-        for (AbstractMovableObject currentMovable : actionDetector.getMovableObjects()) {
+        for (AbstractMovableObject iMovableObject : actionDetector.getMovableObjects()) {
 
-            if (currentMovable instanceof Enemy) {
+            actionDetector.setDirectionAndSpeed(iMovableObject);
+            iMovableObject.move();
+            actionDetector.checkCollisions(iMovableObject);
 
-                ((Enemy) currentMovable).setDirectionTowardsPlayer(actionDetector.getPlayerPos());
-                currentMovable.setNextPos();
-                GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
-                GameObject objectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-                currentMovable.doAction(objectInSamePos, objectInNextPos);
-
-                if (currentMovable.isDestroyed()) {
-                    destroyedArr.add(currentMovable);
-                }
-            }
-            if (currentMovable instanceof Player) {
-                GameObject objectInSamePos = actionDetector.checkObjectInSamePos(currentMovable);
-                GameObject objectInNextPos = actionDetector.checkObjectInNextPos(currentMovable);
-                currentMovable.doAction(objectInSamePos, objectInNextPos);
-            }
-
-            //Check if player reached exit point with princess:
-            if (player.hasFinished() || player.isDestroyed()) {
-                gameOver = true;
+            if (iMovableObject.isDestroyed()) {
+                destroyedThisTurn.add(iMovableObject);
             }
         }
-        removeDestroyeds(destroyedArr);
+
+        removeDestroyedFromGame(destroyedThisTurn);
+
+        //Check if player reached exit point with princess:
+        if (player.hasFinished()) {
+            gameOver = true;
+        }
     }
 
-    private void removeDestroyeds(ArrayList<AbstractMovableObject> destroyedArr) {
-        actionDetector.getGameObjects().removeAll(destroyedArr);
-        actionDetector.getMovableObjects().removeAll(destroyedArr);
+    private void removeDestroyedFromGame(ArrayList<GameObject> destroyedThisTurn) {
+        actionDetector.getMovableObjects().removeAll(destroyedThisTurn);
+        actionDetector.getGameObjects().removeAll(destroyedThisTurn);
     }
 
-    private void doEnemyAction(AbstractMovableObject currentMovable) {
-
-
-
-    }
 
     /**
      * Instances the Level Maker and the ArrayList with all the GameObjects

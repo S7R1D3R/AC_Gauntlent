@@ -20,9 +20,15 @@ public class TestArea {
 
     public static void main(String[] args) throws InterruptedException {
 
-        int delay = 200;
+        int delay = 300;
         Game game = new Game(GridType.SIMPLE_GFX, 42, 18, delay);
+        game.init(1);
 
+
+        try {
+            game.start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
        /* //Test grid initialization
         Grid grid = GameObjFactory.makeGrid(GridType.SIMPLE_GFX, 42, 18);
         grid.init();
@@ -42,9 +48,9 @@ public class TestArea {
         }*/
 
 
-        /**
-         * ENEMIES MOVEMENT TEST A BRUTA :)
-         */
+            /**
+             * ENEMIES MOVEMENT TEST A BRUTA :)
+             */
         /*for (int i = 0; i < 20; i++) {
 
 
@@ -120,21 +126,16 @@ public class TestArea {
         Thread.sleep(delay);
     }*/
 
-       game.init(1);
+
+        }
 
 
-        try {
-            game.start();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-     }
-
-
-    // Test loading image
+        // Test loading image
 //        Picture picture2 = new Picture(10, 10, "test/GameBackground.png");
 //        picture2.draw();
 //
 //        Picture picture = new Picture(10, 10, "test/End.png");
 //        picture.draw();
-}}
+    }
+}
 
