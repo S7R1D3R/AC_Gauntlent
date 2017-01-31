@@ -93,13 +93,21 @@ public class Game {
      */
     private void moveAllMovable() {
 
+        ArrayList<GameObject> destroyedThisTurn = new ArrayList<>();
+
         for (AbstractMovableObject iMovableObject : actionDetector.getMovableObjects()) {
 
 
             actionDetector.setDirectionAndSpeed(iMovableObject);
             iMovableObject.move();
             actionDetector.checkCollisions(iMovableObject);
+
+            if (iMovableObject.isDestroyed()) {
+                destroyedThisTurn.add(iMovableObject);
+            }
         }
+
+        removeDestroyedFromGame(destroyedThisTurn);
 
         //Check if player reached exit point with princess:
         if (player.hasFinished()) {
@@ -107,8 +115,10 @@ public class Game {
         }
     }
 
-
-
+    private void removeDestroyedFromGame(ArrayList<GameObject> destroyedThisTurn) {
+        actionDetector.getMovableObjects().removeAll(destroyedThisTurn);
+        actionDetector.getGameObjects().removeAll(destroyedThisTurn);
+    }
 
 
     /**

@@ -31,6 +31,10 @@ public class ActionDetector {
     }
 
 
+    public ArrayList<GameObject> getGameObjects(){
+        return gameObjects;
+    }
+
     public ArrayList<AbstractMovableObject> getMovableObjects() {
         return movableObjects;
     }
@@ -41,8 +45,8 @@ public class ActionDetector {
         switch (iMovableObject.getGameObjType()) {
             case ENEMY:
                 ((Enemy) iMovableObject).setDirectionTowardsPlayer(player);
-                 iMovableObject.setNextPos();
-                 iMovableObject.checkObjInNextPosAndSetSpeed(gameObjects);
+                iMovableObject.setNextPos();
+                iMovableObject.checkObjInNextPosAndSetSpeed(gameObjects);
                 break;
             case PLAYER:
                 //TODO player.setNextPos() has to be called by keyboard event
@@ -60,99 +64,75 @@ public class ActionDetector {
 
                 switch (iGameObject.getGameObjType()) {
                     case WALL:
-                        if (checkCollisionsWithWall(movableObject)){
-                            destroyedThisTurn.add(movableObject);
-                        }
-                        break;
+                        checkCollisionsWithWall(movableObject);
+                        return;
                     case PLAYER:
-                        if (checkCollisionsWithPlayer(movableObject, iGameObject)){
-                            destroyedThisTurn.add(movableObject);
-                            return;
-                        }
-
+                        checkCollisionsWithPlayer(movableObject, iGameObject);
+                        return;
                     case ENEMY:
-                        if (checkCollisionsWithEnemy(movableObject, iGameObject)){
-                            if(movableObject instanceof Projectile){
-                                destroyedThisTurn.add(movableObject);
-                            }
-                            destroyedThisTurn.add(iGameObject);
-                            return;
-                        }
+                        checkCollisionsWithEnemy(movableObject, iGameObject);
+                        return;
                     case PROJECTILE:
-                        if (checkCollisionsWithProjectile(movableObject, iGameObject)){
-                            destroyedThisTurn.add(movableObject);
-                            destroyedThisTurn.add(iGameObject);
-                            return;
-                        }
-                        break;
+                        checkCollisionsWithProjectile(movableObject, iGameObject);
+                        return;
                     case ITEM:
-                        if (checkCollisionsWithItem(movableObject, iGameObject)){
-                            destroyedThisTurn.add(iGameObject);
-                            return;
-                        }
+                        checkCollisionsWithItem(movableObject, iGameObject);
+                        return;
                 }
             }
         }
-        movableObjects.removeAll(destroyedThisTurn);
-        gameObjects.removeAll(destroyedThisTurn);
     }
 
-    private boolean checkCollisionsWithWall(AbstractMovableObject movableObject) {
+
+    private void checkCollisionsWithWall(AbstractMovableObject movableObject) {
         if (movableObject instanceof Projectile) {
             movableObject.destroy();
-            return true;
+            return;
         }
         System.err.println("no movable besides projectile should collide with wall!");
-        return false;
     }
 
-    private boolean checkCollisionsWithPlayer(AbstractMovableObject movableObject, GameObject iGameObject) {
+    private void checkCollisionsWithPlayer(AbstractMovableObject movableObject, GameObject iGameObject) {
         //TODO SYNC WITH MULTIPLAYER WHEN FEATURE IS ADDED
         if (movableObject instanceof Enemy) {
-            ((Player)iGameObject).decreaseHealth(((Enemy) movableObject).getDamage());
+            ((Player) iGameObject).decreaseHealth(((Enemy) movableObject).getDamage());
             movableObject.destroy();
-            return true;
+            return;
         }
         System.err.println("only enemies can collide with players");
-        return false;
     }
 
-    private boolean checkCollisionsWithEnemy(AbstractMovableObject movableObject, GameObject iGameObject) {
+    private void checkCollisionsWithEnemy(AbstractMovableObject movableObject, GameObject iGameObject) {
         if (movableObject instanceof Player) {
             ((Player) movableObject).decreaseHealth(((Enemy) iGameObject).getDamage());
             iGameObject.destroy();
-            return true;
+            return;
         }
         if (movableObject instanceof Projectile) {
             iGameObject.destroy();
             movableObject.destroy();
-            return true;
+            return;
         }
         System.err.println("only projectiles or players can collide with enemies");
-        return false;
     }
 
-    private boolean checkCollisionsWithProjectile(AbstractMovableObject movableObject, GameObject iGameObject) {
+    private void checkCollisionsWithProjectile(AbstractMovableObject movableObject, GameObject iGameObject) {
         if (movableObject instanceof Enemy) {
             movableObject.destroy();
             iGameObject.destroy();
-            return true;
+            return;
         }
         System.err.println("only enemies can collide with projectiles");
-        return false;
     }
 
-    private boolean checkCollisionsWithItem(AbstractMovableObject movableObject, GameObject iGameObject) {
+    private void checkCollisionsWithItem(AbstractMovableObject movableObject, GameObject iGameObject) {
         if (movableObject instanceof Player) {
             ((Player) movableObject).collectItem((Item) iGameObject);
             iGameObject.destroy();
-            return true;
+            return;
         }
         System.err.println("only players can collide with items");
-        return false;
     }
-
-
 
 
 }
