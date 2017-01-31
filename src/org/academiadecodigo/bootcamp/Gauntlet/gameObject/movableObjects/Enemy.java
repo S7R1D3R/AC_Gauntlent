@@ -23,7 +23,7 @@ public class Enemy extends Character {
 
         super(grid, position, GameObjType.ENEMY, 1);//TODO: change speed of enemy?
         health = 1;                             // Enemies die with one hit
-
+        damage = 10;
     }
 
 

@@ -25,7 +25,10 @@ public abstract class Character extends AbstractMovableObject {
         return damage;
     }
 
+    public int getHealth() {
+        return health;
+    }
 
-    //public void shoot() { };                 // Shoots a projectile. For now only the player shoots
+//public void shoot() { };                 // Shoots a projectile. For now only the player shoots
 
 }

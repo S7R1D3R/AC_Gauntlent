@@ -57,8 +57,6 @@ public class ActionDetector {
 
     public void checkCollisions(AbstractMovableObject movableObject) {
 
-        ArrayList<GameObject> destroyedThisTurn = new ArrayList<>();
-
         for (GameObject iGameObject : gameObjects) {
             if (movableObject != iGameObject && movableObject.getPos().equals(iGameObject.getPos())) {
 
@@ -95,8 +93,7 @@ public class ActionDetector {
     private void checkCollisionsWithPlayer(AbstractMovableObject movableObject, GameObject iGameObject) {
         //TODO SYNC WITH MULTIPLAYER WHEN FEATURE IS ADDED
         if (movableObject instanceof Enemy) {
-            ((Player) iGameObject).decreaseHealth(((Enemy) movableObject).getDamage());
-            movableObject.destroy();
+            playerCollidesWithEnemy(iGameObject, movableObject);
             return;
         }
         System.err.println("only enemies can collide with players");
@@ -104,8 +101,7 @@ public class ActionDetector {
 
     private void checkCollisionsWithEnemy(AbstractMovableObject movableObject, GameObject iGameObject) {
         if (movableObject instanceof Player) {
-            ((Player) movableObject).decreaseHealth(((Enemy) iGameObject).getDamage());
-            iGameObject.destroy();
+            playerCollidesWithEnemy(movableObject, iGameObject);
             return;
         }
         if (movableObject instanceof Projectile) {
@@ -134,6 +130,11 @@ public class ActionDetector {
         System.err.println("only players can collide with items");
     }
 
-
+    private void playerCollidesWithEnemy(GameObject player, GameObject enemy) {
+        System.out.println("Health pre-zombie: " + ((Player) player).getHealth());
+        ((Player) player).decreaseHealth(((Enemy) enemy).getDamage());
+        System.out.println("Health post-zombie: " + ((Player) player).getHealth());
+        enemy.destroy();
+    }
 }
 
