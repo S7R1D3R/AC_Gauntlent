@@ -57,25 +57,13 @@ public class Player extends Character {
     }
 
 
-    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
-        for (GameObject iGameObject : gameObjects) {
-            if (!iGameObject.getPos().equals(getNextPos())) {
-                continue;
-            }
-            switch (iGameObject.getGameObjType()) {
+    public void checkObjInNextPosAndSetSpeed() {
 
-                case WALL:
-                case PLAYER:
-                    speed = 0; // FOR WHEN THERE IS MULTIPLAYER
-                    return;
-                case ENEMY:
-                case PROJECTILE:
-                case ITEM:
-                    speed = 1;
-                    return;
-            }
+        if (actionDetector.isNextPosWalkable(this)) {
+            speed = 1;
+            return;
         }
-        speed = 1;
+        speed = 0;
     }
 
 

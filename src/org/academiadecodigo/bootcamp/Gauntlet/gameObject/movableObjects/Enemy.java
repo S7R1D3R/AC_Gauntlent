@@ -33,12 +33,9 @@ public class Enemy extends Character {
     @Override
     public void move() {
 
-        if (!getActionDetector().isNextPosWall(getNextPos())) {
-
-            for (int i = 0; i < this.speed; i++) {
-                this.getPos().moveInDirection(getDirection());
-                setNextPos();
-            }
+        for (int i = 0; i < this.speed; i++) {
+            this.getPos().moveInDirection(getDirection());
+            setNextPos();
         }
     }
 
@@ -100,34 +97,18 @@ public class Enemy extends Character {
 
 
     /**
-     * Decides what action enemy will take depending on the gameobject received
+     * Decides what action enemy will take depending on the gameobject on next pos
      *
-     * @param gameObjects
      */
 
 
-    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
+    public void checkObjInNextPosAndSetSpeed() {
 
-
-        for (GameObject iGameObject : gameObjects) {
-
-            //Enemy will move if he has free space ahead
-            switch (iGameObject.getGameObjType()) {
-                case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
-                case ENEMY:
-                case ITEM:
-                    speed = 0;
-                    break;
-                case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
-                case PLAYER:
-                    speed = 1;
-                    break;
-                default:
-                    throw new EnumConstantNotPresentException(GameObjType.class, iGameObject.toString());
-            }
+        if (actionDetector.isNextPosWalkable(this)){
             speed = 1;
-            break;
+            return;
         }
+        speed = 0;
     }
 }
 

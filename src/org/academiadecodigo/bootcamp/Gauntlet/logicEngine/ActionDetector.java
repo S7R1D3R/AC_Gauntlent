@@ -33,7 +33,7 @@ public class ActionDetector {
     }
 
 
-    public ArrayList<GameObject> getGameObjects(){
+    public ArrayList<GameObject> getGameObjects() {
         return gameObjects;
     }
 
@@ -48,11 +48,11 @@ public class ActionDetector {
             case ENEMY:
                 ((Enemy) iMovableObject).setDirectionTowardsPlayer(player);
                 iMovableObject.setNextPos();
-                iMovableObject.checkObjInNextPosAndSetSpeed(gameObjects);
+                iMovableObject.checkObjInNextPosAndSetSpeed();
                 break;
             case PLAYER:
                 //TODO player.setNextPos() has to be called by keyboard event
-                iMovableObject.checkObjInNextPosAndSetSpeed(gameObjects);
+                iMovableObject.checkObjInNextPosAndSetSpeed();
                 break;
         }
     }
@@ -139,13 +139,34 @@ public class ActionDetector {
         enemy.destroy();
     }
 
-    public boolean isNextPosWall(GridPosition nextPos) {
-        for (GameObject iGameObject: gameObjects) {
-             if(iGameObject instanceof Wall && nextPos.equals(iGameObject.getPos())){
-                 return true;
-             }
+    public boolean isNextPosWalkable(AbstractMovableObject movableObject) {
+
+        for (GameObject iGameObject : gameObjects) {
+            if (movableObject instanceof Enemy) {
+
+                if (iGameObject instanceof Wall && movableObject.getNextPos().equals(iGameObject.getPos())) {
+                    return false;
+                }
+                if (iGameObject instanceof Enemy && movableObject.getNextPos().equals(iGameObject.getPos())) {
+                    return false;
+                }
+                if (iGameObject instanceof Item && movableObject.getNextPos().equals(iGameObject.getPos())) {
+                    return false;
+                }
+            }
+
+            if (movableObject instanceof Player) {
+
+                if (iGameObject instanceof Wall && movableObject.getNextPos().equals(iGameObject.getPos())) {
+                    return false;
+                }
+                if (iGameObject instanceof Player && movableObject.getNextPos().equals(iGameObject.getPos())) {
+
+                }
+            }
         }
-        return false;
+        return true;
     }
 }
+
 
