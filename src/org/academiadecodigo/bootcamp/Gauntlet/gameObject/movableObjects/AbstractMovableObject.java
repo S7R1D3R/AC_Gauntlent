@@ -70,7 +70,7 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
         return direction;
     }
 
-    public abstract void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects);
+    public abstract void checkObjInNextPosAndSetSpeed();
 
     public GridPosition getNextPos() {
         return nextPos;

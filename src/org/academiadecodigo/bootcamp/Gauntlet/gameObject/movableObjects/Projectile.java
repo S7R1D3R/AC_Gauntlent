@@ -25,7 +25,7 @@ public class Projectile extends AbstractMovableObject { //CORRECTED EXTENSION TO
     }
 
     @Override
-    public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
+    public void checkObjInNextPosAndSetSpeed() {
     }
 }
 
