@@ -2,7 +2,9 @@ package org.academiadecodigo.bootcamp.Gauntlet;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Wall;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.*;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 import java.util.ArrayList;
 
@@ -56,8 +58,6 @@ public class ActionDetector {
     }
 
     public void checkCollisions(AbstractMovableObject movableObject) {
-
-        ArrayList<GameObject> destroyedThisTurn = new ArrayList<>();
 
         for (GameObject iGameObject : gameObjects) {
             if (movableObject != iGameObject && movableObject.getPos().equals(iGameObject.getPos())) {
@@ -135,5 +135,13 @@ public class ActionDetector {
     }
 
 
+    public boolean isNextPosWall(GridPosition nextPos) {
+        for (GameObject iGameObject: gameObjects) {
+             if(iGameObject instanceof Wall && nextPos.equals(iGameObject.getPos())){
+                 return true;
+             }
+        }
+        return false;
+    }
 }
 

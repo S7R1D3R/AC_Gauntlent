@@ -34,9 +34,12 @@ public class Enemy extends Character {
     @Override
     public void move() {
 
-        for (int i = 0; i < this.speed; i++) {
-            this.getPos().moveInDirection(getDirection());
-            setNextPos();
+        if (!getActionDetector().isNextPosWall(getNextPos())) {
+
+            for (int i = 0; i < this.speed; i++) {
+                this.getPos().moveInDirection(getDirection());
+                setNextPos();
+            }
         }
     }
 
@@ -55,7 +58,7 @@ public class Enemy extends Character {
 
 
         //if col distance between enemy and player is bigger than row distance
-        if (colDiff >= rowDiff) {
+        if (Math.abs(colDiff) >= Math.abs(rowDiff)) {
 
             //Enemy will try to catch the player up closing up col distance first
             if (colDiff > 0) {
@@ -108,24 +111,25 @@ public class Enemy extends Character {
 
 
         for (GameObject iGameObject : gameObjects) {
-            if (iGameObject.getPos().equals(getNextPos())){
-                                                                //Enemy will move if he has free space ahead
-                switch (iGameObject.getGameObjType()) {
-                    case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
-                    case ENEMY:
-                    case ITEM:
-                        speed = 0;
-                        break;
-                    case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
-                    case PLAYER:
-                        speed = 1;
-                        break;
-                    default:
-                        throw new EnumConstantNotPresentException(GameObjType.class, iGameObject.toString());
-                }
+
+            //Enemy will move if he has free space ahead
+            switch (iGameObject.getGameObjType()) {
+                case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
+                case ENEMY:
+                case ITEM:
+                    speed = 0;
+                    break;
+                case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
+                case PLAYER:
+                    speed = 1;
+                    break;
+                default:
+                    throw new EnumConstantNotPresentException(GameObjType.class, iGameObject.toString());
             }
+            speed = 1;
+            break;
         }
     }
-
-
 }
+
+
