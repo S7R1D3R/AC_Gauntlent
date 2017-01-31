@@ -1,6 +1,6 @@
 package org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects;
 
-import org.academiadecodigo.bootcamp.Gauntlet.ActionDetector;
+import org.academiadecodigo.bootcamp.Gauntlet.logicEngine.ActionDetector;
 
 
 /**

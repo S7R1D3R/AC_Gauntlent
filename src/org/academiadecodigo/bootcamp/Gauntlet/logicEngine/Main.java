@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Gauntlet;
+package org.academiadecodigo.bootcamp.Gauntlet.logicEngine;
 
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 
@@ -8,8 +8,12 @@ import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
 public class Main {
 
     public static void main(String[] args) {
-        Game game = new Game(GridType.SIMPLE_GFX, 42, 18, 200);
 
+        int gridCols = 42;
+        int gridRows = 18;
+        int delay = 300;
+
+        Game game = new Game(GridType.SIMPLE_GFX, gridCols, gridRows, delay);
 
         game.init(1);
 
@@ -17,7 +21,7 @@ public class Main {
             game.start();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
 
+        }
     }
 }

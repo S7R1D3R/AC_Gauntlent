@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Gauntlet;
+package org.academiadecodigo.bootcamp.Gauntlet.logicEngine;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;

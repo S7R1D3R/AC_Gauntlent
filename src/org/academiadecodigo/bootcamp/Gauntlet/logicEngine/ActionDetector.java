@@ -1,8 +1,10 @@
-package org.academiadecodigo.bootcamp.Gauntlet;
+package org.academiadecodigo.bootcamp.Gauntlet.logicEngine;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Item;
+import org.academiadecodigo.bootcamp.Gauntlet.gameObject.idleObjects.Wall;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.*;
+import org.academiadecodigo.bootcamp.Gauntlet.grid.position.GridPosition;
 
 import java.util.ArrayList;
 
@@ -135,6 +137,15 @@ public class ActionDetector {
         ((Player) player).decreaseHealth(((Enemy) enemy).getDamage());
         System.out.println("Health post-zombie: " + ((Player) player).getHealth());
         enemy.destroy();
+    }
+
+    public boolean isNextPosWall(GridPosition nextPos) {
+        for (GameObject iGameObject: gameObjects) {
+             if(iGameObject instanceof Wall && nextPos.equals(iGameObject.getPos())){
+                 return true;
+             }
+        }
+        return false;
     }
 }
 

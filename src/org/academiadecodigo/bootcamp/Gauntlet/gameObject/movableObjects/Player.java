@@ -19,14 +19,14 @@ public class Player extends Character {
 
     private int points;
     private boolean hasPrincess;
-    private boolean gameOver;
+    private boolean reachedEnd;
 
     private KeyboardInput keyboardInput;
 
     public Player(Grid grid, GridPosition position) {
-        super(grid, position, GameObjType.PLAYER, 2); //TODO: change speed? (current is 3)
-        initializeProjectiles(10);      //NUMBER OF BULLETS AVAILABLE FOR PLAYER
-        health = 50;
+        super(grid, position, GameObjType.PLAYER, 1); //TODO: change speed? (current is 3)
+//        initializeProjectiles(10);      //NUMBER OF BULLETS AVAILABLE FOR PLAYER
+        health = 500;
     }
 
     private void initializeProjectiles(int projectilesNumber) {
@@ -42,13 +42,17 @@ public class Player extends Character {
     }
 
 
-    @Override   // TODO => JOAQUIM
+    @Override
     public void move() {
 
         for (int i = 0; i < speed; i++) {
             this.getPos().moveInDirection(getDirection());
             setNextPos();
-
+            // Move projectiles with player (not visible)
+            /*for (int j = 0; j < projectiles.length; j++) {
+                projectiles[j].getPos().moveInDirection(getDirection());
+                projectiles[j].getPos().hide();
+            }*/
         }
     }
 
@@ -79,18 +83,15 @@ public class Player extends Character {
 
         switch (gameObject.getItemType()) {
             case POTION:
-                health += ItemType.POTION.getValue();
-
-                break;
             case POISON:
-                health += ItemType.POISON.getValue();
-
+                System.out.println("Health pre-" + gameObject.getItemType() + ": " + getHealth());
+                health += gameObject.getItemType().getValue();
+                System.out.println("Health pos-" + gameObject.getItemType() + ": " + getHealth());
                 break;
             case PRINCESS:
                 hasPrincess = true;
                 //TODO: Think how to make her follow the player
                 //Suggestion: update princess position to last player position (could be a private property from Player previousPos)
-
                 break;
             case TREASURE:
                 points += ItemType.TREASURE.getValue();
@@ -98,7 +99,7 @@ public class Player extends Character {
                 break;
             case EXIT:
                 if (hasPrincess) {
-                    gameOver = true;
+                    reachedEnd = true;
                 }
                 break;
             default:
@@ -108,7 +109,7 @@ public class Player extends Character {
     }
 
     public boolean hasFinished() {
-        return gameOver;
+        return reachedEnd;
     }
 
     public void setDirection(GridDirection newDirection) {
@@ -124,6 +125,14 @@ public class Player extends Character {
     }
 
     public void decreaseHealth(int damage) {
-        health -= damage;
+
+        if (health > damage) {
+            health -= damage;
+        } else {
+            destroy();
+            /*for (int i = 0; i < projectiles.length; i++) {
+                projectiles[i].destroy();
+            }*/
+        }
     }
 }

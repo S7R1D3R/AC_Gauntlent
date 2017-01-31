@@ -1,17 +1,8 @@
 package org.academiadecodigo.bootcamp.Gauntlet.test;
 
 
-import org.academiadecodigo.bootcamp.Gauntlet.Game;
-import org.academiadecodigo.bootcamp.Gauntlet.LevelMaker;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
-import org.academiadecodigo.bootcamp.Gauntlet.grid.GridDirection;
+import org.academiadecodigo.bootcamp.Gauntlet.logicEngine.Game;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
-
-import java.util.ArrayList;
 
 /**
  * Created by codecadet on 1/21/17.
@@ -22,6 +13,15 @@ public class TestArea {
 
         int delay = 200;
         Game game = new Game(GridType.SIMPLE_GFX, 42, 18, delay);
+
+       game.init(1);
+
+
+        try {
+            game.start();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
 
        /* //Test grid initialization
         Grid grid = GameObjFactory.makeGrid(GridType.SIMPLE_GFX, 42, 18);
@@ -120,13 +120,6 @@ public class TestArea {
         Thread.sleep(delay);
     }*/
 
-       game.init(1);
-
-
-        try {
-            game.start();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
      }
 
 

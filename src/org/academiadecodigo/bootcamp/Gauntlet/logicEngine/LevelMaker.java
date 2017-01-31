@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.Gauntlet;
+package org.academiadecodigo.bootcamp.Gauntlet.logicEngine;
 
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
@@ -27,10 +27,10 @@ public class LevelMaker {
     private final String level1 =
                     "################################" +
                     "######__++######_______+#####__#" +
-                    "#_____________##_________#_____#" +
+                    "#E____________##_________#_____#" +
                     "#___##_____##_##_######__#___#_#" +
                     "#_#_##__#####_#-_#*___#__##_##_#" +
-                    "###_##__#_____#__#____#__##_####" +
+                    "###_##_E#E____#__#____#__##_####" +
                     "#____#__#____-#_-####_#_______##" +
                     "#EE__#__#___###_____#_#_______##" +
                     "#____#_##+__#___###_#_#__##____#" +
