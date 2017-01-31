@@ -36,6 +36,7 @@ public class Enemy extends Character {
 
         for (int i = 0; i < this.speed; i++) {
             this.getPos().moveInDirection(getDirection());
+            setNextPos();
         }
     }
 

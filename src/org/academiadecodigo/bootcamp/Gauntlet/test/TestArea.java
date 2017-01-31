@@ -20,7 +20,7 @@ public class TestArea {
 
     public static void main(String[] args) throws InterruptedException {
 
-        int delay = 1000;
+        int delay = 300;
         Game game = new Game(GridType.SIMPLE_GFX, 42, 18, delay);
 
        /* //Test grid initialization

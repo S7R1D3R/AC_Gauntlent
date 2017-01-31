@@ -96,7 +96,9 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
     }
 
     public void setPlayerDirection() {
-
+        if(!upPressed && !rightPressed && !leftPressed && !downPressed) {
+            player.setSpeed(0);
+        }
         if (upPressed) {
             player.setDirection(GridDirection.UP);
             return;
@@ -111,6 +113,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         }
         if (leftPressed) {
             player.setDirection(GridDirection.LEFT);
+
         }
     }
 
@@ -137,7 +140,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         eventUpReleased.setKey(KeyboardEvent.KEY_UP);
         eventRightReleased.setKey(KeyboardEvent.KEY_RIGHT);
         eventDownReleased.setKey(KeyboardEvent.KEY_DOWN);
-        eventRightReleased.setKey(KeyboardEvent.KEY_RIGHT);
+        eventLeftReleased.setKey(KeyboardEvent.KEY_LEFT);
 
         eventUpPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         eventRightPressed.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);

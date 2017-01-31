@@ -45,10 +45,9 @@ public class Player extends Character {
     @Override   // TODO => JOAQUIM
     public void move() {
 
-        System.out.println("PLAYER TRYING TO MOVE WTH SPEED: " + speed);
-        System.out.println("DIRECTION IS: " + direction);
         for (int i = 0; i < speed; i++) {
             this.getPos().moveInDirection(getDirection());
+            setNextPos();
 
         }
     }
@@ -81,21 +80,21 @@ public class Player extends Character {
         switch (gameObject.getItemType()) {
             case POTION:
                 health += ItemType.POTION.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case POISON:
                 health += ItemType.POISON.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case PRINCESS:
                 hasPrincess = true;
                 //TODO: Think how to make her follow the player
                 //Suggestion: update princess position to last player position (could be a private property from Player previousPos)
-                gameObject.getPos().hide();
+
                 break;
             case TREASURE:
                 points += ItemType.TREASURE.getValue();
-                gameObject.getPos().hide();
+
                 break;
             case EXIT:
                 if (hasPrincess) {
