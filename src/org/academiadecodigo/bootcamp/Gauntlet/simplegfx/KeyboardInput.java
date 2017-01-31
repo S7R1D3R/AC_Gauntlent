@@ -14,23 +14,23 @@ import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
  */
 public class KeyboardInput implements KeyboardHandler, MouseHandler {
 
-    Player player;
-    Keyboard k;
+    private Player player;
+    private Keyboard k;
 
-    KeyboardEvent eventUpPressed;
-    KeyboardEvent eventRightPressed;
-    KeyboardEvent eventDownPressed;
-    KeyboardEvent eventLeftPressed;
+    private KeyboardEvent eventUpPressed;
+    private KeyboardEvent eventRightPressed;
+    private KeyboardEvent eventDownPressed;
+    private KeyboardEvent eventLeftPressed;
 
-    KeyboardEvent eventUpReleased;
-    KeyboardEvent eventRightReleased;
-    KeyboardEvent eventDownReleased;
-    KeyboardEvent eventLeftReleased;
+    private KeyboardEvent eventUpReleased;
+    private KeyboardEvent eventRightReleased;
+    private KeyboardEvent eventDownReleased;
+    private KeyboardEvent eventLeftReleased;
 
-    boolean upPressed;
-    boolean rightPressed;
-    boolean downPressed;
-    boolean leftPressed;
+    private boolean upPressed;
+    private boolean rightPressed;
+    private boolean downPressed;
+    private boolean leftPressed;
 
     public KeyboardInput(Player player) {
         this.k = new Keyboard(this);
@@ -61,6 +61,7 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
         }
 
         setPlayerDirection();
+        player.setNextPos();
     }
 
     @Override
@@ -95,12 +96,6 @@ public class KeyboardInput implements KeyboardHandler, MouseHandler {
     }
 
     public void setPlayerDirection() {
-
-        if (!(upPressed && rightPressed && downPressed && leftPressed)) {
-            player.setSpeed(0);
-            return;
-        }
-
 
         if (upPressed) {
             player.setDirection(GridDirection.UP);

@@ -44,31 +44,37 @@ public class Player extends Character {
 
     @Override   // TODO => JOAQUIM
     public void move() {
-        this.getPos().moveInDirection(getDirection());
+
+        System.out.println("PLAYER TRYING TO MOVE WTH SPEED: " + speed);
+        System.out.println("DIRECTION IS: " + direction);
+        for (int i = 0; i < speed; i++) {
+            this.getPos().moveInDirection(getDirection());
+
+        }
     }
 
 
     public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
         for (GameObject iGameObject : gameObjects) {
-
-            if (iGameObject == null) {
-                speed = 1;                          //PARA NAO DAR ERRO SE NAO TIVER NADA A FRENTE
-                return;
+            if (!iGameObject.getPos().equals(getNextPos())) {
+                continue;
             }
             switch (iGameObject.getGameObjType()) {
 
                 case WALL:
                 case PLAYER:
                     speed = 0; // FOR WHEN THERE IS MULTIPLAYER
-                    break;
+                    return;
                 case ENEMY:
                 case PROJECTILE:
                 case ITEM:
                     speed = 1;
-                    break;
+                    return;
             }
         }
+        speed = 1;
     }
+
 
     public void collectItem(Item gameObject) {
 
@@ -118,7 +124,7 @@ public class Player extends Character {
         keyboardInput = keyboard;
     }
 
-    public void decreaseHealth(int damage){
+    public void decreaseHealth(int damage) {
         health -= damage;
     }
 }

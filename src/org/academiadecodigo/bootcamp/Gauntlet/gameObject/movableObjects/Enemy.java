@@ -105,23 +105,23 @@ public class Enemy extends Character {
 
     public void checkObjInNextPosAndSetSpeed(ArrayList<GameObject> gameObjects) {
 
+
         for (GameObject iGameObject : gameObjects) {
-            if (iGameObject == null) {                         //Enemy will move if he has free space ahead
-                speed = 1;
-                return;
-            }
-            switch (iGameObject.getGameObjType()) {
-                case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
-                case ENEMY:
-                case ITEM:
-                    speed = 0;
-                    break;
-                case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
-                case PLAYER:
-                    speed = 1;
-                    break;
-                default:
-                    throw new EnumConstantNotPresentException(GameObjType.class, iGameObject.toString());
+            if (iGameObject.getPos().equals(getNextPos())){
+                                                                //Enemy will move if he has free space ahead
+                switch (iGameObject.getGameObjType()) {
+                    case WALL:                  //Enemy won't move if he encounters a wall, an item or another enemy
+                    case ENEMY:
+                    case ITEM:
+                        speed = 0;
+                        break;
+                    case PROJECTILE:            //Enemy will die if he collides with the player or a projectile
+                    case PLAYER:
+                        speed = 1;
+                        break;
+                    default:
+                        throw new EnumConstantNotPresentException(GameObjType.class, iGameObject.toString());
+                }
             }
         }
     }

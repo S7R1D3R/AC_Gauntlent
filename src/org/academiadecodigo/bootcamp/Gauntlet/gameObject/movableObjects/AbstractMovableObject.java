@@ -75,4 +75,14 @@ public abstract class AbstractMovableObject extends GameObject implements Movabl
     public GridPosition getNextPos() {
         return nextPos;
     }
+
+    @Override
+    public void move() {
+
+    }
+
+    @Override
+    public String toString() {
+       return "Gameobjtype is: " + getGameObjType().toString() +  "   direction is: "  + direction + " Pos is : " + getPos().toString() + "  nextposis: " + getNextPos();
+    }
 }

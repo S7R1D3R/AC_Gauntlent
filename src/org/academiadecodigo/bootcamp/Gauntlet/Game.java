@@ -4,7 +4,6 @@ import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjFactory;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObjType;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.GameObject;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.AbstractMovableObject;
-import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Enemy;
 import org.academiadecodigo.bootcamp.Gauntlet.gameObject.movableObjects.Player;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.Grid;
 import org.academiadecodigo.bootcamp.Gauntlet.grid.GridType;
@@ -95,6 +94,7 @@ public class Game {
     private void moveAllMovable() {
 
         for (AbstractMovableObject iMovableObject : actionDetector.getMovableObjects()) {
+
 
             actionDetector.setDirectionAndSpeed(iMovableObject);
             iMovableObject.move();
